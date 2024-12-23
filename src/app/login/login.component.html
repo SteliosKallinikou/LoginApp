@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <form [formGroup]="LoginForm" (submit)="login()" class="form">
+    <label class="login-label" for="UserName">UserName: </label>
+    <input class="login-input" id="UserName" type="text" formControlName="UserName">
+    <label class="login-label" for="Password">Password: </label>
+    <input class="login-input" id="Password" type="password" formControlName="Password">
+    <button type="submit" class="login-button" >Apply now</button>
+  </form>
+</div>
+
