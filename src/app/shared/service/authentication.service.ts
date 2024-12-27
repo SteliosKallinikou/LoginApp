@@ -11,7 +11,7 @@ export class AuthenticationService {
     let AuthUser:User={UserName:'', Password:'',id:'',Age:'',Email:''}
     let isFound=false
     for(let i=0; i<users.length;i++){
-      if(JSON.stringify(users[i].UserName&& users[i].Password)===JSON.stringify(input.UserName && input.Password)){
+      if(users[i].UserName===input.UserName && users[i].Password===input.Password){
         AuthUser=users[i]
         isFound=true
       }
