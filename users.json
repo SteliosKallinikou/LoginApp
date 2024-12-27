@@ -1,8 +1,18 @@
 {
-  "users":
+  "users": [
     {
       "UserName": "test",
-      "Password": "pass123"
+      "Password": "pass123",
+      "id": "1",
+      "Email": "test@this.com",
+      "Age": "22"
+    },
+    {
+      "id": "2",
+      "UserName": "test2",
+      "Password": "pass456",
+      "Age": "15",
+      "Email": "test2@this.com"
     }
-
+  ]
 }

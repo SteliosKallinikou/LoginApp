@@ -1,10 +1,16 @@
 <div class="wrapper">
   <form [formGroup]="LoginForm" (submit)="login()" class="form">
-    <label class="login-label" for="UserName">UserName: </label>
-    <input class="login-input" id="UserName" type="text" formControlName="UserName">
-    <label class="login-label" for="Password">Password: </label>
-    <input class="login-input" id="Password" type="password" formControlName="Password">
-    <button type="submit" class="login-button" >Apply now</button>
+    <label class="input-label" for="UserName">UserName: </label>
+    <input class="input-text" id="UserName" type="text" formControlName="UserName" required>
+    <span class="login-error" *ngIf="LoginForm.controls.UserName.hasError('required')">*Name is Required to Proceed</span>
+    <label class="input-label" for="Password">Password: </label>
+    <input class="input-text" id="Password" type="password" formControlName="Password">
+    <span class="login-error" *ngIf="LoginForm.controls.Password.hasError('required')">*Password is required to login</span>
+    <span class="login-error" *ngIf="LoginForm.controls.Password.hasError('minlength')">Password must be at least 6 characters </span>
+    <button type="submit" class="submit-button" >Login</button>
+    @if (!isAuthenticated){
+      <span class="login-error">Username or Password not found, please try again</span>
+    }
   </form>
 </div>
 

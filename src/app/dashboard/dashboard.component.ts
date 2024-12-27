@@ -1,4 +1,5 @@
-import {Component, input} from '@angular/core';
+import {Component, inject, input} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,5 +8,11 @@ import {Component, input} from '@angular/core';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-name = input.required<string>()
+  name = input.required<string>()
+  route= inject(Router)
+
+  EditProfile(){
+    this.route.navigate(['/profile',this.name()])
+  }
 }
+
