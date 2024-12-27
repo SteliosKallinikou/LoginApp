@@ -3,6 +3,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {authGuardGuard} from './shared/guard/auth-guard.guard';
 import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
+import {unsavedChangesGuard} from './shared/guard/unsaved-changes.guard';
 
 export const routes: Routes = [
   {
@@ -27,7 +28,8 @@ export const routes: Routes = [
   {
     path:'profile/:name',
     component: ProfileComponent,
-    canActivate:[authGuardGuard]
+    canActivate:[authGuardGuard],
+    canDeactivate:[unsavedChangesGuard]
   }
 
 ];
