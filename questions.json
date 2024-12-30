@@ -1,0 +1,42 @@
+{
+  "questions": [
+    {
+      "QuestionId": "Q1",
+      "Question": "What is the Capital of the UK",
+      "options": [
+        {
+          "answer": "London",
+          "isCorrect": "true"
+        },
+        {
+          "answer": "Manchester",
+          "isCorrect": "false"
+        },
+        {
+          "answer": "Liverpool",
+          "isCorrect": "false"
+        }
+      ]
+
+    },
+    {
+      "QuestionId": "Q2",
+      "Question": "What is the Capital of the Greece",
+      "options": [
+        {
+          "answer": "London",
+          "isCorrect": "true"
+        },
+        {
+          "answer": "Manchester",
+          "isCorrect": "false"
+        },
+        {
+          "answer": "Liverpool",
+          "isCorrect": "false"
+        }
+      ]
+    }
+  ]
+}
+

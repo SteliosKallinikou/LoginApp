@@ -5,6 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
 import {unsavedChangesGuard} from './shared/guard/unsaved-changes.guard';
 import {ErrorPageComponent} from './error-page/error-page.component';
+import {TestPageComponent} from './test-page/test-page.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
     component: ProfileComponent,
     canActivate:[authGuardGuard],
     canDeactivate:[unsavedChangesGuard]
+  },
+  {
+    path:'test/:age',
+    component: TestPageComponent,
   },
   {
     path: '**',

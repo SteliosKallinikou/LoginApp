@@ -59,6 +59,7 @@ export class ProfileComponent implements canDeactivate{
     this.newUser.Age=this.EditForm.value.Age ?? ''
     this.newUser.Email=this.EditForm.value.Email ?? ''
     this.DataService.changeUserDetails(this.newUser,this.AuthenticatedUser).subscribe(res=>{
+      console.log(res)
       if(res){
         this.SaveChanges=true
         this.SnackBar.open('Your Data was Saved Succesfully', 'Close', {
