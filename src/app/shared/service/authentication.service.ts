@@ -8,7 +8,7 @@ import {User} from '../models';
 export class AuthenticationService {
 
   isAuthenticated(users: User[],input: User):boolean{
-    let AuthUser:User={UserName:'', Password:'',id:'',Age:'',Email:''}
+    let AuthUser:User={UserName:'', Password:'',id:'',Age:'',Email:'',Score:''}
     let isFound=false
     for(let i=0; i<users.length;i++){
       if(users[i].UserName===input.UserName && users[i].Password===input.Password){
@@ -25,6 +25,11 @@ export class AuthenticationService {
     const retrieved = localStorage.getItem('user')
     console.log(retrieved)
     return JSON.parse(<string>retrieved)
+  }
+
+  setUserScore(score:string,LoggedUser:User){
+    LoggedUser.Score=score
+    localStorage.setItem('user', JSON.stringify(LoggedUser))
   }
 
   isLogged(){

@@ -29,7 +29,7 @@ export class ProfileComponent implements canDeactivate{
   dialog = inject(MatDialog)
   SnackBar= inject(MatSnackBar)
   AuthenticatedUser: User = this.AuthenticationService.getAuthenticatedUser()
-  newUser:User ={UserName: "", Password: "", id:"", Email:"", Age: ""}
+  newUser:User ={UserName: "", Password: "", id:"", Email:"", Age: "",Score:""}
   SaveChanges=false
 
 

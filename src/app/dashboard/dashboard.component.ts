@@ -8,15 +8,19 @@ import {AuthenticationService} from '../shared/service/authentication.service';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent {
+export class DashboardComponent{
   Authenticator = inject(AuthenticationService)
   name = input.required<string>()
   route= inject(Router)
   AuthenticatedUser = this.Authenticator.getAuthenticatedUser()
   age = parseInt(this.AuthenticatedUser.Age)
+  Score = this.AuthenticatedUser.Score
+
 
   EditProfile():void {
+    console.log(this.Score)
     this.route.navigate(['/profile',this.name()])
+
   }
 
   GoToGeneralTest():void {

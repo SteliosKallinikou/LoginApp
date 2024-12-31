@@ -3,5 +3,6 @@ export interface User{
   "UserName": string,
   "Password": string,
   "Age":string,
-  "Email": string
+  "Email": string,
+  "Score": string
 }
