@@ -28,9 +28,8 @@ export class ProfileComponent implements canDeactivate{
   DataService = inject(UserDataService)
   dialog = inject(MatDialog)
   SnackBar= inject(MatSnackBar)
-
-  newUser:User ={UserName: "", Password: "", id:"", Email:"", Age: ""}
   AuthenticatedUser: User = this.AuthenticationService.getAuthenticatedUser()
+  newUser:User ={UserName: "", Password: "", id:"", Email:"", Age: ""}
   SaveChanges=false
 
 
@@ -54,10 +53,12 @@ export class ProfileComponent implements canDeactivate{
   }
 
   Edit() {
+   console.log(this.AuthenticatedUser)
     this.newUser.UserName=this.EditForm.value.UserName ?? ''
     this.newUser.Password=this.EditForm.value.Password ?? ''
     this.newUser.Age=this.EditForm.value.Age ?? ''
     this.newUser.Email=this.EditForm.value.Email ?? ''
+    this.newUser.id=this.AuthenticatedUser.id
     this.DataService.changeUserDetails(this.newUser,this.AuthenticatedUser).subscribe(res=>{
       console.log(res)
       if(res){
