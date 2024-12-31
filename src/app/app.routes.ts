@@ -6,6 +6,8 @@ import {ProfileComponent} from './profile/profile.component';
 import {unsavedChangesGuard} from './shared/guard/unsaved-changes.guard';
 import {ErrorPageComponent} from './error-page/error-page.component';
 import {TestPageComponent} from './test-page/test-page.component';
+import {TestPageOlderComponent} from './test-page-older/test-page-older.component';
+import {ageGuardGuard} from './shared/guard/age-guard.guard';
 
 export const routes: Routes = [
   {
@@ -34,8 +36,13 @@ export const routes: Routes = [
     canDeactivate:[unsavedChangesGuard]
   },
   {
-    path:'test/:age',
+    path:'general-test',
     component: TestPageComponent,
+  },
+  {
+    path:'general-test/:age',
+    component: TestPageOlderComponent,
+    canActivate:[ageGuardGuard]
   },
   {
     path: '**',

@@ -13,14 +13,19 @@ export class DashboardComponent {
   name = input.required<string>()
   route= inject(Router)
   AuthenticatedUser = this.Authenticator.getAuthenticatedUser()
+  age = parseInt(this.AuthenticatedUser.Age)
 
   EditProfile():void {
     this.route.navigate(['/profile',this.name()])
   }
 
-  GoToTest():void {
-    const age = parseInt(this.AuthenticatedUser.Age)
-    this.route.navigate(['/test', age])
+  GoToGeneralTest():void {
+      this.route.navigate(['/general-test'])
+
+  }
+
+  GoToOlderTest() {
+    this.route.navigate(['/general-test',this.age])
   }
 }
 

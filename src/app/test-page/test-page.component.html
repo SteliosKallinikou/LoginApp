@@ -2,13 +2,12 @@
   <button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
   <h1 class="title">Test</h1>
   <form [formGroup]="TestForm" (submit)="SubmitQuestion()" class="form">
-    <label class="input-label" for="Question" >{{Questions[CurrentQuestion]?.Question|json}} </label>
-    <mat-radio-group formControlName="Question" *ngFor="let option of Questions[CurrentQuestion]?.options" id="Question">
-      <mat-radio-button name="selection" value="{{option?.isCorrect}}">{{option?.answer|json}}</mat-radio-button>
-    </mat-radio-group>
-    @if (age()>=18) {
-      <h1>18 up</h1>
-    }
+      <label class="input-label" for="Question" >{{Questions[CurrentQuestion]?.Question|json}} </label>
+      <mat-radio-group formControlName="Question" *ngFor="let option of Questions[CurrentQuestion]?.options" id="Question">
+        <mat-radio-button name="selection" value="{{option?.isCorrect}}">{{option?.answer|json}}</mat-radio-button>
+      </mat-radio-group>
+    <h2 class="points">{{Score}}/10</h2>
     <button type="submit" class="submit-button" >Submit Changes</button>
   </form>
+  <button type="submit" class="submit-button" (click)="GoHome()" >Back Home</button>
 </div>

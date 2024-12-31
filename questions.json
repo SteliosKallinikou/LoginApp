@@ -2,7 +2,7 @@
   "questions": [
     {
       "QuestionId": "Q1",
-      "Question": "What is the Capital of the UK",
+      "Question": "What is the Capital of the UK?",
       "options": [
         {
           "answer": "London",
@@ -21,18 +21,72 @@
     },
     {
       "QuestionId": "Q2",
-      "Question": "What is the Capital of the Greece",
+      "Question": "Who was the first President of the United States?",
       "options": [
         {
-          "answer": "London",
-          "isCorrect": "true"
-        },
-        {
-          "answer": "Manchester",
+          "answer": "Thomas Jefferson",
           "isCorrect": "false"
         },
         {
-          "answer": "Liverpool",
+          "answer": "George Washington",
+          "isCorrect": "true"
+        },
+        {
+          "answer": "Abraham Lincoln",
+          "isCorrect": "false"
+        }
+      ]
+    },
+    {
+      "QuestionId": "Q3",
+      "Question": "What is the chemical symbol for water?",
+      "options": [
+        {
+          "answer": "CO₂",
+          "isCorrect": "false"
+        },
+        {
+          "answer": "O₂",
+          "isCorrect": "false"
+        },
+        {
+          "answer": "H₂O",
+          "isCorrect": "true"
+        }
+      ]
+    },
+    {
+      "QuestionId": "Q4",
+      "Question": "What planet is known as the Red Planet?",
+      "options": [
+        {
+          "answer": "Mars",
+          "isCorrect": "true"
+        },
+        {
+          "answer": "Venus",
+          "isCorrect": "false"
+        },
+        {
+          "answer": "Saturn",
+          "isCorrect": "false"
+        }
+      ]
+    },
+    {
+      "QuestionId": "Q5",
+      "Question": "Who is the lead singer of the band Queen?",
+      "options": [
+        {
+          "answer": "David Bowie",
+          "isCorrect": "false"
+        },
+        {
+          "answer": "Freddie Mercury",
+          "isCorrect": "true"
+        },
+        {
+          "answer": "Robert Plant",
           "isCorrect": "false"
         }
       ]

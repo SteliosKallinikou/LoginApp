@@ -1,10 +1,12 @@
-import {Component, inject, input, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {MatIcon} from '@angular/material/icon';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {JsonPipe, Location, NgForOf} from '@angular/common';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 import {QuestionService} from '../shared/service/question.service';
 import {Question} from '../shared/models';
+import {AuthenticationService} from '../shared/service/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-test-page',
@@ -22,10 +24,12 @@ import {Question} from '../shared/models';
 export class TestPageComponent implements OnInit{
   location = inject(Location)
   QuestionService = inject(QuestionService)
-  age = input.required<number>()
+  AuthenticationService = inject(AuthenticationService)
+  router= inject(Router)
   Questions: Question[]=[]
   CurrentQuestion =0
   Score=0
+  LoggedUser = this.AuthenticationService.getAuthenticatedUser()
 
 
   ngOnInit() {
@@ -41,12 +45,14 @@ export class TestPageComponent implements OnInit{
   }
 
   SubmitQuestion() {
-    console.log(this.TestForm.controls.Question.value)
     if(this.TestForm.controls.Question.value==="true"){
       this.Score+=2
     }
     this.CurrentQuestion++
     this.TestForm.controls['Question'].reset()
+  }
 
+  GoHome() {
+    this.router.navigate(['/dashboard',this.LoggedUser.UserName])
   }
 }
