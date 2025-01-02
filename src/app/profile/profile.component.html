@@ -6,10 +6,12 @@
       <input class="input-text" id="UserName" type="text" formControlName="UserName" required>
       <label class="input-label" for="Password">Password: </label>
       <input class="input-text" id="Password" type="password" formControlName="Password" required placeholder="">
+      <span class="login-error" *ngIf="EditForm.controls.Password.hasError('minlength')">*Password must be at least 6 characters </span>
       <label class="input-label" for="Age">Age: </label>
       <input class="input-text" id="Age" type="text" formControlName="Age" required placeholder="">
       <label class="input-label" for="Email">Email: </label>
       <input class="input-text" id="Email" type="text" formControlName="Email" required placeholder="">
+      <span class="login-error" *ngIf="EditForm.controls.Email.hasError('email')">*Must be Valid Email address</span>
       <button type="submit" class="submit-button" >Submit Changes</button>
     </form>
   </div>

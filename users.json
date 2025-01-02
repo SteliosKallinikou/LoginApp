@@ -1,11 +1,12 @@
 {
   "users": [
     {
-      "UserName": "steve",
+      "UserName": "Steve",
       "Password": "pass123",
       "id": "1",
       "Email": "test@this.com",
-      "Age": "18"
+      "Age": "20",
+      "Score": "0"
     },
     {
       "id": "2",

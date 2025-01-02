@@ -25,12 +25,12 @@ export const routes: Routes = [
 
   },
   {
-    path: 'dashboard/:name',
+    path: 'dashboard/:UserName',
     component:DashboardComponent,
     canActivate: [authGuardGuard]
   },
   {
-    path:'profile/:name',
+    path:'profile/:UserName',
     component: ProfileComponent,
     canActivate:[authGuardGuard],
     canDeactivate:[unsavedChangesGuard]
@@ -38,9 +38,10 @@ export const routes: Routes = [
   {
     path:'general-test',
     component: TestPageComponent,
+    canDeactivate: [unsavedChangesGuard]
   },
   {
-    path:'general-test/:age',
+    path:'general-test/:Age',
     component: TestPageOlderComponent,
     canActivate:[ageGuardGuard]
   },

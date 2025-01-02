@@ -1,11 +1,15 @@
-import {Injectable} from '@angular/core';
+import {DestroyRef, inject, Injectable} from '@angular/core';
 import {User} from '../models';
+import {UserDataService} from './user-data.service';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  UserService = inject(UserDataService)
+  destroyRef = inject(DestroyRef)
 
   isAuthenticated(users: User[],input: User):boolean{
     let AuthUser:User={UserName:'', Password:'',id:'',Age:'',Email:'',Score:''}
@@ -28,8 +32,10 @@ export class AuthenticationService {
   }
 
   setUserScore(score:string,LoggedUser:User){
+    const LastUser = LoggedUser
     LoggedUser.Score=score
     localStorage.setItem('user', JSON.stringify(LoggedUser))
+    this.UserService.changeUserDetails(LoggedUser,LastUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe()
   }
 
   isLogged(){

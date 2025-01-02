@@ -1,14 +1,16 @@
-import {Component, inject} from '@angular/core';
+import {Component, DestroyRef, inject} from '@angular/core';
 import {User} from '../shared/models';
 import {AuthenticationService} from '../shared/service/authentication.service';
 import {MatIcon} from '@angular/material/icon';
-import {Location} from '@angular/common';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Location, NgIf} from '@angular/common';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserDataService} from '../shared/service/user-data.service';
 import {canDeactivate} from '../shared/guard/canDeactivate';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {Observable} from 'rxjs';
 
 
 
@@ -17,34 +19,36 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   imports: [
     MatIcon,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements canDeactivate{
   AuthenticationService= inject(AuthenticationService)
+  destroyRef = inject(DestroyRef)
   location = inject(Location)
   DataService = inject(UserDataService)
   dialog = inject(MatDialog)
   SnackBar= inject(MatSnackBar)
   AuthenticatedUser: User = this.AuthenticationService.getAuthenticatedUser()
-  newUser:User ={UserName: "", Password: "", id:"", Email:"", Age: "",Score:""}
+  NewUser:User ={UserName: "", Password: "", id:"", Email:"", Age: "",Score:""}
   SaveChanges=false
 
 
   EditForm = new FormGroup({
     UserName: new FormControl(this.AuthenticatedUser.UserName),
-    Password: new FormControl(this.AuthenticatedUser.Password),
+    Password: new FormControl(this.AuthenticatedUser.Password,[Validators.minLength(6)]),
     Age : new FormControl(this.AuthenticatedUser.Age),
-    Email: new FormControl(this.AuthenticatedUser.Email)
+    Email: new FormControl(this.AuthenticatedUser.Email,[Validators.email])
   });
 
-  goBack(){
+  goBack():void{
     this.location.back()
   }
 
-  canDeactivate(){
+  canDeactivate():true| Observable<boolean>{
     if(!this.SaveChanges){
       const DialogRef = this.dialog.open(ConfirmDialogComponent);
       return DialogRef.afterClosed();
@@ -52,14 +56,14 @@ export class ProfileComponent implements canDeactivate{
     return true
   }
 
-  Edit() {
+  Edit():void {
    console.log(this.AuthenticatedUser)
-    this.newUser.UserName=this.EditForm.value.UserName ?? ''
-    this.newUser.Password=this.EditForm.value.Password ?? ''
-    this.newUser.Age=this.EditForm.value.Age ?? ''
-    this.newUser.Email=this.EditForm.value.Email ?? ''
-    this.newUser.id=this.AuthenticatedUser.id
-    this.DataService.changeUserDetails(this.newUser,this.AuthenticatedUser).subscribe(res=>{
+    this.NewUser.UserName=this.EditForm.value.UserName ?? ''
+    this.NewUser.Password=this.EditForm.value.Password ?? ''
+    this.NewUser.Age=this.EditForm.value.Age ?? ''
+    this.NewUser.Email=this.EditForm.value.Email ?? ''
+    this.NewUser.id=this.AuthenticatedUser.id
+    this.DataService.changeUserDetails(this.NewUser,this.AuthenticatedUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>{
       console.log(res)
       if(res){
         this.SaveChanges=true

@@ -1,7 +1,8 @@
 export interface Question{
   "Question": string,
   "QuestionId": string,
-  "options": options[]
+  "options": options[],
+  "next": string
 }
 
 export interface options{

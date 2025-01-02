@@ -1,26 +1,36 @@
-import {Component, inject, input} from '@angular/core';
+import {Component, inject, input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../shared/service/authentication.service';
+import {MatButton} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [
+    MatButton
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent{
+export class DashboardComponent implements OnInit{
   Authenticator = inject(AuthenticationService)
-  name = input.required<string>()
+  UserName = input.required<string>()
   route= inject(Router)
   AuthenticatedUser = this.Authenticator.getAuthenticatedUser()
-  age = parseInt(this.AuthenticatedUser.Age)
-  Score = this.AuthenticatedUser.Score
+  UserAge = parseInt(this.AuthenticatedUser.Age)
+  UserScore = this.AuthenticatedUser.Score
 
+  ngOnInit() {
+    const match= this.route.url.match(/[^/]+$/)
+    if(!(match) || match[0]!=null){
+      if(!(match) || match[0]!=this.AuthenticatedUser.UserName){
+        this.route.navigate(['*'])
+      }
+    }
+  }
 
   EditProfile():void {
-    console.log(this.Score)
-    this.route.navigate(['/profile',this.name()])
-
+    this.route.navigate(['/profile',this.UserName()])
   }
 
   GoToGeneralTest():void {
@@ -28,8 +38,8 @@ export class DashboardComponent{
 
   }
 
-  GoToOlderTest() {
-    this.route.navigate(['/general-test',this.age])
+  GoToOlderTest():void {
+    this.route.navigate(['/general-test',this.UserAge])
   }
 }
 

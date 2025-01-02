@@ -1,7 +1,7 @@
 {
   "questions": [
     {
-      "QuestionId": "Q1",
+      "id": "Q1",
       "Question": "What is the Capital of the UK?",
       "options": [
         {
@@ -16,11 +16,12 @@
           "answer": "Liverpool",
           "isCorrect": "false"
         }
-      ]
+      ],
+      "next":"http://localhost:3001/questions/Q2"
 
     },
     {
-      "QuestionId": "Q2",
+      "id": "Q2",
       "Question": "Who was the first President of the United States?",
       "options": [
         {
@@ -35,10 +36,11 @@
           "answer": "Abraham Lincoln",
           "isCorrect": "false"
         }
-      ]
+      ],
+      "next":"http://localhost:3001/questions/Q3"
     },
     {
-      "QuestionId": "Q3",
+      "id": "Q3",
       "Question": "What is the chemical symbol for water?",
       "options": [
         {
@@ -53,10 +55,11 @@
           "answer": "H₂O",
           "isCorrect": "true"
         }
-      ]
+      ],
+      "next":"http://localhost:3001/questions/Q4"
     },
     {
-      "QuestionId": "Q4",
+      "id": "Q4",
       "Question": "What planet is known as the Red Planet?",
       "options": [
         {
@@ -71,10 +74,11 @@
           "answer": "Saturn",
           "isCorrect": "false"
         }
-      ]
+      ],
+      "next":"http://localhost:3001/questions/Q5"
     },
     {
-      "QuestionId": "Q5",
+      "id": "Q5",
       "Question": "Who is the lead singer of the band Queen?",
       "options": [
         {
@@ -89,7 +93,8 @@
           "answer": "Robert Plant",
           "isCorrect": "false"
         }
-      ]
+      ],
+      "next":""
     }
   ]
 }

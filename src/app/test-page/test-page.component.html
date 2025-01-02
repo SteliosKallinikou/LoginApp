@@ -2,12 +2,19 @@
   <button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
   <h1 class="title">General-Test</h1>
   <form [formGroup]="TestForm" (submit)="SubmitQuestion()" class="form">
+    @if (isFinished){
+      <div class="congratulations-message">
+        Congratulations!<br>
+        You Have Reached the end of the Test
+      </div>
+    } @else {
       <label class="input-label" for="Question" > {{Questions[CurrentQuestion]?.Question|json}} </label>
       <mat-radio-group formControlName="Question" *ngFor="let option of Questions[CurrentQuestion]?.options" id="Question">
         <mat-radio-button name="selection" value="{{option?.isCorrect}}">{{option?.answer|json}}</mat-radio-button>
       </mat-radio-group>
+      <button type="submit" class="submit-button" >Submit Changes</button>
+    }
     <h2 class="points">Score: {{Score}}/10</h2>
-    <button type="submit" class="submit-button" >Submit Changes</button>
+    <button type="submit" class="submit-button" (click)="GoHome()" >Back Home</button>
   </form>
-  <button type="submit" class="submit-button" (click)="GoHome()" >Back Home</button>
 </div>

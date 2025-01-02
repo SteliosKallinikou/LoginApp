@@ -6,9 +6,24 @@
   height: 300px;
   margin: 40px auto;
   text-align: center;
+  align-items: center;
+  padding: 100px;
 }
 .dashboard-button{
-  margin-top: 30px;
+  margin-top: 40px;
   height: 40px;
-  border-radius: 25px;
+  border-radius: 20px;
+  background-color: #5045e6;
+  color: white !important;
+  width: 50%;
+}
+.welcome-header{
+  display: flex;
+  line-height: 2;
+  height: 20%;
+  flex-direction: column;
+}
+hr{
+  border-top: 2px solid #2fbc88;
+  width: 100%;
 }

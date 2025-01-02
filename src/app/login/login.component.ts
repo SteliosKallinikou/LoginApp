@@ -33,7 +33,7 @@ export class LoginComponent {
   },{updateOn: "change"})
 
 
-  login() {
+  login():void {
     this.UserName=this.LoginForm.value.UserName ?? ''
     this.Password= this.LoginForm.value.Password ?? ''
     this.UserInput.UserName= this.UserName
