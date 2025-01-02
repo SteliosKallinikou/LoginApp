@@ -4,5 +4,6 @@ export interface User{
   "Password": string,
   "Age":string,
   "Email": string,
-  "Score": string
+  "Score": string,
+  "OlderScore":string
 }

@@ -5,3 +5,16 @@
   font-size: 13pt;
   text-align: center;
 }
+.radio-buttons{
+  display: flex;
+  padding-top: 20px;
+  flex-direction: column;
+  line-height: 2;
+}
+.answer{
+  & span:hover{
+    text-decoration: underline;
+    text-decoration-color: #2fbc88;
+    text-decoration-thickness:3px ;
+  }
+}

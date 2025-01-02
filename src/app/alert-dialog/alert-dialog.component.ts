@@ -2,6 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {MatDialogActions, MatDialogContent, MatDialogRef, MatDialogTitle} from '@angular/material/dialog';
 import {MatButton} from '@angular/material/button';
 import {Router} from '@angular/router';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-alert-dialog',
@@ -9,7 +10,8 @@ import {Router} from '@angular/router';
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatButton
+    MatButton,
+    MatIcon
   ],
   templateUrl: './alert-dialog.component.html',
   styleUrl: './alert-dialog.component.scss'

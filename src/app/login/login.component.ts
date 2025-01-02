@@ -23,7 +23,7 @@ export class LoginComponent {
   route= inject(Router)
   UserName=''
   Password=''
-  UserInput: User={UserName: "", Password: "", id:"", Email:"", Age:"",Score:""}
+  UserInput: User={UserName: "", Password: "", id:"", Email:"", Age:"",Score:"",OlderScore:""}
   isAuthenticated=true
 
 

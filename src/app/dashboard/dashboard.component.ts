@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit{
   AuthenticatedUser = this.Authenticator.getAuthenticatedUser()
   UserAge = parseInt(this.AuthenticatedUser.Age)
   UserScore = this.AuthenticatedUser.Score
+  OlderScore= this.AuthenticatedUser.OlderScore
 
   ngOnInit() {
     const match= this.route.url.match(/[^/]+$/)
@@ -40,6 +41,13 @@ export class DashboardComponent implements OnInit{
 
   GoToOlderTest():void {
     this.route.navigate(['/general-test',this.UserAge])
+  }
+
+  LogOut() {
+    this.Authenticator.LogOutAuthenticatedUser()
+    if(!this.Authenticator.isLogged()){
+      this.route.navigate([''])
+    }
   }
 }
 

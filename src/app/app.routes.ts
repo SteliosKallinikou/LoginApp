@@ -43,7 +43,8 @@ export const routes: Routes = [
   {
     path:'general-test/:Age',
     component: TestPageOlderComponent,
-    canActivate:[ageGuardGuard]
+    canActivate:[ageGuardGuard],
+    canDeactivate: [unsavedChangesGuard]
   },
   {
     path: '**',

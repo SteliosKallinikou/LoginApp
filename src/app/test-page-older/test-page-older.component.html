@@ -1,1 +1,5 @@
-<p>test-page-older works!</p>
+<app-test-page
+[isOlder]="true"
+[OlderQuestions]="Questions$"
+(SaveOlder)="onFinished($event)"
+></app-test-page>

@@ -7,5 +7,7 @@ export interface Question{
 
 export interface options{
   "answer": string,
-  isCorrect: boolean
+  "isCorrect": boolean,
+  "id":string
+
 }

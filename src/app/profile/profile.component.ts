@@ -33,7 +33,7 @@ export class ProfileComponent implements canDeactivate{
   dialog = inject(MatDialog)
   SnackBar= inject(MatSnackBar)
   AuthenticatedUser: User = this.AuthenticationService.getAuthenticatedUser()
-  NewUser:User ={UserName: "", Password: "", id:"", Email:"", Age: "",Score:""}
+  NewUser:User ={UserName: "", Password: "", id:"", Email:"", Age: "",Score:"",OlderScore:""}
   SaveChanges=false
 
 
@@ -57,7 +57,6 @@ export class ProfileComponent implements canDeactivate{
   }
 
   Edit():void {
-   console.log(this.AuthenticatedUser)
     this.NewUser.UserName=this.EditForm.value.UserName ?? ''
     this.NewUser.Password=this.EditForm.value.Password ?? ''
     this.NewUser.Age=this.EditForm.value.Age ?? ''

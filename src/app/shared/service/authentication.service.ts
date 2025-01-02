@@ -12,7 +12,7 @@ export class AuthenticationService {
   destroyRef = inject(DestroyRef)
 
   isAuthenticated(users: User[],input: User):boolean{
-    let AuthUser:User={UserName:'', Password:'',id:'',Age:'',Email:'',Score:''}
+    let AuthUser:User={UserName:'', Password:'',id:'',Age:'',Email:'',Score:'',OlderScore:''}
     let isFound=false
     for(let i=0; i<users.length;i++){
       if(users[i].UserName===input.UserName && users[i].Password===input.Password){
@@ -31,14 +31,20 @@ export class AuthenticationService {
     return JSON.parse(<string>retrieved)
   }
 
-  setUserScore(score:string,LoggedUser:User){
+  setUserScore(score:string,OlderScore:string,LoggedUser:User){
     const LastUser = LoggedUser
     LoggedUser.Score=score
+    LoggedUser.OlderScore=OlderScore
     localStorage.setItem('user', JSON.stringify(LoggedUser))
     this.UserService.changeUserDetails(LoggedUser,LastUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe()
   }
 
   isLogged(){
-    return localStorage.getItem('isAuthenticated')==='true'
-}
+    return localStorage.getItem('isAuthenticated') === 'true';
+  }
+
+  LogOutAuthenticatedUser(){
+    localStorage.setItem('isAuthenticated','false')
+    localStorage.setItem('user','')
+  }
 }

@@ -1,0 +1,22 @@
+
+h1{
+  display: flex;
+  padding-top: 40px;
+  padding-left: 10px;
+  justify-content: center;
+  line-height: 3;
+  & mat-icon{
+    color: red;
+  }
+  gap: 10px;
+}
+
+.alert-message{
+  margin-bottom: 20px;
+}
+
+button:hover{
+  border: 2px solid #2fbc88;
+  border-radius: 20px;
+}
+

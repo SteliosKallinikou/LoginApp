@@ -1,7 +1,7 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, EventEmitter, inject, input, OnInit, Output} from '@angular/core';
 import {MatIcon} from '@angular/material/icon';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {JsonPipe, Location, NgForOf} from '@angular/common';
+import {JsonPipe, NgForOf} from '@angular/common';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 import {QuestionService} from '../shared/service/question.service';
 import {Question} from '../shared/models';
@@ -27,28 +27,38 @@ import {Observable} from 'rxjs';
   styleUrl: './test-page.component.scss'
 })
 export class TestPageComponent implements OnInit{
-  location = inject(Location)
   destroyRef= inject(DestroyRef)
   QuestionService = inject(QuestionService)
   AuthenticationService = inject(AuthenticationService)
   router= inject(Router)
   SnackBar= inject(MatSnackBar)
   dialog = inject(MatDialog)
+  isOlder = input<boolean>()
+  OlderQuestions= input.required<Observable<Question[]>>()
+  @Output() SaveOlder = new EventEmitter<boolean>()
+  @Output() ScoreOlder = new EventEmitter<number>()
+
 
   Questions: Question[]=[]
   CurrentQuestion =0
-  Score=0
   LoggedUser = this.AuthenticationService.getAuthenticatedUser()
   SaveChanges =false
   isFinished=false
+  Score=parseInt(this.LoggedUser.Score)
+  OlderScore=parseInt(this.LoggedUser.OlderScore)
 
 
 
   ngOnInit():void {
-    this.QuestionService.getQuestions().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>{
-      this.Questions=res
-
-    })
+    if(this.isOlder()){
+      this.OlderScore=0
+      this.OlderQuestions().subscribe(res=>this.Questions=res)
+    }else{
+      this.Score=0
+      this.QuestionService.getQuestions().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>{
+        this.Questions=res
+      })
+    }
   }
 
   TestForm = new FormGroup({
@@ -56,7 +66,7 @@ export class TestPageComponent implements OnInit{
   });
 
   goBack():void {
-    this.location.back()
+    this.router.navigate(['/dashboard',this.LoggedUser.UserName])
   }
 
   canDeactivate():true|Observable<boolean>{
@@ -68,25 +78,47 @@ export class TestPageComponent implements OnInit{
   }
 
   SubmitQuestion():void {
+    if(this.TestForm.controls.Question.value!=""){
+      this.CurrentQuestion++
+    }else{
+      this.SnackBar.open('You must Select One Option', 'Close', {
+        duration: 4000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+      })
+    }
+
     if(this.TestForm.controls.Question.value==="true"){
-      this.Score+=2
+      if(this.isOlder()){
+        this.OlderScore+=2
+        console.log(this.AuthenticationService.getAuthenticatedUser())
+      }else{
+        this.Score+=2
+      }
       this.SnackBar.open('Your Awnser Was Correct', 'Close', {
         duration: 4000,
         horizontalPosition: 'center',
         verticalPosition: 'bottom',
 
       })
+    }else if(this.TestForm.controls.Question.value==="false"){
+      this.SnackBar.open('Your Awnser Was Incorrect', 'Close', {
+        duration: 4000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+
+      })
+
     }
-    this.CurrentQuestion++
-    this.AuthenticationService.setUserScore(this.Score.toString(),this.LoggedUser)
+
+    this.AuthenticationService.setUserScore(this.Score.toString(),this.OlderScore.toString(),this.LoggedUser)
     this.TestForm.controls['Question'].reset()
+    this.TestForm.controls['Question'].setValue("")
+
     if(this.Questions[this.CurrentQuestion]===undefined){
+      this.SaveOlder.emit(true)
       this.isFinished=true
+      this.SaveChanges=true
     }
-  }
-
-  GoHome():void {
-    this.router.navigate(['/dashboard',this.LoggedUser.UserName])
-
   }
 }
