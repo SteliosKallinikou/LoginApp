@@ -27,14 +27,11 @@ export class AuthenticationService {
 
   getAuthenticatedUser():User{
     const retrieved = localStorage.getItem('user')
-    console.log(retrieved)
     return JSON.parse(<string>retrieved)
   }
 
   setUserScore(score:string,OlderScore:string,LoggedUser:User):void{
     const LastUser = LoggedUser
-    console.log(OlderScore)
-    console.log(score)
     LoggedUser.Score=score
     LoggedUser.OlderScore=OlderScore
     localStorage.setItem('user', JSON.stringify(LoggedUser))

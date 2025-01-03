@@ -5,8 +5,8 @@
       "Password": "pass123",
       "id": "1",
       "Email": "test@this.com",
-      "Age": "19",
-      "Score": "10",
+      "Age": "20",
+      "Score": "4",
       "OlderScore": "4"
     },
     {
@@ -44,6 +44,15 @@
       "Age": "20",
       "Score": "",
       "OlderScore": ""
+    },
+    {
+      "id": "6",
+      "UserName": "Stelios",
+      "Password": "test123",
+      "Email": "testing@this.com",
+      "Age": "15",
+      "Score": "4",
+      "OlderScore": "0"
     }
   ]
 }

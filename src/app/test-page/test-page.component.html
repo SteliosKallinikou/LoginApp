@@ -12,7 +12,7 @@
         You Have Reached the end of the Test
       </div>
     } @else {
-      <label class="input-label" for="Question" > {{Questions[CurrentQuestion].Question}} </label>
+      <label class="input-label" for="Question" > {{Questions[CurrentQuestion]?.Question}} </label>
       <hr>
       <mat-radio-group class="radio-buttons" formControlName="Question" id="Question">
         <mat-radio-button class="answer" *ngFor="let option of Questions[CurrentQuestion]?.options" name="{{option?.answer|json}}" value="{{option?.isCorrect}}">

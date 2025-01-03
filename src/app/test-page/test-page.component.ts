@@ -36,7 +36,6 @@ export class TestPageComponent implements OnInit{
   isOlder = input<boolean>()
   OlderQuestions= input.required<Observable<Question[]>>()
   @Output() SaveOlder = new EventEmitter<boolean>()
-  @Output() ScoreOlder = new EventEmitter<number>()
 
 
   Questions: Question[]=[]
@@ -61,7 +60,7 @@ export class TestPageComponent implements OnInit{
       if(!parseInt(this.LoggedUser.OlderScore)){
         this.OlderScore=0
       }
-      this.QuestionService.getQuestions().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>{
+      this.QuestionService.getQuestions(false).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>{
         this.Questions=res
       })
     }
@@ -84,6 +83,7 @@ export class TestPageComponent implements OnInit{
   }
 
   SubmitQuestion():void {
+    const CorrectAnswer= this.Questions[this.CurrentQuestion].options.filter(option=>{return option.isCorrect}).map(option=>option.answer)
     if(this.TestForm.controls.Question.value!=""){
       this.CurrentQuestion++
     }else{
@@ -97,7 +97,6 @@ export class TestPageComponent implements OnInit{
     if(this.TestForm.controls.Question.value==="true"){
       if(this.isOlder()){
         this.OlderScore+=2
-        console.log(this.AuthenticationService.getAuthenticatedUser())
       }else{
         this.Score+=2
       }
@@ -108,15 +107,13 @@ export class TestPageComponent implements OnInit{
 
       })
     }else if(this.TestForm.controls.Question.value==="false"){
-      this.SnackBar.open('Your Awnser Was Incorrect', 'Close', {
-        duration: 4000,
+
+      this.SnackBar.open('Wrong, Correct awnser was:' + CorrectAnswer[0], 'Close', {
+        duration: 5000,
         horizontalPosition: 'center',
         verticalPosition: 'bottom',
-
       })
-
     }
-
     this.AuthenticationService.setUserScore(this.Score.toString(),this.OlderScore.toString(),this.LoggedUser)
     this.TestForm.controls['Question'].reset()
     this.TestForm.controls['Question'].setValue("")

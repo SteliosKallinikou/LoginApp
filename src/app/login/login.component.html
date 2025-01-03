@@ -1,4 +1,6 @@
 <div class="wrapper">
+  <h1 class="title">Welcome to Our Login Page</h1>
+  <hr>
   <form [formGroup]="LoginForm" (submit)="login()" class="form">
     <label class="input-label" for="UserName">UserName: </label>
     <input class="input-text" id="UserName" type="text" formControlName="UserName" required>
@@ -13,7 +15,6 @@
       <span class="login-error">Username or Password not found, please try again</span>
     }
   </form>
-
 </div>
 
 

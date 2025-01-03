@@ -19,11 +19,11 @@ import {MatIcon} from '@angular/material/icon';
 export class AlertDialogComponent implements OnInit{
   router = inject(Router)
   dialogRef:MatDialogRef<AlertDialogComponent> = inject(MatDialogRef)
-  ngOnInit() {
+  ngOnInit():void {
    this.router.navigate(['/general-test'])
   }
 
-  onClose() {
+  onClose():void {
     this.dialogRef.close()
   }
 }

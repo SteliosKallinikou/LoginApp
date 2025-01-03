@@ -12,13 +12,11 @@ export class QuestionService {
   URL="http://localhost:3001"
   http= inject(HttpClient)
 
-  getQuestions():Observable<Question[]>{
-    return this.http.get<Question[]>(`${this.URL}/questions`)
+  getQuestions(hard:boolean):Observable<Question[]>{
+    if(hard){
+      return this.http.get<Question[]>(`${this.URL}/questions-plus`)
+    }else{
+      return this.http.get<Question[]>(`${this.URL}/questions`)
+    }
   }
-
-  getHardQuestions():Observable<Question[]>{
-    return this.http.get<Question[]>(`${this.URL}/questions-plus`)
-  }
-
-
 }

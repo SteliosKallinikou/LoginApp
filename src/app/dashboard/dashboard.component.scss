@@ -1,18 +1,20 @@
+@use "variables";
+
 .wrapper{
   display: flex;
   justify-content: center;
   flex-direction: column;
   max-width: 800px;
   height: 500px;
-  margin: 40px auto;
+  margin: variables.$large-plus auto;
   text-align: center;
   align-items: center;
   padding: 100px;
 }
 .dashboard-button{
-  margin-top: 40px;
-  height: 40px;
-  border-radius: 20px;
+  margin-top: variables.$large-plus;
+  height: variables.$large-plus;
+  border-radius: variables.$medium-plus;
   background-color: #5045e6;
   color: white !important;
   width: 50%;

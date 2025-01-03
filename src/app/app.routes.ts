@@ -16,12 +16,12 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path:'register',
-    component: RegisterComponent
-  },
-  {
     path: '',
     component: LoginComponent
+  },
+  {
+    path:'register',
+    component: RegisterComponent
   },
   {
     path:'',
@@ -42,14 +42,19 @@ export const routes: Routes = [
   },
   {
     path:'general-test',
-    component: TestPageComponent,
-    canDeactivate: [unsavedChangesGuard]
-  },
-  {
-    path:'general-test/:age',
-    component: TestPageOlderComponent,
-    canActivate:[ageGuardGuard],
-    canDeactivate: [unsavedChangesGuard]
+    children:[
+      {
+        path:'',
+        component:TestPageComponent,
+        canDeactivate:[unsavedChangesGuard]
+      },
+      {
+        path:':UserAge',
+        component: TestPageOlderComponent,
+        canActivate:[ageGuardGuard],
+        canDeactivate:[unsavedChangesGuard]
+      }
+    ]
   },
   {
     path: '**',

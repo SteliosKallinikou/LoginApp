@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, input} from '@angular/core';
 import {QuestionService} from '../shared/service/question.service';
 import {TestPageComponent} from '../test-page/test-page.component';
 import {Question} from '../shared/models';
@@ -6,7 +6,6 @@ import {Observable} from 'rxjs';
 import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../shared/service/authentication.service';
 
 @Component({
   selector: 'app-test-page-older',
@@ -18,16 +17,14 @@ import {AuthenticationService} from '../shared/service/authentication.service';
 })
 export class TestPageOlderComponent{
   QuestionsService = inject(QuestionService)
-  Questions$: Observable<Question[]>=this.QuestionsService.getHardQuestions()
+  Questions$: Observable<Question[]>=this.QuestionsService.getQuestions(true)
   dialog = inject(MatDialog)
   router= inject(Router)
-  AuthenticationService = inject(AuthenticationService)
-  age = this.AuthenticationService.getAuthenticatedUser().Age
   isFinished = false
-
+  UserAge = input.required<number>()
 
   canDeactivate():true|Observable<boolean>{
-    if(parseInt(this.age!)>18 && !this.isFinished){
+    if(this.UserAge() > 18 && !this.isFinished){
       const DialogRef = this.dialog.open(ConfirmDialogComponent);
       return DialogRef.afterClosed();
     }else {

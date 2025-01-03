@@ -6,18 +6,18 @@
       "options": [
         {
           "id": "1",
-          "answer": "London",
-          "isCorrect": "true"
+          "answer": " London",
+          "isCorrect": true
         },
         {
           "id": "2",
-          "answer": "Manchester",
-          "isCorrect": "false"
+          "answer": " Manchester",
+          "isCorrect": false
         },
         {
           "id": "3",
-          "answer": "Liverpool",
-          "isCorrect": "false"
+          "answer": " Liverpool",
+          "isCorrect": false
         }
       ],
       "next":"http://localhost:3001/questions/Q2"
@@ -29,18 +29,18 @@
       "options": [
         {
           "id": "1",
-          "answer": "Thomas Jefferson",
-          "isCorrect": "false"
+          "answer": " Thomas Jefferson",
+          "isCorrect": false
         },
         {
           "id": "2",
-          "answer": "George Washington",
-          "isCorrect": "true"
+          "answer": " George Washington",
+          "isCorrect": true
         },
         {
           "id": "3",
-          "answer": "Abraham Lincoln",
-          "isCorrect": "false"
+          "answer": " Abraham Lincoln",
+          "isCorrect": false
         }
       ],
       "next":"http://localhost:3001/questions/Q3"
@@ -51,18 +51,18 @@
       "options": [
         {
           "id": "1",
-          "answer": "CO₂",
-          "isCorrect": "false"
+          "answer": " CO₂",
+          "isCorrect": false
         },
         {
           "id": "2",
-          "answer": "O₂",
-          "isCorrect": "false"
+          "answer": " O₂",
+          "isCorrect": false
         },
         {
           "id": "3",
-          "answer": "H₂O",
-          "isCorrect": "true"
+          "answer": " H₂O",
+          "isCorrect": true
         }
       ],
       "next":"http://localhost:3001/questions/Q4"
@@ -73,18 +73,18 @@
       "options": [
         {
           "id": "1",
-          "answer": "Mars",
-          "isCorrect": "true"
+          "answer": " Mars",
+          "isCorrect": true
         },
         {
           "id": "2",
-          "answer": "Venus",
-          "isCorrect": "false"
+          "answer": " Venus",
+          "isCorrect": false
         },
         {
           "id": "3",
-          "answer": "Saturn",
-          "isCorrect": "false"
+          "answer": " Saturn",
+          "isCorrect": false
         }
       ],
       "next":"http://localhost:3001/questions/Q5"
@@ -95,18 +95,18 @@
       "options": [
         {
           "id": "1",
-          "answer": "David Bowie",
-          "isCorrect": "false"
+          "answer": " David Bowie",
+          "isCorrect": false
         },
         {
           "id": "2",
-          "answer": "Freddie Mercury",
-          "isCorrect": "true"
+          "answer": " Freddie Mercury",
+          "isCorrect": true
         },
         {
           "id": "3",
-          "answer": "Robert Plant",
-          "isCorrect": "false"
+          "answer": " Robert Plant",
+          "isCorrect": false
         }
       ],
       "next":""
@@ -119,18 +119,18 @@
       "options": [
         {
           "id": "1",
-          "answer": "1914",
-          "isCorrect": "true"
+          "answer": " 1914",
+          "isCorrect": true
         },
         {
           "id": "2",
-          "answer": "1921",
-          "isCorrect": "false"
+          "answer": " 1921",
+          "isCorrect": false
         },
         {
           "id": "3",
-          "answer": "1910",
-          "isCorrect": "false"
+          "answer": " 1910",
+          "isCorrect": false
         }
       ],
       "next":"http://localhost:3001/questions/Q2"
@@ -142,18 +142,18 @@
       "options": [
         {
           "id": "1",
-          "answer": "1970",
-          "isCorrect": "false"
+          "answer": " 1970",
+          "isCorrect": false
         },
         {
           "id": "2",
-          "answer": "1983",
-          "isCorrect": "false"
+          "answer": " 1983",
+          "isCorrect": false
         },
         {
           "id": "3",
-          "answer": "1969",
-          "isCorrect": "true"
+          "answer": " 1969",
+          "isCorrect": true
         }
       ],
       "next":"http://localhost:3001/questions/Q3"
@@ -164,18 +164,18 @@
       "options": [
         {
           "id": "1",
-          "answer": "May Queen",
-          "isCorrect": "true"
+          "answer": " May Queen",
+          "isCorrect": true
         },
         {
           "id": "2",
-          "answer": "Magic Wand",
-          "isCorrect": "false"
+          "answer": " Magic Wand",
+          "isCorrect": false
         },
         {
           "id": "3",
-          "answer": "Enchanted Mirror",
-          "isCorrect": "false"
+          "answer": " Enchanted Mirror",
+          "isCorrect": false
         }
       ],
       "next":"http://localhost:3001/questions/Q4"
@@ -186,18 +186,18 @@
       "options": [
         {
           "id": "1",
-          "answer": "Appolo",
-          "isCorrect": "false"
+          "answer": " Appolo",
+          "isCorrect": false
         },
         {
           "id": "2",
-          "answer": "Athena",
-          "isCorrect": "false"
+          "answer": " Athena",
+          "isCorrect": false
         },
         {
           "id": "3",
-          "answer": "Ermes",
-          "isCorrect": "true"
+          "answer": " Ermes",
+          "isCorrect": true
         }
       ],
       "next":"http://localhost:3001/questions/Q5"
@@ -208,18 +208,18 @@
       "options": [
         {
           "id": "1",
-          "answer": "Texas",
-          "isCorrect": "false"
+          "answer": " Texas",
+          "isCorrect": false
         },
         {
           "id": "2",
-          "answer": "Florida",
-          "isCorrect": "false"
+          "answer": " Florida",
+          "isCorrect": false
         },
         {
           "id": "3",
-          "answer": "Nevada",
-          "isCorrect": "true"
+          "answer": " Nevada",
+          "isCorrect": true
         }
       ],
       "next":""
