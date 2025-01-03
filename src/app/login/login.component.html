@@ -8,9 +8,12 @@
     <span class="login-error" *ngIf="LoginForm.controls.Password.hasError('required')">*Password is required to login</span>
     <span class="login-error" *ngIf="LoginForm.controls.Password.hasError('minlength')">Password must be at least 6 characters </span>
     <button type="submit" class="submit-button" >Login</button>
+    <button type="button" class="submit-button" (click)="Register()">Dont have an account? Click to Register</button>
     @if (!isAuthenticated){
       <span class="login-error">Username or Password not found, please try again</span>
     }
   </form>
+
 </div>
+
 

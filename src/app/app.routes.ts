@@ -8,11 +8,16 @@ import {ErrorPageComponent} from './error-page/error-page.component';
 import {TestPageComponent} from './test-page/test-page.component';
 import {TestPageOlderComponent} from './test-page-older/test-page-older.component';
 import {ageGuardGuard} from './shared/guard/age-guard.guard';
+import {RegisterComponent} from './register/register.component';
 
 export const routes: Routes = [
   {
     path:'login',
     component: LoginComponent
+  },
+  {
+    path:'register',
+    component: RegisterComponent
   },
   {
     path: '',

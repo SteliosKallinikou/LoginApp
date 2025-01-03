@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <h1 class="title">Register Form</h1>
+  <form [formGroup]="RegisterForm" (submit)="Register()" class="form">
+    <label class="input-label" for="UserName">UserName: </label>
+    <input class="input-text" id="UserName" type="text" formControlName="UserName" required placeholder="Name">
+    <span class="login-error" *ngIf="RegisterForm.controls.UserName.hasError('required')">*Name is Required to Proceed</span>
+    <label class="input-label" for="Password">Password: </label>
+    <input class="input-text" id="Password" type="password" formControlName="Password" required placeholder="">
+    <span class="login-error" *ngIf="RegisterForm.controls.Password.hasError('required')">*Password is required to Register</span>
+    <span class="login-error" *ngIf="RegisterForm.controls.Password.hasError('minlength')">Password must be at least 6 characters </span>
+    <label class="input-label" for="Age">Age: </label>
+    <input class="input-text" id="Age" type="text" formControlName="Age" required placeholder="20">
+    <span class="login-error" *ngIf="RegisterForm.controls.Password.hasError('required')">*Age is required to Register</span>
+    <label class="input-label" for="Email">Email: </label>
+    <input class="input-text" id="Email" type="text" formControlName="Email" required placeholder="this@test.com">
+    <span class="login-error" *ngIf="RegisterForm.controls.Email.hasError('email')">*Must be Valid Email address</span>
+    <span class="login-error" *ngIf="RegisterForm.controls.Password.hasError('required')">*Email is required to Register</span>
+    <button type="submit" class="submit-button" >Register</button>
+  </form>
+
+</div>

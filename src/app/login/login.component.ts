@@ -40,12 +40,15 @@ export class LoginComponent {
     this.UserInput.Password=this.Password
 
     this.UserService.getUser().pipe(takeUntilDestroyed(this.DestroyRef)).subscribe(data=>{
-      console.log(data,this.UserInput)
       if(this.AuthenticationService.isAuthenticated(data,this.UserInput)){
         this.route.navigate(['/dashboard',this.UserName])
       }else{
         this.isAuthenticated=false
       }
     })
+  }
+
+  Register() {
+    this.route.navigate(['/register'])
   }
 }
