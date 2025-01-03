@@ -52,9 +52,15 @@ export class TestPageComponent implements OnInit{
   ngOnInit():void {
     if(this.isOlder()){
       this.OlderScore=0
+      if(!parseInt(this.LoggedUser.Score)){
+        this.Score=0
+      }
       this.OlderQuestions().subscribe(res=>this.Questions=res)
     }else{
       this.Score=0
+      if(!parseInt(this.LoggedUser.OlderScore)){
+        this.OlderScore=0
+      }
       this.QuestionService.getQuestions().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>{
         this.Questions=res
       })

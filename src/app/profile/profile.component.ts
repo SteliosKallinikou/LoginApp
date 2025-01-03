@@ -37,6 +37,7 @@ export class ProfileComponent implements canDeactivate{
   SaveChanges=false
 
 
+
   EditForm = new FormGroup({
     UserName: new FormControl(this.AuthenticatedUser.UserName),
     Password: new FormControl(this.AuthenticatedUser.Password,[Validators.minLength(6)]),

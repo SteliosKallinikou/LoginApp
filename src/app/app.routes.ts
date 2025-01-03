@@ -30,7 +30,7 @@ export const routes: Routes = [
     canActivate: [authGuardGuard]
   },
   {
-    path:'profile/:UserName',
+    path:'profile',
     component: ProfileComponent,
     canActivate:[authGuardGuard],
     canDeactivate:[unsavedChangesGuard]
@@ -41,7 +41,7 @@ export const routes: Routes = [
     canDeactivate: [unsavedChangesGuard]
   },
   {
-    path:'general-test/:Age',
+    path:'general-test/:age',
     component: TestPageOlderComponent,
     canActivate:[ageGuardGuard],
     canDeactivate: [unsavedChangesGuard]

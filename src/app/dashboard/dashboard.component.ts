@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit{
   }
 
   EditProfile():void {
-    this.route.navigate(['/profile',this.UserName()])
+    this.route.navigate(['/profile'])
   }
 
   GoToGeneralTest():void {
@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit{
   }
 
   GoToOlderTest():void {
-    this.route.navigate(['/general-test',this.UserAge])
+    this.route.navigate(['/general-test',this.AuthenticatedUser.Age])
   }
 
   LogOut() {

@@ -5,16 +5,18 @@
       "Password": "pass123",
       "id": "1",
       "Email": "test@this.com",
-      "Age": "20",
-      "Score": "4",
-      "OlderScore": "10"
+      "Age": "17",
+      "Score": "2",
+      "OlderScore": "0"
     },
     {
-      "id": "2",
       "UserName": "test2",
       "Password": "pass456",
-      "Age": "15",
-      "Email": "test2@this.com"
+      "id": "2",
+      "Email": "test2@this.com",
+      "Age": "21",
+      "Score": "",
+      "OlderScore": ""
     }
   ]
 }
