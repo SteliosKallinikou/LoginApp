@@ -5,9 +5,9 @@
       "Password": "pass123",
       "id": "1",
       "Email": "test@this.com",
-      "Age": "17",
-      "Score": "2",
-      "OlderScore": "0"
+      "Age": "19",
+      "Score": "0",
+      "OlderScore": "2"
     },
     {
       "UserName": "test2",
