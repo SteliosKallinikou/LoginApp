@@ -11,6 +11,8 @@
     <label class="input-label" for="Age">Age: </label>
     <input class="input-text" id="Age" type="text" formControlName="Age" required placeholder="20">
     <span class="login-error" *ngIf="RegisterForm.controls.Password.hasError('required')">*Age is required to Register</span>
+    <span class="login-error" *ngIf="RegisterForm.controls.Age.hasError('ageRange')">*Age Must be between 15-70</span>
+    <span class="login-error" *ngIf="RegisterForm.controls.Age.hasError('notNumber')">*Age Must be a Number</span>
     <label class="input-label" for="Email">Email: </label>
     <input class="input-text" id="Email" type="text" formControlName="Email" required placeholder="this@test.com">
     <span class="login-error" *ngIf="RegisterForm.controls.Email.hasError('email')">*Must be Valid Email address</span>

@@ -6,8 +6,8 @@
       "id": "1",
       "Email": "test@this.com",
       "Age": "19",
-      "Score": "",
-      "OlderScore": ""
+      "Score": "10",
+      "OlderScore": "4"
     },
     {
       "UserName": "test2",

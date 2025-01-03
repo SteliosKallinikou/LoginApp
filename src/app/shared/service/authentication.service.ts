@@ -31,7 +31,7 @@ export class AuthenticationService {
     return JSON.parse(<string>retrieved)
   }
 
-  setUserScore(score:string,OlderScore:string,LoggedUser:User){
+  setUserScore(score:string,OlderScore:string,LoggedUser:User):void{
     const LastUser = LoggedUser
     console.log(OlderScore)
     console.log(score)
@@ -41,11 +41,11 @@ export class AuthenticationService {
     this.UserService.changeUserDetails(LoggedUser,LastUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe()
   }
 
-  isLogged(){
+  isLogged():boolean{
     return localStorage.getItem('isAuthenticated') === 'true';
   }
 
-  LogOutAuthenticatedUser(){
+  LogOutAuthenticatedUser():void{
     localStorage.setItem('isAuthenticated','false')
     localStorage.setItem('user','')
   }

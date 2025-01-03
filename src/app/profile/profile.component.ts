@@ -11,6 +11,7 @@ import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Observable} from 'rxjs';
+import {age_Validator} from '../shared/validators/age_validator';
 
 
 
@@ -41,7 +42,7 @@ export class ProfileComponent implements canDeactivate{
   EditForm = new FormGroup({
     UserName: new FormControl(this.AuthenticatedUser.UserName),
     Password: new FormControl(this.AuthenticatedUser.Password,[Validators.minLength(6)]),
-    Age : new FormControl(this.AuthenticatedUser.Age),
+    Age : new FormControl(this.AuthenticatedUser.Age,[age_Validator()]),
     Email: new FormControl(this.AuthenticatedUser.Email,[Validators.email])
   });
 

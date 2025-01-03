@@ -1,13 +1,15 @@
+@use "variables";
+
 .title{
   text-align: center;
 }
 .congratulations-message{
-  font-size: 13pt;
+  font-size: variables.$small-font-size;
   text-align: center;
 }
 .radio-buttons{
   display: flex;
-  padding-top: 20px;
+  padding-top: variables.$medium-plus;
   flex-direction: column;
   line-height: 2;
 }

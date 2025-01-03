@@ -48,7 +48,7 @@ export class LoginComponent {
     })
   }
 
-  Register() {
+  Register():void {
     this.route.navigate(['/register'])
   }
 }

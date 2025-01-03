@@ -16,7 +16,7 @@ export class QuestionService {
     return this.http.get<Question[]>(`${this.URL}/questions`)
   }
 
-  getHardQuestions(){
+  getHardQuestions():Observable<Question[]>{
     return this.http.get<Question[]>(`${this.URL}/questions-plus`)
   }
 

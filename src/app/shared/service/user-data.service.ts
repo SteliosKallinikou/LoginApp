@@ -11,8 +11,8 @@ export class UserDataService {
 
   Http = inject(HttpClient)
   URL = "http://localhost:3000/users"
-  private dataSubject = new BehaviorSubject<boolean>(false)
-  data$=this.dataSubject.asObservable()
+  private ValidRegistration = new BehaviorSubject<boolean>(false)
+  Validated$=this.ValidRegistration.asObservable()
   DestroyRef = inject(DestroyRef)
 
   getUser():Observable<User[]>{
@@ -25,13 +25,13 @@ export class UserDataService {
     return this.Http.put(ReplaceUrl,CurrUser)
   }
 
-  RegisterUser(RegisterUser:User){
+  RegisterUser(RegisterUser:User):void{
     this.getUser().pipe(takeUntilDestroyed(this.DestroyRef)).subscribe(data=>{
       RegisterUser.id=String(data.length + 1)
       if(data.filter(data=>data.Email===RegisterUser.Email || data.UserName===RegisterUser.UserName).length!=0){
-        this.dataSubject.next(false)
+        this.ValidRegistration.next(false)
       }else{
-        this.dataSubject.next(true)
+        this.ValidRegistration.next(true)
         this.Http.post<User>(this.URL,RegisterUser).pipe(takeUntilDestroyed(this.DestroyRef)).subscribe()
       }
     })

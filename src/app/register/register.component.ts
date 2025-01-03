@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {User} from '../shared/models';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {age_Validator} from '../shared/validators/age_validator';
 
 @Component({
   selector: 'app-register',
@@ -29,17 +30,17 @@ export class RegisterComponent {
     UserName: new FormControl('',[Validators.required]),
     Password: new FormControl('',[Validators.required, Validators.minLength(6)]),
     Email: new FormControl('',[Validators.required, Validators.email]),
-    Age: new FormControl('',[Validators.required])
+    Age: new FormControl('',[Validators.required,age_Validator()])
   })
 
-  Register() {
+  Register():void {
     const UserName=this.RegisterForm.value.UserName ?? ''
     const Password= this.RegisterForm.value.Password ?? ''
     const Email = this.RegisterForm.value.Email ?? ''
     const Age = this.RegisterForm.value.Age??''
     const User:User={UserName: UserName, Password: Password, Email: Email, Age: Age, id: '', Score:'',OlderScore:''}
     this.UserService.RegisterUser(User)
-    this.UserService.data$.pipe(takeUntilDestroyed(this.DestroyRef)).subscribe(data=>this.isRegistered=data)
+    this.UserService.Validated$.pipe(takeUntilDestroyed(this.DestroyRef)).subscribe(data=>this.isRegistered=data)
 
     if(this.isRegistered){
       this.SnackBar.open('You have Succesfully Registered', 'Close', {

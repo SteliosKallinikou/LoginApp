@@ -34,7 +34,7 @@ export class TestPageOlderComponent{
       return true
     }
   }
-  onFinished(Finished: boolean) {
+  onFinished(Finished: boolean):void {
     this.isFinished=Finished
   }
 
