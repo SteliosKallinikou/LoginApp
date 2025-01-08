@@ -12,19 +12,15 @@
         You Have Reached the end of the Test
       </div>
     } @else {
-      <label class="input-label" for="Question" > {{Questions[CurrentQuestion]?.Question}} </label>
+      <label class="input-label" for="Question" > {{Questions[currentQuestion]?.Question}} </label>
       <hr>
       <mat-radio-group class="radio-buttons" formControlName="Question" id="Question">
-        <mat-radio-button class="answer" *ngFor="let option of Questions[CurrentQuestion]?.options" name="{{option?.answer|json}}" value="{{option?.isCorrect}}">
+        <mat-radio-button class="answer" *ngFor="let option of Questions[currentQuestion]?.options" name="{{option?.answer|json}}" value="{{option?.isCorrect}}">
           <span>Answer {{option?.id}}: {{option?.answer}}</span>
         </mat-radio-button>
       </mat-radio-group>
       <button type="submit" class="submit-button" >Submit Changes</button>
     }
-    @if (isOlder()){
-      <h2 class="points">Score: {{OlderScore}}/10</h2>
-    } @else {
-      <h2 class="points">Score: {{Score}}/10</h2>
-    }
+    <h2 class="points">Score: {{isOlder()? olderScore: score}}/10</h2>
   </form>
 </div>

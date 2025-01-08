@@ -1,16 +1,17 @@
 <div class="wrapper">
   <h1 class="title">Welcome to Our Login Page</h1>
   <hr>
+
   <form [formGroup]="LoginForm" (submit)="login()" class="form">
-    <label class="input-label" for="UserName">UserName: </label>
-    <input class="input-text" id="UserName" type="text" formControlName="UserName" required>
-    <span class="login-error" *ngIf="LoginForm.controls.UserName.hasError('required')">*Name is Required to Proceed</span>
+    <label class="input-label" for="userName">UserName: </label>
+    <input class="input-text" id="userName" type="text" formControlName="userName" required>
+    <span class="login-error" *ngIf="LoginForm.controls['userName']!.hasError('required')">*Name is Required to Proceed</span>
     <label class="input-label" for="Password">Password: </label>
-    <input class="input-text" id="Password" type="password" formControlName="Password">
-    <span class="login-error" *ngIf="LoginForm.controls.Password.hasError('required')">*Password is required to login</span>
-    <span class="login-error" *ngIf="LoginForm.controls.Password.hasError('minlength')">Password must be at least 6 characters </span>
+    <input class="input-text" id="Password" type="password" formControlName="password">
+    <span class="login-error" *ngIf="LoginForm.controls['password']!.hasError('required')">*Password is required to login</span>
+    <span class="login-error" *ngIf="LoginForm.controls['password']!.hasError('minlength')">Password must be at least 6 characters </span>
     <button type="submit" class="submit-button" >Login</button>
-    <button type="button" class="submit-button" (click)="Register()">Dont have an account? Click to Register</button>
+    <button type="button" class="submit-button" (click)="Register()" [disabled]="!LoginForm.valid">Dont have an account? Click to Register</button>
     @if (!isAuthenticated){
       <span class="login-error">Username or Password not found, please try again</span>
     }

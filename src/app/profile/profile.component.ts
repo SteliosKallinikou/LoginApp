@@ -1,9 +1,9 @@
-import {Component, DestroyRef, inject} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {User} from '../shared/models';
 import {AuthenticationService} from '../shared/service/authentication.service';
 import {MatIcon} from '@angular/material/icon';
 import {Location, NgIf} from '@angular/common';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {UserDataService} from '../shared/service/user-data.service';
 import {canDeactivate} from '../shared/guard/canDeactivate';
 import {MatDialog} from '@angular/material/dialog';
@@ -26,30 +26,35 @@ import {age_Validator} from '../shared/validators/age_validator';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
-export class ProfileComponent implements canDeactivate{
-  AuthenticationService= inject(AuthenticationService)
+export class ProfileComponent implements canDeactivate,OnInit{
+  authenticationService= inject(AuthenticationService)
   destroyRef = inject(DestroyRef)
   location = inject(Location)
-  DataService = inject(UserDataService)
+  dataService = inject(UserDataService)
   dialog = inject(MatDialog)
-  SnackBar= inject(MatSnackBar)
-  AuthenticatedUser: User = this.AuthenticationService.getAuthenticatedUser()
-  NewUser:User ={UserName: "", Password: "", id:"", Email:"", Age: "",Score:"",OlderScore:""}
-  SaveChanges=false
+  snackBar= inject(MatSnackBar)
+  formBuilder = inject(FormBuilder)
+  authenticatedUser: User = this.authenticationService.getAuthenticatedUser()
+  newUser:User ={} as User
+  saveChanges=false
+  EditForm:FormGroup = new FormGroup({})
 
-  EditForm = new FormGroup({
-    UserName: new FormControl(this.AuthenticatedUser.UserName),
-    Password: new FormControl(this.AuthenticatedUser.Password,[Validators.minLength(6)]),
-    Age : new FormControl(this.AuthenticatedUser.Age,[age_Validator()]),
-    Email: new FormControl(this.AuthenticatedUser.Email,[Validators.email])
-  });
+  ngOnInit() {
+
+    this.EditForm= this.formBuilder.group({
+      userName: [this.authenticatedUser.UserName],
+      password:[this.authenticatedUser.Password,[Validators.minLength(6)]],
+      age : [this.authenticatedUser.Age,[age_Validator()]],
+      email: [this.authenticatedUser.Email,[Validators.email]]
+    })
+  }
 
   goBack():void{
     this.location.back()
   }
 
   canDeactivate():true| Observable<boolean>{
-    if(!this.SaveChanges){
+    if(!this.saveChanges){
       const DialogRef = this.dialog.open(ConfirmDialogComponent);
       return DialogRef.afterClosed();
     }
@@ -57,16 +62,17 @@ export class ProfileComponent implements canDeactivate{
   }
 
   Edit():void {
-    this.NewUser.UserName=this.EditForm.value.UserName ?? ''
-    this.NewUser.Password=this.EditForm.value.Password ?? ''
-    this.NewUser.Age=this.EditForm.value.Age ?? ''
-    this.NewUser.Email=this.EditForm.value.Email ?? ''
-    this.NewUser.id=this.AuthenticatedUser.id
-    this.DataService.changeUserDetails(this.NewUser,this.AuthenticatedUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>{
-      console.log(res)
+    this.newUser.UserName=this.EditForm.controls['userName'].value
+    this.newUser.Password=this.EditForm.controls['password'].value
+    this.newUser.Age=this.EditForm.controls['age'].value
+    this.newUser.Email=this.EditForm.controls['email'].value
+    this.newUser.id=this.authenticatedUser.id
+    this.newUser.Score=this.authenticatedUser.Score
+    this.newUser.OlderScore=this.authenticatedUser.OlderScore
+    this.dataService.changeUserDetails(this.newUser,this.authenticatedUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>{
       if(res){
-        this.SaveChanges=true
-        this.SnackBar.open('Your Data was Saved Succesfully', 'Close', {
+        this.saveChanges=true
+        this.snackBar.open('Your Data was Saved Succesfully', 'Close', {
           duration: 5000,
           horizontalPosition: 'center',
           verticalPosition: 'bottom',

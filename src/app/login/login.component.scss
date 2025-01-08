@@ -1,3 +1,26 @@
+
 .title{
   text-align: center;
+}
+
+.input-field{
+  width: 50%;
+}
+
+::ng-deep .mat-form-field {
+  .mat-input-element {
+    color: slategray;
+  }
+  .mat-form-field-label {
+    color: slategray;
+  }
+  .mat-form-field-underline {
+    background-color: slategray;
+  }
+  .mat-form-field-ripple {
+    background-color: slategray;
+  }
+  .mat-form-field-required-marker {
+    color: slategray;
+  }
 }

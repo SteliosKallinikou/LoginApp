@@ -2,6 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Question} from '../models';
 import {Observable} from 'rxjs';
+import {QuestionLevel} from '../enums/question-level';
 
 
 @Injectable({
@@ -13,10 +14,8 @@ export class QuestionService {
   http= inject(HttpClient)
 
   getQuestions(hard:boolean):Observable<Question[]>{
-    if(hard){
-      return this.http.get<Question[]>(`${this.URL}/questions-plus`)
-    }else{
-      return this.http.get<Question[]>(`${this.URL}/questions`)
-    }
+    const questionLevel = hard ? QuestionLevel.HARD:QuestionLevel.EASY
+    return this.http.get<Question[]>(`${this.URL}/${questionLevel}`)
+
   }
 }

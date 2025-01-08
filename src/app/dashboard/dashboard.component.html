@@ -1,19 +1,14 @@
 <div class="wrapper">
   <div class="welcome-header">
-    <h1 class="welcome-message">Hello {{UserName()}} Welcome to your DashBoard!</h1>
-    @if (UserScore===''|| OlderScore==='') {
-      <span>{{UserName()}}'s Score: 0/10</span>
-      <span>{{UserName()}}'s 18+Score: 0/10</span>
-    } @else {
-      <span>{{UserName()}}'s Score: {{UserScore}}/10</span>
-      <span>{{UserName()}}'s 18+ Score: {{OlderScore}}/10</span>
-    }
+    <h1 class="welcome-message">Hello {{userName()}} Welcome to your DashBoard!</h1>
+      <span>{{userName()}}'s Score: {{userScore || 0}}/10</span>
+      <span>{{userName()}}'s 18+ Score: {{olderScore || 0}}/10</span>
     <hr>
   </div>
-  <button mat-stroked-button class="dashboard-button" (click)="EditProfile()">Edit Profile Details</button>
-  <button mat-stroked-button class="dashboard-button" (click)="GoToGeneralTest()">Go to General Test</button>
-  <button mat-stroked-button class="dashboard-button" (click)="GoToOlderTest()" >Go to 18+ Test</button>
-  <button mat-stroked-button class="dashboard-button" (click)="LogOut()">Logout</button>
+  <button mat-stroked-button class="dashboard-button" (click)="editProfile()">Edit Profile Details</button>
+  <button mat-stroked-button class="dashboard-button" (click)="goToGeneralTest()">Go to General Test</button>
+  <button mat-stroked-button class="dashboard-button" (click)="goToOlderTest()" >Go to 18+ Test</button>
+  <button mat-stroked-button class="dashboard-button" (click)="logOut()">Logout</button>
 </div>
 
 

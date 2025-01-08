@@ -28,39 +28,37 @@ import {Observable} from 'rxjs';
 })
 export class TestPageComponent implements OnInit{
   destroyRef= inject(DestroyRef)
-  QuestionService = inject(QuestionService)
-  AuthenticationService = inject(AuthenticationService)
+  questionService = inject(QuestionService)
+  authenticationService = inject(AuthenticationService)
   router= inject(Router)
-  SnackBar= inject(MatSnackBar)
+  snackBar= inject(MatSnackBar)
   dialog = inject(MatDialog)
   isOlder = input<boolean>()
-  OlderQuestions= input.required<Observable<Question[]>>()
-  @Output() SaveOlder = new EventEmitter<boolean>()
+  olderQuestions= input.required<Observable<Question[]>>()
+  @Output() saveOlder = new EventEmitter<boolean>()
 
 
   Questions: Question[]=[]
-  CurrentQuestion =0
-  LoggedUser = this.AuthenticationService.getAuthenticatedUser()
-  SaveChanges =false
+  currentQuestion =0
+  loggedUser = this.authenticationService.getAuthenticatedUser()
+  saveChanges =false
   isFinished=false
-  Score=parseInt(this.LoggedUser.Score)
-  OlderScore=parseInt(this.LoggedUser.OlderScore)
-
-
+  score=this.authenticationService.getScore()
+  olderScore=this.authenticationService.getOlderScore()
 
   ngOnInit():void {
     if(this.isOlder()){
-      this.OlderScore=0
-      if(!parseInt(this.LoggedUser.Score)){
-        this.Score=0
+      this.olderScore=0
+      if(!this.score){
+        this.score=0
       }
-      this.OlderQuestions().subscribe(res=>this.Questions=res)
+      this.olderQuestions().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>this.Questions=res)
     }else{
-      this.Score=0
-      if(!parseInt(this.LoggedUser.OlderScore)){
-        this.OlderScore=0
+      this.score=0
+      if(!this.olderScore){
+        this.olderScore=0
       }
-      this.QuestionService.getQuestions(false).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>{
+      this.questionService.getQuestions(false).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res=>{
         this.Questions=res
       })
     }
@@ -71,11 +69,11 @@ export class TestPageComponent implements OnInit{
   });
 
   goBack():void {
-    this.router.navigate(['/dashboard',this.LoggedUser.UserName])
+    this.router.navigate(['/dashboard',this.loggedUser.UserName])
   }
 
   canDeactivate():true|Observable<boolean>{
-    if(!this.SaveChanges){
+    if(!this.saveChanges){
       const DialogRef = this.dialog.open(ConfirmDialogComponent);
       return DialogRef.afterClosed();
     }
@@ -83,45 +81,37 @@ export class TestPageComponent implements OnInit{
   }
 
   SubmitQuestion():void {
-    const CorrectAnswer= this.Questions[this.CurrentQuestion].options.filter(option=>{return option.isCorrect}).map(option=>option.answer)
-    if(this.TestForm.controls.Question.value!=""){
-      this.CurrentQuestion++
-    }else{
-      this.SnackBar.open('You must Select One Option', 'Close', {
-        duration: 4000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-      })
+    const CorrectAnswer= this.Questions[this.currentQuestion].options.filter(option=>{return option.isCorrect}).map(option=>option.answer)
+    this.getQuestion()!="" ? this.currentQuestion++  : this.getSnackBar('You must Select One Option')
+
+    if(this.getQuestion()==="true"){
+      this.isOlder() ? this.olderScore+=2 : this.score+=2
+      this.getSnackBar('Your Awnser Was Correct')
+
+    }else if(this.getQuestion()==="false"){
+      this.getSnackBar('Wrong, Correct awnser was:'+CorrectAnswer)
     }
 
-    if(this.TestForm.controls.Question.value==="true"){
-      if(this.isOlder()){
-        this.OlderScore+=2
-      }else{
-        this.Score+=2
-      }
-      this.SnackBar.open('Your Awnser Was Correct', 'Close', {
-        duration: 4000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-
-      })
-    }else if(this.TestForm.controls.Question.value==="false"){
-
-      this.SnackBar.open('Wrong, Correct awnser was:' + CorrectAnswer[0], 'Close', {
-        duration: 5000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-      })
-    }
-    this.AuthenticationService.setUserScore(this.Score.toString(),this.OlderScore.toString(),this.LoggedUser)
+    this.authenticationService.setUserScore(this.score.toString(),this.olderScore.toString(),this.loggedUser)
     this.TestForm.controls['Question'].reset()
     this.TestForm.controls['Question'].setValue("")
 
-    if(this.Questions[this.CurrentQuestion]===undefined){
-      this.SaveOlder.emit(true)
+    if(this.Questions[this.currentQuestion]===undefined){
+      this.saveOlder.emit(true)
       this.isFinished=true
-      this.SaveChanges=true
+      this.saveChanges=true
     }
+  }
+
+  getQuestion(){
+    return this.TestForm.controls.Question.value
+  }
+
+  getSnackBar(text:string){
+    this.snackBar.open(text, 'Close', {
+      duration: 4000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    })
   }
 }

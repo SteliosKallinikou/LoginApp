@@ -1,4 +1,4 @@
-import {Component, inject, input, OnInit} from '@angular/core';
+import {Component, inject, input} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../shared/service/authentication.service';
 import {MatButton} from '@angular/material/button';
@@ -12,39 +12,28 @@ import {MatButton} from '@angular/material/button';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent implements OnInit{
-  Authenticator = inject(AuthenticationService)
-  UserName = input.required<string>()
+export class DashboardComponent{
+  authenticator = inject(AuthenticationService)
+  userName = input.required<string>()
   route= inject(Router)
-  AuthenticatedUser = this.Authenticator.getAuthenticatedUser()
-  UserAge = parseInt(this.AuthenticatedUser.Age)
-  UserScore = this.AuthenticatedUser.Score
-  OlderScore= this.AuthenticatedUser.OlderScore
+  userAge = this.authenticator.getAge()
+  userScore = this.authenticator.getScore()
+  olderScore= this.authenticator.getOlderScore()
 
-  ngOnInit():void {
-    const match= this.route.url.match(/[^/]+$/)
-    if(!(match) || match[0]!=null){
-      if(!(match) || match[0]!=this.AuthenticatedUser.UserName){
-        this.route.navigate(['*'])
-      }
-    }
-  }
-
-  EditProfile():void {
+  editProfile():void {
     this.route.navigate(['/profile'])
   }
 
-  GoToGeneralTest():void {
+  goToGeneralTest():void {
       this.route.navigate(['/general-test'])
 
   }
-  GoToOlderTest():void {
-    this.route.navigate(['/general-test',this.UserAge])
+  goToOlderTest():void {
+    this.route.navigate(['/general-test',this.userAge])
   }
 
-  LogOut():void {
-    this.Authenticator.LogOutAuthenticatedUser()
-    if(!this.Authenticator.isLogged()){
+  logOut():void {
+    if(this.authenticator.LogOutAuthenticatedUser()){
       this.route.navigate([''])
     }
   }

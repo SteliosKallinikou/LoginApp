@@ -1,11 +1,12 @@
-import {Component, DestroyRef, inject} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {UserDataService} from '../shared/service/user-data.service';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {User} from '../shared/models';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {AuthenticationService} from '../shared/service/authentication.service';
 import {NgIf} from '@angular/common';
+
 
 @Component({
   selector: 'app-login',
@@ -14,40 +15,40 @@ import {NgIf} from '@angular/common';
     NgIf,
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
-export class LoginComponent {
-  UserService = inject(UserDataService)
-  AuthenticationService=inject(AuthenticationService)
-  DestroyRef = inject(DestroyRef)
+export class LoginComponent implements OnInit{
+  userService = inject(UserDataService)
+  authenticationService=inject(AuthenticationService)
+  destroyRef = inject(DestroyRef)
   route= inject(Router)
-  UserName=''
-  Password=''
-  UserInput: User={UserName: "", Password: "", id:"", Email:"", Age:"",Score:"",OlderScore:""}
+  formBuilder = inject(FormBuilder)
+  userName=''
+  userInput: User={} as User
   isAuthenticated=true
+  LoginForm:FormGroup = new FormGroup({})
 
+  ngOnInit() {
 
-  LoginForm= new FormGroup({
-    UserName: new FormControl('',[Validators.required]),
-    Password: new FormControl('',[Validators.required, Validators.minLength(6)])
-  },{updateOn: "change"})
-
+    this.LoginForm= this.formBuilder.group({
+      userName: [null,[Validators.required]],
+      password:[null,[Validators.required, Validators.minLength(6)]]
+    })
+  }
 
   login():void {
-    this.UserName=this.LoginForm.value.UserName ?? ''
-    this.Password= this.LoginForm.value.Password ?? ''
-    this.UserInput.UserName= this.UserName
-    this.UserInput.Password=this.Password
+    this.userName=this.LoginForm.controls['userName'].value
+    this.userInput.UserName= this.LoginForm.controls['userName'].value
+    this.userInput.Password=this.LoginForm.controls['password'].value
 
-    this.UserService.getUser().pipe(takeUntilDestroyed(this.DestroyRef)).subscribe(data=>{
-      if(this.AuthenticationService.isAuthenticated(data,this.UserInput)){
-        this.route.navigate(['/dashboard',this.UserName])
+    this.userService.getUser().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data=>{
+      if(this.authenticationService.isAuthenticated(data,this.userInput)){
+        this.route.navigate(['/dashboard',this.userName])
       }else{
         this.isAuthenticated=false
       }
     })
   }
-
   Register():void {
     this.route.navigate(['/register'])
   }

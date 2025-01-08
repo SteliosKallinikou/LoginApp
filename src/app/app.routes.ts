@@ -12,11 +12,13 @@ import {RegisterComponent} from './register/register.component';
 
 export const routes: Routes = [
   {
-    path:'login',
-    component: LoginComponent
+    path:'',
+    redirectTo:'/login',
+    pathMatch: "full"
+
   },
   {
-    path: '',
+    path:'login',
     component: LoginComponent
   },
   {
@@ -24,13 +26,7 @@ export const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path:'',
-    redirectTo:'/login',
-    pathMatch: "full"
-
-  },
-  {
-    path: 'dashboard/:UserName',
+    path: 'dashboard/:userName',
     component:DashboardComponent,
     canActivate: [authGuardGuard]
   },
@@ -46,12 +42,13 @@ export const routes: Routes = [
       {
         path:'',
         component:TestPageComponent,
+        canActivate:[authGuardGuard],
         canDeactivate:[unsavedChangesGuard]
       },
       {
         path:':UserAge',
         component: TestPageOlderComponent,
-        canActivate:[ageGuardGuard],
+        canActivate:[ageGuardGuard,authGuardGuard],
         canDeactivate:[unsavedChangesGuard]
       }
     ]

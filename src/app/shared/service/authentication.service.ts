@@ -11,23 +11,17 @@ export class AuthenticationService {
   UserService = inject(UserDataService)
   destroyRef = inject(DestroyRef)
 
+
   isAuthenticated(users: User[],input: User):boolean{
-    let AuthUser:User={UserName:'', Password:'',id:'',Age:'',Email:'',Score:'',OlderScore:''}
-    let isFound=false
-    for(let i=0; i<users.length;i++){
-      if(users[i].UserName===input.UserName && users[i].Password===input.Password){
-        AuthUser=users[i]
-        isFound=true
-      }
-    }
-      localStorage.setItem('isAuthenticated','true')
+    const AuthUser = users.find(user => user.UserName === input.UserName && user.Password === input.Password) || null;
+    const isFound = Boolean(AuthUser?.UserName);
+    localStorage.setItem('isAuthenticated', isFound.toString());
       localStorage.setItem('user', JSON.stringify(AuthUser))
       return isFound
   }
 
   getAuthenticatedUser():User{
-    const retrieved = localStorage.getItem('user')
-    return JSON.parse(<string>retrieved)
+    return JSON.parse(<string>localStorage.getItem('user'))
   }
 
   setUserScore(score:string,OlderScore:string,LoggedUser:User):void{
@@ -39,11 +33,23 @@ export class AuthenticationService {
   }
 
   isLogged():boolean{
-    return localStorage.getItem('isAuthenticated') === 'true';
+    return JSON.parse(<string>localStorage.getItem('isAuthenticated'));
   }
 
-  LogOutAuthenticatedUser():void{
+  LogOutAuthenticatedUser():boolean{
     localStorage.setItem('isAuthenticated','false')
     localStorage.setItem('user','')
+    return Boolean(localStorage.getItem('isAuthenticated'))
+  }
+
+  getAge():number{
+    return parseInt(this.getAuthenticatedUser().Age)
+  }
+
+  getScore():number{
+    return parseInt(this.getAuthenticatedUser().Score)
+  }
+  getOlderScore():number{
+    return parseInt(this.getAuthenticatedUser().OlderScore)
   }
 }
