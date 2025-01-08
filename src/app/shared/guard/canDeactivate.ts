@@ -1,5 +1,5 @@
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
-export interface canDeactivate{
-  canDeactivate:()=> boolean | Observable<Boolean>
+export interface canDeactivate {
+  canDeactivate: () => boolean | Observable<Boolean>;
 }

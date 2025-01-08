@@ -1,23 +1,23 @@
 <div class="wrapper">
   <h1 class="title">Register Form</h1>
-  <form [formGroup]="RegisterForm" (submit)="Register()" class="form">
+  <form [formGroup]="registerForm" (submit)="register()" class="form">
     <label class="input-label" for="UserName">UserName: </label>
     <input class="input-text" id="UserName" type="text" formControlName="userName" required placeholder="Name">
-    <span class="login-error" *ngIf="RegisterForm.controls['userName'].hasError('required')">*Name is Required to Proceed</span>
+    <span class="login-error" *ngIf="registerForm.controls['userName'].hasError('required')">*Name is Required to Proceed</span>
     <label class="input-label" for="Password">Password: </label>
     <input class="input-text" id="Password" type="password" formControlName="password" required placeholder="">
-    <span class="login-error" *ngIf="RegisterForm.controls['password'].hasError('required')">*Password is required to Register</span>
-    <span class="login-error" *ngIf="RegisterForm.controls['password'].hasError('minlength')">Password must be at least 6 characters </span>
+    <span class="login-error" *ngIf="registerForm.controls['password'].hasError('required')">*Password is required to Register</span>
+    <span class="login-error" *ngIf="registerForm.controls['password'].hasError('minlength')">Password must be at least 6 characters </span>
     <label class="input-label" for="Age">Age: </label>
     <input class="input-text" id="Age" type="text" formControlName="age" required placeholder="20">
-    <span class="login-error" *ngIf="RegisterForm.controls['age'].hasError('required')">*Age is required to Register</span>
-    <span class="login-error" *ngIf="RegisterForm.controls['age'].hasError('ageRange')">*Age Must be between 15-70</span>
-    <span class="login-error" *ngIf="RegisterForm.controls['age'].hasError('notNumber')">*Age Must be a Number</span>
+    <span class="login-error" *ngIf="registerForm.controls['age'].hasError('required')">*Age is required to Register</span>
+    <span class="login-error" *ngIf="registerForm.controls['age'].hasError('ageRange')">*Age Must be between 15-70</span>
+    <span class="login-error" *ngIf="registerForm.controls['age'].hasError('notNumber')">*Age Must be a Number</span>
     <label class="input-label" for="Email">Email: </label>
     <input class="input-text" id="Email" type="text" formControlName="email" required placeholder="this@test.com">
-    <span class="login-error" *ngIf="RegisterForm.controls['email'].hasError('email')">*Must be Valid Email address</span>
-    <span class="login-error" *ngIf="RegisterForm.controls['email'].hasError('required')">*Email is required to Register</span>
-    <button type="submit" class="submit-button" [disabled]="!RegisterForm.valid">Register</button>
+    <span class="login-error" *ngIf="registerForm.controls['email'].hasError('email')">*Must be Valid Email address</span>
+    <span class="login-error" *ngIf="registerForm.controls['email'].hasError('required')">*Email is required to Register</span>
+    <button type="submit" class="submit-button" [disabled]="!registerForm.valid">Register</button>
   </form>
 
 </div>

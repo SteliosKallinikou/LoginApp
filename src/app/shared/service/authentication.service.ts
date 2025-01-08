@@ -1,55 +1,52 @@
-import {DestroyRef, inject, Injectable} from '@angular/core';
-import {User} from '../models';
-import {UserDataService} from './user-data.service';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-
+import { DestroyRef, inject, Injectable } from '@angular/core';
+import { User } from '../models';
+import { UserDataService } from './user-data.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
-  UserService = inject(UserDataService)
-  destroyRef = inject(DestroyRef)
+  userService = inject(UserDataService);
+  destroyRef = inject(DestroyRef);
 
-
-  isAuthenticated(users: User[],input: User):boolean{
-    const AuthUser = users.find(user => user.UserName === input.UserName && user.Password === input.Password) || null;
-    const isFound = Boolean(AuthUser?.UserName);
+  isAuthenticated(users: User[], input: User): boolean {
+    const authUser = users.find(user => user.userName === input.userName && user.password === input.password) || null;
+    const isFound = Boolean(authUser?.userName);
     localStorage.setItem('isAuthenticated', isFound.toString());
-      localStorage.setItem('user', JSON.stringify(AuthUser))
-      return isFound
+    localStorage.setItem('user', JSON.stringify(authUser));
+    return isFound;
   }
 
-  getAuthenticatedUser():User{
-    return JSON.parse(<string>localStorage.getItem('user'))
+  getAuthenticatedUser(): User {
+    return JSON.parse(<string>localStorage.getItem('user'));
   }
 
-  setUserScore(score:string,OlderScore:string,LoggedUser:User):void{
-    const LastUser = LoggedUser
-    LoggedUser.Score=score
-    LoggedUser.OlderScore=OlderScore
-    localStorage.setItem('user', JSON.stringify(LoggedUser))
-    this.UserService.changeUserDetails(LoggedUser,LastUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe()
+  setUserScore(score: string, OlderScore: string, loggedUser: User): void {
+    const lastUser = loggedUser;
+    loggedUser.score = score;
+    loggedUser.olderScore = OlderScore;
+    localStorage.setItem('user', JSON.stringify(loggedUser));
+    this.userService.changeUserDetails(loggedUser, lastUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
-  isLogged():boolean{
+  isUserLoggedIn(): boolean {
     return JSON.parse(<string>localStorage.getItem('isAuthenticated'));
   }
-
-  LogOutAuthenticatedUser():boolean{
-    localStorage.setItem('isAuthenticated','false')
-    localStorage.setItem('user','')
-    return Boolean(localStorage.getItem('isAuthenticated'))
+  isLogOutAvailable(): boolean {
+    localStorage.setItem('isAuthenticated', 'false');
+    localStorage.setItem('user', '');
+    return Boolean(localStorage.getItem('isAuthenticated'));
   }
 
-  getAge():number{
-    return parseInt(this.getAuthenticatedUser().Age)
+  getAge(): number {
+    return parseInt(this.getAuthenticatedUser().age);
   }
 
-  getScore():number{
-    return parseInt(this.getAuthenticatedUser().Score)
+  getScore(): number {
+    return parseInt(this.getAuthenticatedUser().score);
   }
-  getOlderScore():number{
-    return parseInt(this.getAuthenticatedUser().OlderScore)
+  getOlderScore(): number {
+    return parseInt(this.getAuthenticatedUser().olderScore);
   }
 }

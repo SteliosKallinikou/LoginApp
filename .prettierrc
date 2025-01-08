@@ -1,0 +1,22 @@
+{
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "printWidth": 140,
+  "arrowParens": "avoid",
+  "jsxBracketSameLine": true,
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "printWidth": 100
+      }
+    },
+    {
+      "files": "*.js",
+      "options": {
+        "singleQuote": true
+      }
+    }
+  ]
+}

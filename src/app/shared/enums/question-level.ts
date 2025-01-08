@@ -1,4 +1,4 @@
 export enum QuestionLevel {
-  HARD ='questions-plus',
-  EASY ='questions'
+  HARD = 'questions-plus',
+  EASY = 'questions',
 }
