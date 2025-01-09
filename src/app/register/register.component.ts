@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   isRegistered = false;
   registerForm: FormGroup = new FormGroup({});
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       userName: [null, [Validators.required]],
       password: [null, [Validators.minLength(6)]],
@@ -39,8 +39,8 @@ export class RegisterComponent implements OnInit {
     const email = this.registerForm.controls['email'].value;
     const user: User = { userName: userName, password: password, email: email, age: age, id: '', score: '', olderScore: '' };
 
-    !user.userName ? (this.isRegistered = false) : this.userService.RegisterUser(user);
-    this.userService.Validated$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data => (this.isRegistered = data));
+    !user.userName ? (this.isRegistered = false) : this.userService.registerUser(user);
+    this.userService.validated$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data => (this.isRegistered = data));
 
     if (this.isRegistered) {
       this.getSnackbar('You Have Succesfully Registered!');

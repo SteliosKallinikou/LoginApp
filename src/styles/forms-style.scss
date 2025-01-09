@@ -50,7 +50,12 @@ hr{
 }
 
 .login-error{
-  color: red;
+  --mat-form-field-error-text-color: red;
+  margin-bottom: 30px;
   font-size: variables.$extra-small-font-size;
+}
+
+.disabled-button{
+  background-color: grey;
 }
 

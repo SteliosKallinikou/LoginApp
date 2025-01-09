@@ -24,13 +24,12 @@ export class DashboardComponent {
   goToGeneralTest(): void {
     this.route.navigate(['/general-test']);
   }
+
   goToOlderTest(): void {
     this.route.navigate(['/general-test', this.userAge]);
   }
 
   logOut(): void {
-    if (this.authenticator.isLogOutAvailable()) {
-      this.route.navigate(['']);
-    }
+    this.authenticator.logOut();
   }
 }

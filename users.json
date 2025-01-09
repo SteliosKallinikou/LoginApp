@@ -1,67 +1,67 @@
 {
   "users": [
     {
-      "UserName": "Steve",
-      "Password": "pass123",
-      "Age": "20",
-      "Email": "test@this.com",
+      "userName": "Steve",
+      "password": "pass123",
+      "age": "20",
+      "email": "test@this.com",
       "id": "1",
-      "Score": "4",
-      "OlderScore": "6"
+      "score": "8",
+      "olderScore": "6"
     },
     {
-      "UserName": "test2",
-      "Password": "pass456",
+      "userName": "test2",
+      "password": "pass456",
       "id": "2",
-      "Email": "test2@this.com",
-      "Age": "17",
-      "Score": "2",
-      "OlderScore": "0"
+      "email": "test2@this.com",
+      "age": "17",
+      "score": "2",
+      "olderScore": "0"
     },
     {
       "id": "3",
-      "UserName": "test",
-      "Password": "test123",
-      "Email": "test@this.com",
-      "Age": "20",
-      "Score": "",
-      "OlderScore": ""
+      "userName": "test",
+      "password": "test123",
+      "email": "test@this.com",
+      "age": "20",
+      "score": "",
+      "olderScore": ""
     },
     {
       "id": "4",
-      "UserName": "test3",
-      "Password": "teset12",
-      "Email": "test3@this.com",
-      "Age": "20",
-      "Score": "",
-      "OlderScore": ""
+      "userName": "test3",
+      "password": "teset12",
+      "email": "test3@this.com",
+      "age": "20",
+      "score": "",
+      "olderScore": ""
     },
     {
       "id": "5",
-      "UserName": "test4",
-      "Password": "pass12",
-      "Email": "test4@this.com",
-      "Age": "20",
-      "Score": "",
-      "OlderScore": ""
+      "userName": "test4",
+      "password": "pass12",
+      "email": "test4@this.com",
+      "age": "20",
+      "score": "",
+      "olderScore": ""
     },
     {
       "id": "6",
-      "UserName": "Stelios",
-      "Password": "test123",
-      "Email": "testing@this.com",
-      "Age": "15",
-      "Score": "4",
-      "OlderScore": "0"
+      "userName": "Stelios",
+      "password": "test123",
+      "email": "testing@this.com",
+      "age": "15",
+      "score": "4",
+      "olderScore": "0"
     },
     {
       "id": "7",
-      "UserName": "Kallis",
-      "Password": "test12",
-      "Email": "test5@this.com",
-      "Age": "21",
-      "Score": "",
-      "OlderScore": ""
+      "userName": "Kallis",
+      "password": "test12",
+      "email": "test5@this.com",
+      "age": "21",
+      "score": "",
+      "olderScore": ""
     }
   ]
 }

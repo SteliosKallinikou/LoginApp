@@ -11,7 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { CanDeactivate } from '../shared/models/CanDeactivate';
 
 @Component({
   selector: 'app-test-page',
@@ -19,16 +20,16 @@ import { Observable } from 'rxjs';
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss',
 })
-export class TestPageComponent implements OnInit {
+export class TestPageComponent implements OnInit, CanDeactivate {
   destroyRef = inject(DestroyRef);
   questionService = inject(QuestionService);
   authenticationService = inject(AuthenticationService);
   router = inject(Router);
   snackBar = inject(MatSnackBar);
   dialog = inject(MatDialog);
+  @Output() saveOlder = new EventEmitter<boolean>();
   isOlder = input<boolean>();
   olderQuestions = input.required<Observable<Question[]>>();
-  @Output() saveOlder = new EventEmitter<boolean>();
 
   questions: Question[] = [];
   currentQuestion = 0;
@@ -41,19 +42,13 @@ export class TestPageComponent implements OnInit {
   ngOnInit(): void {
     if (this.isOlder()) {
       this.olderScore = 0;
-      if (!this.score) {
-        this.score = 0;
-      }
       this.olderQuestions()
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(res => (this.questions = res));
     } else {
       this.score = 0;
-      if (!this.olderScore) {
-        this.olderScore = 0;
-      }
       this.questionService
-        .getQuestions(false)
+        .getQuestions()
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(res => {
           this.questions = res;
@@ -61,23 +56,23 @@ export class TestPageComponent implements OnInit {
     }
   }
 
-  TestForm = new FormGroup({
-    Question: new FormControl('', [Validators.required]),
+  testForm = new FormGroup({
+    question: new FormControl('', [Validators.required]),
   });
 
   goBack(): void {
     this.router.navigate(['/dashboard', this.loggedUser.userName]);
   }
 
-  canDeactivate(): true | Observable<boolean> {
+  CanDeactivate(): Observable<boolean> {
     if (!this.saveChanges) {
       const DialogRef = this.dialog.open(ConfirmDialogComponent);
       return DialogRef.afterClosed();
     }
-    return true;
+    return of(true);
   }
 
-  SubmitQuestion(): void {
+  submitQuestion(): void {
     const correctAnswer = this.questions[this.currentQuestion].options
       .filter(option => {
         return option.isCorrect;
@@ -87,27 +82,26 @@ export class TestPageComponent implements OnInit {
 
     if (this.getQuestion() === 'true') {
       this.isOlder() ? (this.olderScore += 2) : (this.score += 2);
-      this.getSnackBar('Your Awnser Was Correct');
+      this.getSnackBar('Your Answer Was Correct');
     } else if (this.getQuestion() === 'false') {
       this.getSnackBar('Wrong, Correct awnser was:' + correctAnswer);
     }
 
     this.authenticationService.setUserScore(this.score.toString(), this.olderScore.toString(), this.loggedUser);
-    this.TestForm.controls['Question'].reset();
-    this.TestForm.controls['Question'].setValue('');
+    this.testForm.controls['question'].reset();
 
-    if (this.questions[this.currentQuestion] === undefined) {
+    if (!this.questions[this.currentQuestion]) {
       this.saveOlder.emit(true);
       this.isFinished = true;
       this.saveChanges = true;
     }
   }
 
-  getQuestion() {
-    return this.TestForm.controls.Question.value;
+  getQuestion(): string | null {
+    return this.testForm.controls.question.value;
   }
 
-  getSnackBar(text: string) {
+  getSnackBar(text: string): void {
     this.snackBar.open(text, 'Close', {
       duration: 4000,
       horizontalPosition: 'center',

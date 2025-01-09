@@ -2,6 +2,7 @@ import { DestroyRef, inject, Injectable } from '@angular/core';
 import { User } from '../models';
 import { UserDataService } from './user-data.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class AuthenticationService {
   userService = inject(UserDataService);
   destroyRef = inject(DestroyRef);
+  router = inject(Router);
 
   isAuthenticated(users: User[], input: User): boolean {
     const authUser = users.find(user => user.userName === input.userName && user.password === input.password) || null;
@@ -31,12 +33,12 @@ export class AuthenticationService {
   }
 
   isUserLoggedIn(): boolean {
-    return JSON.parse(<string>localStorage.getItem('isAuthenticated'));
+    return !!JSON.parse(<string>localStorage.getItem('isAuthenticated'));
   }
-  isLogOutAvailable(): boolean {
-    localStorage.setItem('isAuthenticated', 'false');
-    localStorage.setItem('user', '');
-    return Boolean(localStorage.getItem('isAuthenticated'));
+  logOut(): void {
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('user');
+    this.router.navigate(['']);
   }
 
   getAge(): number {
@@ -44,9 +46,9 @@ export class AuthenticationService {
   }
 
   getScore(): number {
-    return parseInt(this.getAuthenticatedUser().score);
+    return parseInt(this.getAuthenticatedUser().score) || 0;
   }
   getOlderScore(): number {
-    return parseInt(this.getAuthenticatedUser().olderScore);
+    return parseInt(this.getAuthenticatedUser().olderScore) || 0;
   }
 }

@@ -11,7 +11,7 @@ export class QuestionService {
   URL = 'http://localhost:3001';
   http = inject(HttpClient);
 
-  getQuestions(hard: boolean): Observable<Question[]> {
+  getQuestions(hard = false): Observable<Question[]> {
     const questionLevel = hard ? QuestionLevel.HARD : QuestionLevel.EASY;
     return this.http.get<Question[]>(`${this.URL}/${questionLevel}`);
   }

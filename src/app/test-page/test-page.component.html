@@ -5,7 +5,7 @@
   } @else {
     <h1 class="title">General-Knowledge-Test</h1>
   }
-  <form [formGroup]="TestForm" (submit)="SubmitQuestion()" class="form">
+  <form [formGroup]="testForm" (submit)="submitQuestion()" class="form">
     @if (isFinished){
       <div class="congratulations-message">
         Congratulations!<br>
@@ -14,7 +14,7 @@
     } @else {
       <label class="input-label" for="Question" > {{questions[currentQuestion]?.question}} </label>
       <hr>
-      <mat-radio-group class="radio-buttons" formControlName="Question" id="Question">
+      <mat-radio-group class="radio-buttons" formControlName="question" id="question">
         <mat-radio-button class="answer" *ngFor="let option of questions[currentQuestion]?.options" name="{{option?.answer|json}}" value="{{option?.isCorrect}}">
           <span>Answer {{option?.id}}: {{option?.answer}}</span>
         </mat-radio-button>

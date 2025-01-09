@@ -3,17 +3,33 @@
   <hr>
 
   <form [formGroup]="loginForm" (submit)="login()" class="form">
-    <label class="input-label" for="userName">UserName: </label>
-    <input class="input-text" id="userName" type="text" formControlName="userName" required>
-    <span class="login-error" *ngIf="loginForm.controls['userName']!.hasError('required')">*Name is Required to Proceed</span>
-    <label class="input-label" for="Password">Password: </label>
-    <input class="input-text" id="Password" type="password" formControlName="password">
-    <span class="login-error" *ngIf="loginForm.controls['password']!.hasError('required')">*Password is required to login</span>
-    <span class="login-error" *ngIf="loginForm.controls['password']!.hasError('minlength')">Password must be at least 6 characters </span>
-    <button type="submit" class="submit-button" >Login</button>
-    <button type="button" class="submit-button" (click)="Register()" [disabled]="!loginForm.valid">Dont have an account? Click to Register</button>
+    <mat-form-field class="input">
+      <mat-label>Username</mat-label>
+      <input
+        type="userName"
+        formControlName="userName"
+        matInput placeholder="Enter Your Name"
+        required
+      />
+      <mat-error class="login-error" *ngIf="loginForm.controls['userName'].hasError('required')">*Name is Required to Proceed</mat-error>
+
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Password</mat-label>
+      <input type="password"
+             formControlName="password"
+             matInput placeholder="Enter Your Password"
+             required
+      />
+      <mat-error class="login-error" *ngIf="loginForm.controls['password']!.hasError('required')">*Password is required to login</mat-error>
+      <mat-error class="login-error" *ngIf="loginForm.controls['password']!.hasError('minlength')">Password must be at least 6 characters </mat-error>
+    </mat-form-field>
+    <div class="buttons">
+      <button class="submit" mat-flat-button [disabled]="loginForm.invalid" (click)="login()">Login</button>
+      <button class="submit" mat-flat-button (click)="register()">Register</button>
+    </div>
     @if (!isAuthenticated){
-      <span class="login-error">Username or Password not found, please try again</span>
+      <mat-error class="login-error">Username or Password not found, please try again</mat-error>
     }
   </form>
 </div>

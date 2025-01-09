@@ -8,32 +8,32 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   providedIn: 'root',
 })
 export class UserDataService {
-  Http = inject(HttpClient);
+  http = inject(HttpClient);
   URL = 'http://localhost:3000/users';
-  private ValidRegistration = new BehaviorSubject<boolean>(false);
-  Validated$ = this.ValidRegistration.asObservable();
-  DestroyRef = inject(DestroyRef);
+  private validRegistration = new BehaviorSubject<boolean>(false);
+  validated$ = this.validRegistration.asObservable();
+  destroyRef = inject(DestroyRef);
 
   getUser(): Observable<User[]> {
-    return this.Http.get<User[]>(this.URL);
+    return this.http.get<User[]>(this.URL);
   }
 
-  changeUserDetails(CurrUser: User, PrevUser: User): Observable<Object> {
-    localStorage.setItem('user', JSON.stringify(CurrUser));
-    let ReplaceUrl = `${this.URL}/${PrevUser.id}`;
-    return this.Http.put(ReplaceUrl, CurrUser);
+  changeUserDetails(currUser: User, prevUser: User): Observable<Object> {
+    localStorage.setItem('user', JSON.stringify(currUser));
+    let replaceUrl = `${this.URL}/${prevUser.id}`;
+    return this.http.put(replaceUrl, currUser);
   }
 
-  RegisterUser(RegisterUser: User): void {
+  registerUser(registerUser: User): void {
     this.getUser()
-      .pipe(takeUntilDestroyed(this.DestroyRef))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(data => {
-        RegisterUser.id = String(data.length + 1);
-        if (data.filter(data => data.email === RegisterUser.email || data.userName === RegisterUser.userName).length != 0) {
-          this.ValidRegistration.next(false);
+        registerUser.id = String(data.length + 1);
+        if (data.some(data => data.email === registerUser.email || data.userName === registerUser.userName)) {
+          this.validRegistration.next(false);
         } else {
-          this.ValidRegistration.next(true);
-          this.Http.post<User>(this.URL, RegisterUser).pipe(takeUntilDestroyed(this.DestroyRef)).subscribe();
+          this.validRegistration.next(true);
+          this.http.post<User>(this.URL, registerUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
         }
       });
   }

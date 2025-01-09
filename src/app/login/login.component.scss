@@ -2,25 +2,20 @@
 .title{
   text-align: center;
 }
-
-.input-field{
+.input{
   width: 50%;
+  --mdc-filled-text-field-focus-active-indicator-color: #2fbc88;
 }
 
-::ng-deep .mat-form-field {
-  .mat-input-element {
-    color: slategray;
-  }
-  .mat-form-field-label {
-    color: slategray;
-  }
-  .mat-form-field-underline {
-    background-color: slategray;
-  }
-  .mat-form-field-ripple {
-    background-color: slategray;
-  }
-  .mat-form-field-required-marker {
-    color: slategray;
+.buttons{
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  gap: 10px;
+  .submit{
+    background-color: #5045e6;
+    border-radius: 20px;
+    color: white;
+    width: inherit;
   }
 }

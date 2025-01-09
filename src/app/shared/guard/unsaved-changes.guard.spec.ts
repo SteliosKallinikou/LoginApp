@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { CanDeactivateFn } from '@angular/router';
 
 import { unsavedChangesGuard } from './unsaved-changes.guard';
-import { canDeactivate } from './canDeactivate';
+import { canDeactivate } from '../models/CanDeactivate';
 
 describe('unsavedChangesGuard', () => {
   const executeGuard: CanDeactivateFn<canDeactivate> = (...guardParameters) =>

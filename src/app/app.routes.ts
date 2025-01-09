@@ -9,7 +9,7 @@ import { TestPageComponent } from './test-page/test-page.component';
 import { TestPageOlderComponent } from './test-page-older/test-page-older.component';
 
 import { RegisterComponent } from './register/register.component';
-import {ageGuard} from './shared/guard/ageGuard';
+import { ageGuard } from './shared/guard/ageGuard';
 
 export const routes: Routes = [
   {
@@ -48,7 +48,7 @@ export const routes: Routes = [
       {
         path: ':UserAge',
         component: TestPageOlderComponent,
-        canActivate: [authGuard,ageGuard],
+        canActivate: [authGuard, ageGuard],
         canDeactivate: [unsavedChangesGuard],
       },
     ],
