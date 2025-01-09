@@ -7,15 +7,3 @@
   --mdc-filled-text-field-focus-active-indicator-color: #2fbc88;
 }
 
-.buttons{
-  display: flex;
-  justify-content: center;
-  width: 60%;
-  gap: 10px;
-  .submit{
-    background-color: #5045e6;
-    border-radius: 20px;
-    color: white;
-    width: inherit;
-  }
-}

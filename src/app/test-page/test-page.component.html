@@ -19,7 +19,9 @@
           <span>Answer {{option?.id}}: {{option?.answer}}</span>
         </mat-radio-button>
       </mat-radio-group>
-      <button type="submit" class="submit-button" >Submit Changes</button>
+      <div class="submit-buttons">
+        <button type="submit" mat-flat-button [disabled]="testForm.invalid">Submit</button>
+      </div>
     }
     <h2 class="points">Score: {{isOlder()? olderScore: score}}/10</h2>
   </form>

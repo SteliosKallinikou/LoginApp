@@ -7,15 +7,16 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { UserDataService } from '../shared/service/user-data.service';
 import { CanDeactivate } from '../shared/models/CanDeactivate';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable, of } from 'rxjs';
 import { age_Validator } from '../shared/validators/age_validator';
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-profile',
-  imports: [MatIcon, FormsModule, ReactiveFormsModule, NgIf],
+  imports: [MatIcon, FormsModule, ReactiveFormsModule, NgIf, MatError, MatFormField, MatInput, MatLabel, MatButton],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
@@ -45,12 +46,8 @@ export class ProfileComponent implements CanDeactivate, OnInit {
     this.location.back();
   }
 
-  CanDeactivate(): Observable<boolean> {
-    if (!this.saveChanges) {
-      const confirmDialog = this.dialog.open(ConfirmDialogComponent);
-      return confirmDialog.afterClosed();
-    }
-    return of(true);
+  CanDeactivate(): boolean {
+    return this.saveChanges;
   }
 
   updateUserProfile(): void {

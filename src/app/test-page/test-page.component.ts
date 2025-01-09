@@ -8,15 +8,15 @@ import { Question } from '../shared/models';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CanDeactivate } from '../shared/models/CanDeactivate';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-test-page',
-  imports: [MatIcon, ReactiveFormsModule, MatRadioGroup, MatRadioButton, JsonPipe, NgForOf],
+  imports: [MatIcon, ReactiveFormsModule, MatRadioGroup, MatRadioButton, JsonPipe, NgForOf, MatButton],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss',
 })
@@ -64,12 +64,8 @@ export class TestPageComponent implements OnInit, CanDeactivate {
     this.router.navigate(['/dashboard', this.loggedUser.userName]);
   }
 
-  CanDeactivate(): Observable<boolean> {
-    if (!this.saveChanges) {
-      const DialogRef = this.dialog.open(ConfirmDialogComponent);
-      return DialogRef.afterClosed();
-    }
-    return of(true);
+  CanDeactivate(): boolean {
+    return this.saveChanges;
   }
 
   submitQuestion(): void {
@@ -78,13 +74,13 @@ export class TestPageComponent implements OnInit, CanDeactivate {
         return option.isCorrect;
       })
       .map(option => option.answer);
-    this.getQuestion() != '' ? this.currentQuestion++ : this.getSnackBar('You must Select One Option');
+    this.currentQuestion++;
 
     if (this.getQuestion() === 'true') {
       this.isOlder() ? (this.olderScore += 2) : (this.score += 2);
       this.getSnackBar('Your Answer Was Correct');
     } else if (this.getQuestion() === 'false') {
-      this.getSnackBar('Wrong, Correct awnser was:' + correctAnswer);
+      this.getSnackBar('Wrong, Correct answer was:' + correctAnswer);
     }
 
     this.authenticationService.setUserScore(this.score.toString(), this.olderScore.toString(), this.loggedUser);

@@ -2,8 +2,7 @@ import { Component, inject } from '@angular/core';
 import { QuestionService } from '../shared/service/question.service';
 import { TestPageComponent } from '../test-page/test-page.component';
 import { Question } from '../shared/models';
-import { Observable, of } from 'rxjs';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CanDeactivate } from '../shared/models/CanDeactivate';
 
@@ -19,13 +18,8 @@ export class TestPageOlderComponent implements CanDeactivate {
   dialog = inject(MatDialog);
   isFinished = false;
 
-  CanDeactivate(): Observable<boolean> {
-    if (!this.isFinished) {
-      const DialogRef = this.dialog.open(ConfirmDialogComponent);
-      return DialogRef.afterClosed();
-    } else {
-      return of(true);
-    }
+  CanDeactivate(): boolean {
+    return this.isFinished;
   }
   onFinished(finished: boolean): void {
     this.isFinished = finished;

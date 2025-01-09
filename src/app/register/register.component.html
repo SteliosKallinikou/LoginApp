@@ -1,23 +1,54 @@
 <div class="wrapper">
   <h1 class="title">Register Form</h1>
   <form [formGroup]="registerForm" (submit)="register()" class="form">
-    <label class="input-label" for="UserName">UserName: </label>
-    <input class="input-text" id="UserName" type="text" formControlName="userName" required placeholder="Name">
-    <span class="login-error" *ngIf="registerForm.controls['userName'].hasError('required')">*Name is Required to Proceed</span>
-    <label class="input-label" for="Password">Password: </label>
-    <input class="input-text" id="Password" type="password" formControlName="password" required placeholder="">
-    <span class="login-error" *ngIf="registerForm.controls['password'].hasError('required')">*Password is required to Register</span>
-    <span class="login-error" *ngIf="registerForm.controls['password'].hasError('minlength')">Password must be at least 6 characters </span>
-    <label class="input-label" for="Age">Age: </label>
-    <input class="input-text" id="Age" type="text" formControlName="age" required placeholder="20">
-    <span class="login-error" *ngIf="registerForm.controls['age'].hasError('required')">*Age is required to Register</span>
-    <span class="login-error" *ngIf="registerForm.controls['age'].hasError('ageRange')">*Age Must be between 15-70</span>
-    <span class="login-error" *ngIf="registerForm.controls['age'].hasError('notNumber')">*Age Must be a Number</span>
-    <label class="input-label" for="Email">Email: </label>
-    <input class="input-text" id="Email" type="text" formControlName="email" required placeholder="this@test.com">
-    <span class="login-error" *ngIf="registerForm.controls['email'].hasError('email')">*Must be Valid Email address</span>
-    <span class="login-error" *ngIf="registerForm.controls['email'].hasError('required')">*Email is required to Register</span>
-    <button type="submit" class="submit-button" [disabled]="!registerForm.valid">Register</button>
+    <mat-form-field class="input-text">
+      <mat-label>Username</mat-label>
+      <input
+        type="userName"
+        formControlName="userName"
+        matInput placeholder="Enter Your Name"
+        required
+      />
+      <mat-error class="login-error" *ngIf="registerForm.controls['userName'].hasError('required')">*Name is Required to Register</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-text">
+      <mat-label>Password</mat-label>
+      <input type="password"
+             formControlName="password"
+             matInput placeholder="Enter Your Password"
+             required
+      />
+      <mat-error class="login-error" *ngIf="registerForm.controls['password']!.hasError('required')">*Password is required to Register</mat-error>
+      <mat-error class="login-error" *ngIf="registerForm.controls['password']!.hasError('minlength')">*Password must be at least 6 characters </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-text">
+      <mat-label>Email</mat-label>
+      <input type="email"
+             formControlName="email"
+             matInput placeholder="Enter Your Email"
+             required
+      />
+      <mat-error class="login-error" *ngIf="registerForm.controls['email']!.hasError('email')">*Invalid Email Address</mat-error>
+      <mat-error class="login-error" *ngIf="registerForm.controls['email']!.hasError('required')">*Email Required to Register</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-text">
+      <mat-label>Age</mat-label>
+      <input type="age"
+             formControlName="age"
+             matInput placeholder="Enter Your Age"
+             required
+      />
+      <mat-error class="login-error" *ngIf="registerForm.controls['age'].hasError('required')">*Age is required to Register</mat-error>
+      <mat-error class="login-error" *ngIf="registerForm.controls['age'].hasError('ageRange')">*Age Must be between 15-70</mat-error>
+      <mat-error class="login-error" *ngIf="registerForm.controls['age'].hasError('notNumber')">*Age Must be a Number</mat-error>
+    </mat-form-field>
+
+    <div class="submit-buttons">
+      <button type="submit" mat-flat-button (click)="register()" [disabled]="registerForm.invalid">Register</button>
+    </div>
   </form>
 
 </div>

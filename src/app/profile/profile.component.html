@@ -2,19 +2,54 @@
     <button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
     <h1 class="title">Profile Editor</h1>
     <form [formGroup]="editForm" (submit)="updateUserProfile()" class="form">
-      <label class="input-label" for="userName">UserName: </label>
-      <input class="input-text" id="userName" type="text" formControlName="userName" required>
-      <label class="input-label" for="password">Password: </label>
-      <input class="input-text" id="password" type="password" formControlName="password" required placeholder="">
-      <span class="login-error" *ngIf="editForm.controls['password'].hasError('minlength')">*Password must be at least 6 characters </span>
-      <label class="input-label" for="age">Age: </label>
-      <input class="input-text" id="age" type="text" formControlName="age" required placeholder="">
-      <span class="login-error" *ngIf="editForm.controls['age'].hasError('ageRange')">*Age Must be between 15-70</span>
-      <span class="login-error" *ngIf="editForm.controls['age'].hasError('notNumber')">*Age Must be a Number</span>
-      <label class="input-label" for="email">Email: </label>
-      <input class="input-text" id="email" type="text" formControlName="email" required placeholder="">
-      <span class="login-error" *ngIf="editForm.controls['email'].hasError('email')">*Must be Valid Email address</span>
-      <button type="submit" class="submit-button" [disabled]="!editForm.valid">Submit Changes</button>
+      <mat-form-field class="input-text">
+        <mat-label>Username</mat-label>
+        <input
+          type="userName"
+          formControlName="userName"
+          matInput placeholder="Enter Your Name"
+          required
+        />
+        <mat-error class="login-error" *ngIf="editForm.controls['userName'].hasError('required')">*Name is Required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="input-text">
+        <mat-label>Password</mat-label>
+        <input type="password"
+               formControlName="password"
+               matInput placeholder="Enter Your Password"
+               required
+        />
+        <mat-error class="login-error" *ngIf="editForm.controls['password']!.hasError('required')">*Password is required</mat-error>
+        <mat-error class="login-error" *ngIf="editForm.controls['password']!.hasError('minlength')">*Password must be at least 6 characters </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="input-text">
+        <mat-label>Email</mat-label>
+        <input type="email"
+               formControlName="email"
+               matInput placeholder="Enter Your Email"
+               required
+        />
+        <mat-error class="login-error" *ngIf="editForm.controls['email']!.hasError('email')">*Invalid Email Address</mat-error>
+        <mat-error class="login-error" *ngIf="editForm.controls['email']!.hasError('required')">*Email Requiredr</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="input-text">
+        <mat-label>Age</mat-label>
+        <input type="age"
+               formControlName="age"
+               matInput placeholder="Enter Your Age"
+               required
+        />
+        <mat-error class="login-error" *ngIf="editForm.controls['age'].hasError('required')">*Age is required</mat-error>
+        <mat-error class="login-error" *ngIf="editForm.controls['age'].hasError('ageRange')">*Age Must be between 15-70</mat-error>
+        <mat-error class="login-error" *ngIf="editForm.controls['age'].hasError('notNumber')">*Age Must be a Number</mat-error>
+      </mat-form-field>
+
+      <div class="submit-buttons">
+        <button type="submit" mat-flat-button (click)="(updateUserProfile())" [disabled]="editForm.invalid">Register</button>
+      </div>
     </form>
   </div>
 

@@ -1,9 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {MatIcon} from '@angular/material/icon';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-error-page',
-  imports: [],
+  imports: [
+    MatIcon
+  ],
   templateUrl: './error-page.component.html',
   styleUrl: './error-page.component.scss',
 })
-export class ErrorPageComponent {}
+export class ErrorPageComponent {
+  location = inject(Location)
+  goBack() {
+    this.location.back()
+  }
+}
