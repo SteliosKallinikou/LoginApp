@@ -15,6 +15,8 @@ export class AlertDialogComponent implements OnInit {
   dialogRef: MatDialogRef<AlertDialogComponent> = inject(MatDialogRef);
 
   ngOnInit(): void {
+    //TODO I'm not sure about this logic we should look on it together
+    //TODO general-test is incorrect url
     this.router.navigate(['/general-test']);
   }
 

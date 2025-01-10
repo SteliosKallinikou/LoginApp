@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { User } from '../shared/models';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { MatIcon } from '@angular/material/icon';
@@ -21,7 +21,7 @@ import { Observable, of } from 'rxjs';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
-export class ProfileComponent implements CanDeactivate, OnInit {
+export class ProfileComponent implements CanDeactivate {
   authenticationService = inject(AuthenticationService);
   destroyRef = inject(DestroyRef);
   location = inject(Location);
@@ -31,9 +31,9 @@ export class ProfileComponent implements CanDeactivate, OnInit {
   formBuilder = inject(FormBuilder);
   authenticatedUser: User = this.authenticationService.getAuthenticatedUser();
   saveChanges = false;
-  editForm: FormGroup = new FormGroup({});
+  editForm: FormGroup;
 
-  ngOnInit(): void {
+  constructor() {
     this.editForm = this.formBuilder.group({
       userName: [this.authenticatedUser.userName],
       password: [this.authenticatedUser.password, [Validators.minLength(6)]],
@@ -51,6 +51,11 @@ export class ProfileComponent implements CanDeactivate, OnInit {
   }
 
   updateUserProfile(): void {
+    //TODO do ou need original user here? if yes it could be like
+    //    const newUser: User = {
+    //       ...this.authenticatedUser,
+    //       ...this.editForm.getRawValue(),
+    //     };
     const newUser = {
       ...this.editForm.getRawValue(),
     };
@@ -61,7 +66,8 @@ export class ProfileComponent implements CanDeactivate, OnInit {
       .subscribe(res => {
         if (res) {
           this.saveChanges = true;
-          this.snackBar.open('Your Data was Saved Succesfully', 'Close', {
+          this.snackBar.open('Your Data was Saved Successfully', 'Close', {
+            //TODO maybe better add duration to constant file in case you want to change it ore reuse it
             duration: 5000,
             horizontalPosition: 'center',
             verticalPosition: 'bottom',

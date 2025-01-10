@@ -24,6 +24,7 @@ export class UserDataService {
     return this.http.put(replaceUrl, currUser);
   }
 
+  //TODO let's look on it together we can improve it
   registerUser(registerUser: User): void {
     this.getUser()
       .pipe(takeUntilDestroyed(this.destroyRef))

@@ -13,6 +13,7 @@ export const ageGuard: CanActivateFn = () => {
   if (age < 18) {
     const dialogRef = dialog.open(AlertDialogComponent);
     dialogRef.afterClosed().subscribe(() => {
+      //TODO general-test is incorrect url
       router.navigate(['/general-test']);
       return false;
     });

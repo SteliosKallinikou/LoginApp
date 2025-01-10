@@ -24,15 +24,24 @@ export class TestPageComponent implements CanDeactivate, OnInit {
   snackBar = inject(MatSnackBar);
   destroyRef = inject(DestroyRef);
   @Output() userStats = new EventEmitter<{ saveOlder: boolean; score: string }>();
+  //TODO input.required<Question[]>();
   olderQuestions = input.required<Observable<Question[]>>();
 
+  //TODO in case of input.required<Observable<Question[]>>(); questions variable is useless
   questions: Question[] = [];
   currentQuestion = 0;
   loggedUser = this.authenticationService.getAuthenticatedUser();
   isFinished = false;
   score = 0;
+  testForm: FormGroup;
 
-  ngOnInit() {
+  constructor() {
+    this.testForm = new FormGroup({
+      question: new FormControl('', [Validators.required]),
+    });
+  }
+
+  ngOnInit(): void {
     this.olderQuestions()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
@@ -40,9 +49,10 @@ export class TestPageComponent implements CanDeactivate, OnInit {
       });
   }
 
-  testForm = new FormGroup({
-    question: new FormControl('', [Validators.required]),
-  });
+//TODO it should not be here
+//   testForm = new FormGroup({
+//     question: new FormControl('', [Validators.required]),
+//   });
 
   goBack(): void {
     this.router.navigate(['/dashboard', this.loggedUser.userName]);
@@ -81,6 +91,7 @@ export class TestPageComponent implements CanDeactivate, OnInit {
 
   getSnackBar(text: string): void {
     this.snackBar.open(text, 'Close', {
+      //TODO this should be a constant
       duration: 4000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',

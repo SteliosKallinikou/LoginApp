@@ -1,20 +1,23 @@
 @use "variables";
 
-.congratulations-message{
+.congratulations-message {
   font-size: variables.$small-font-size;
   text-align: center;
 }
-.radio-buttons{
+
+.radio-buttons {
   display: flex;
   padding-top: variables.$medium-plus;
   flex-direction: column;
   line-height: 2;
   margin-bottom: 30px;
 }
-.answer{
-  span{
-    &:hover{
+
+.answer {
+  span {
+    &:hover {
       text-decoration: underline;
+      //TODO color could be a variable
       text-decoration-color: #2fbc88;
       text-decoration-thickness:3px ;
     }

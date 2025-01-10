@@ -1,6 +1,6 @@
 @use "variables";
 
-.form{
+.form {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -8,7 +8,8 @@
   align-items: center;
   box-sizing: border-box;
 }
-.wrapper{
+
+.wrapper {
   max-width: 600px;
   margin: variables.$large auto;
   padding: variables.$medium-plus;
@@ -16,40 +17,48 @@
   border-radius: 8px;
   background-color: #f9f9f9;
   box-shadow: 0 variables.$extra-small variables.$small rgba(0, 0, 0, 0.1);
+
   @media screen and (max-width: 570px) {
     width: 90%;
-    .input-text{
+    .input-text {
       width: 55%;
     }
   }
 }
-hr{
+
+hr {
+  //TODO color could be a variable
   border-top: 2px solid #2fbc88;
   width: 100%;
 }
 
-.input-text{
+.input-text {
   width: 50%;
+  //TODO color could be a variable
   --mdc-filled-text-field-focus-active-indicator-color: #2fbc88;
 }
 
-.login-error{
+.login-error {
+  //TODO color could be a variable
   --mat-form-field-error-text-color: red;
   margin-bottom: 30px;
   font-size: variables.$extra-small-font-size;
 }
 
-.submit-buttons{
+.submit-buttons {
   display: flex;
   justify-content: center;
   width: 60%;
   gap: 10px;
-  button{
+
+  button {
+    //TODO color could be a variable
     background-color: #5045e6 !important;
     border-radius: 20px;
     color: white !important;
     width: inherit;
-    &:disabled{
+
+    &:disabled {
       background-color: lightgray !important;
     }
   }

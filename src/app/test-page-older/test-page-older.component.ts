@@ -19,6 +19,7 @@ export class TestPageOlderComponent implements CanDeactivate {
   questions$: Observable<Question[]> = this.questionsService.getHardQuestions();
   dialog = inject(MatDialog);
   isFinished = false;
+  //TODO userScore useless variable
   userScore = '';
 
   CanDeactivate(): Observable<boolean> {
