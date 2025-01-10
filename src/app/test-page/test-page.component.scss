@@ -15,9 +15,11 @@
   margin-bottom: 30px;
 }
 .answer{
-  & span:hover{
-    text-decoration: underline;
-    text-decoration-color: #2fbc88;
-    text-decoration-thickness:3px ;
+  span{
+    &:hover{
+      text-decoration: underline;
+      text-decoration-color: #2fbc88;
+      text-decoration-thickness:3px ;
+    }
   }
 }

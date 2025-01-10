@@ -5,12 +5,13 @@
       <mat-form-field class="input-text">
         <mat-label>Username</mat-label>
         <input
-          type="userName"
+          type="text"
           formControlName="userName"
           matInput placeholder="Enter Your Name"
-          required
         />
-        <mat-error class="login-error" *ngIf="editForm.controls['userName'].hasError('required')">*Name is Required</mat-error>
+        @if (editForm.controls['userName'].hasError('required')) {
+          <mat-error class="login-error" >*Name is Required to Register</mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field class="input-text">
@@ -18,10 +19,12 @@
         <input type="password"
                formControlName="password"
                matInput placeholder="Enter Your Password"
-               required
         />
-        <mat-error class="login-error" *ngIf="editForm.controls['password']!.hasError('required')">*Password is required</mat-error>
-        <mat-error class="login-error" *ngIf="editForm.controls['password']!.hasError('minlength')">*Password must be at least 6 characters </mat-error>
+        @if (editForm.controls['password']!.hasError('required')){
+          <mat-error class="login-error">*Password is required to Register</mat-error>
+        } @else {
+          <mat-error class="login-error">*Password must be at least 6 characters </mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field class="input-text">
@@ -29,26 +32,30 @@
         <input type="email"
                formControlName="email"
                matInput placeholder="Enter Your Email"
-               required
         />
-        <mat-error class="login-error" *ngIf="editForm.controls['email']!.hasError('email')">*Invalid Email Address</mat-error>
-        <mat-error class="login-error" *ngIf="editForm.controls['email']!.hasError('required')">*Email Requiredr</mat-error>
+        @if (editForm.controls['email']!.hasError('email')){
+          <mat-error class="login-error">*Invalid Email Address</mat-error>
+        } @else {
+          <mat-error class="login-error">*Email Required to Register</mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field class="input-text">
         <mat-label>Age</mat-label>
-        <input type="age"
+        <input type="number"
                formControlName="age"
                matInput placeholder="Enter Your Age"
-               required
+               min="0"
         />
-        <mat-error class="login-error" *ngIf="editForm.controls['age'].hasError('required')">*Age is required</mat-error>
-        <mat-error class="login-error" *ngIf="editForm.controls['age'].hasError('ageRange')">*Age Must be between 15-70</mat-error>
-        <mat-error class="login-error" *ngIf="editForm.controls['age'].hasError('notNumber')">*Age Must be a Number</mat-error>
+        @if (editForm.controls['age'].hasError('required')){
+          <mat-error class="login-error" >*Age is required to Register</mat-error>
+        } @else {
+          <mat-error class="login-error" >*Age Must be between 15-70</mat-error>
+        }
       </mat-form-field>
 
       <div class="submit-buttons">
-        <button type="submit" mat-flat-button (click)="(updateUserProfile())" [disabled]="editForm.invalid">Register</button>
+        <button type="submit" mat-flat-button (click)="(updateUserProfile())" [disabled]="editForm.invalid">Update Profile</button>
       </div>
     </form>
   </div>

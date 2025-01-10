@@ -9,20 +9,22 @@
         type="userName"
         formControlName="userName"
         matInput placeholder="Enter Your Name"
-        required
       />
-      <mat-error class="login-error" *ngIf="loginForm.controls['userName'].hasError('required')">*Name is Required to Proceed</mat-error>
-
+      @if (loginForm.controls['userName'].hasError('required')) {
+        <mat-error class="login-error" >*Name is Required to Register</mat-error>
+      }
     </mat-form-field>
     <mat-form-field class="input-text">
       <mat-label>Password</mat-label>
       <input type="password"
              formControlName="password"
              matInput placeholder="Enter Your Password"
-             required
       />
-      <mat-error class="login-error" *ngIf="loginForm.controls['password']!.hasError('required')">*Password is required to login</mat-error>
-      <mat-error class="login-error" *ngIf="loginForm.controls['password']!.hasError('minlength')">Password must be at least 6 characters </mat-error>
+      @if (loginForm.controls['password']!.hasError('required')){
+        <mat-error class="login-error">*Password is required to Register</mat-error>
+      } @else {
+        <mat-error class="login-error">*Password must be at least 6 characters </mat-error>
+      }
     </mat-form-field>
     <div class="submit-buttons">
       <button type="submit" mat-flat-button [disabled]="loginForm.invalid" (click)="login()">Login</button>
