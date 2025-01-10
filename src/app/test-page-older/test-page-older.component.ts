@@ -5,10 +5,11 @@ import { Question } from '../shared/models';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CanDeactivate } from '../shared/models/CanDeactivate';
+import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-test-page-older',
-  imports: [TestPageComponent],
+  imports: [TestPageComponent, AsyncPipe],
   templateUrl: './test-page-older.component.html',
   styleUrl: './test-page-older.component.scss',
 })

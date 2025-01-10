@@ -4,14 +4,13 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { JsonPipe, NgForOf } from '@angular/common';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { QuestionService } from '../shared/service/question.service';
-import { Question } from '../shared/models';
+import { Question, CanDeactivate } from '../shared/models';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable } from 'rxjs';
-import { CanDeactivate } from '../shared/models/CanDeactivate';
 import { MatButton } from '@angular/material/button';
 
 @Component({
@@ -29,7 +28,7 @@ export class TestPageComponent implements OnInit, CanDeactivate {
   dialog = inject(MatDialog);
   @Output() saveOlder = new EventEmitter<boolean>();
   isOlder = input<boolean>();
-  olderQuestions = input.required<Observable<Question[]>>();
+  olderQuestions = input.required<Question[]>();
 
   questions: Question[] = [];
   currentQuestion = 0;
@@ -39,12 +38,10 @@ export class TestPageComponent implements OnInit, CanDeactivate {
   score = this.authenticationService.getScore();
   olderScore = this.authenticationService.getOlderScore();
 
+  //TODO
   ngOnInit(): void {
     if (this.isOlder()) {
       this.olderScore = 0;
-      this.olderQuestions()
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe(res => (this.questions = res));
     } else {
       this.score = 0;
       this.questionService

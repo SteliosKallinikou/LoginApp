@@ -1,5 +1,5 @@
+<!--TODO-->
 <app-test-page
-[isOlder]="true"
-[olderQuestions]="questions$"
+[olderQuestions]="questions$ | async"
 (saveOlder)="onFinished($event)"
 ></app-test-page>
