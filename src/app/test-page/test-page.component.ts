@@ -3,14 +3,13 @@ import { MatIcon } from '@angular/material/icon';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JsonPipe, NgForOf } from '@angular/common';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
-import { QuestionService } from '../shared/service/question.service';
-import { Question, CanDeactivate } from '../shared/models';
+import { Question } from '../shared/models';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { CanDeactivate } from '../shared/models';
 import { MatButton } from '@angular/material/button';
 
 @Component({
@@ -19,38 +18,26 @@ import { MatButton } from '@angular/material/button';
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss',
 })
-export class TestPageComponent implements OnInit, CanDeactivate {
-  destroyRef = inject(DestroyRef);
-  questionService = inject(QuestionService);
+export class TestPageComponent implements CanDeactivate, OnInit {
   authenticationService = inject(AuthenticationService);
   router = inject(Router);
   snackBar = inject(MatSnackBar);
-  dialog = inject(MatDialog);
-  @Output() saveOlder = new EventEmitter<boolean>();
-  isOlder = input<boolean>();
-  olderQuestions = input.required<Question[]>();
+  destroyRef = inject(DestroyRef);
+  @Output() userStats = new EventEmitter<{ saveOlder: boolean; score: string }>();
+  olderQuestions = input.required<Observable<Question[]>>();
 
   questions: Question[] = [];
   currentQuestion = 0;
   loggedUser = this.authenticationService.getAuthenticatedUser();
-  saveChanges = false;
   isFinished = false;
-  score = this.authenticationService.getScore();
-  olderScore = this.authenticationService.getOlderScore();
+  score = 0;
 
-  //TODO
-  ngOnInit(): void {
-    if (this.isOlder()) {
-      this.olderScore = 0;
-    } else {
-      this.score = 0;
-      this.questionService
-        .getQuestions()
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe(res => {
-          this.questions = res;
-        });
-    }
+  ngOnInit() {
+    this.olderQuestions()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(res => {
+        this.questions = res;
+      });
   }
 
   testForm = new FormGroup({
@@ -61,8 +48,8 @@ export class TestPageComponent implements OnInit, CanDeactivate {
     this.router.navigate(['/dashboard', this.loggedUser.userName]);
   }
 
-  CanDeactivate(): boolean {
-    return this.saveChanges;
+  CanDeactivate(): Observable<boolean> {
+    return of(this.isFinished);
   }
 
   submitQuestion(): void {
@@ -74,19 +61,17 @@ export class TestPageComponent implements OnInit, CanDeactivate {
     this.currentQuestion++;
 
     if (this.getQuestion() === 'true') {
-      this.isOlder() ? (this.olderScore += 2) : (this.score += 2);
       this.getSnackBar('Your Answer Was Correct');
-    } else if (this.getQuestion() === 'false') {
+      this.score += 2;
+    } else {
       this.getSnackBar('Wrong, Correct answer was:' + correctAnswer);
     }
 
-    this.authenticationService.setUserScore(this.score.toString(), this.olderScore.toString(), this.loggedUser);
     this.testForm.controls['question'].reset();
 
     if (!this.questions[this.currentQuestion]) {
-      this.saveOlder.emit(true);
       this.isFinished = true;
-      this.saveChanges = true;
+      this.userStats.emit({ saveOlder: true, score: this.score.toString() });
     }
   }
 

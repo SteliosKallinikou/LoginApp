@@ -1,7 +1,7 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AlertDialogComponent } from '../../alert-dialog/alert-dialog.component';
+import { AlertDialogComponent } from '../components';
 import { AuthenticationService } from '../service/authentication.service';
 
 export const ageGuard: CanActivateFn = () => {

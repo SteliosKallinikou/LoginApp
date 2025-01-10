@@ -5,11 +5,11 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { unsavedChangesGuard } from './shared/guard/unsaved-changes.guard';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import { TestPageComponent } from './test-page/test-page.component';
 import { TestPageOlderComponent } from './test-page-older/test-page-older.component';
 
 import { RegisterComponent } from './register/register.component';
 import { ageGuard } from './shared/guard/ageGuard';
+import { BasicTestComponent } from './basic-test/basic-test.component';
 
 export const routes: Routes = [
   {
@@ -34,22 +34,22 @@ export const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [authGuard],
-    canDeactivate: [unsavedChangesGuard(false)],
+    canDeactivate: [unsavedChangesGuard],
   },
   {
-    path: 'general-test',
+    path: 'test',
     children: [
       {
         path: '',
-        component: TestPageComponent,
+        component: BasicTestComponent,
         canActivate: [authGuard],
-        canDeactivate: [unsavedChangesGuard(false)],
+        canDeactivate: [unsavedChangesGuard],
       },
       {
         path: ':UserAge',
         component: TestPageOlderComponent,
         canActivate: [authGuard, ageGuard],
-        canDeactivate: [unsavedChangesGuard(false)],
+        canDeactivate: [unsavedChangesGuard],
       },
     ],
   },

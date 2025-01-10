@@ -1,19 +1,18 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { NgIf } from '@angular/common';
 import { FormGroup, ReactiveFormsModule, UntypedFormBuilder, Validators } from '@angular/forms';
 import { UserDataService } from '../shared/service/user-data.service';
 import { Router } from '@angular/router';
 import { User } from '../shared/models';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { age_Validator } from '../shared/validators/age_validator';
+import { ageValidator } from '../shared/validators/age-validator';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-register',
-  imports: [NgIf, ReactiveFormsModule, MatError, MatFormField, MatInput, MatLabel, MatButton],
+  imports: [ReactiveFormsModule, MatError, MatFormField, MatInput, MatLabel, MatButton],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
@@ -30,7 +29,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       userName: [null, [Validators.required]],
       password: [null, [Validators.required, Validators.minLength(6)]],
-      age: [null, [age_Validator(), Validators.required]],
+      age: [null, [ageValidator(), Validators.required]],
       email: [null, [Validators.email, Validators.required]],
     });
   }

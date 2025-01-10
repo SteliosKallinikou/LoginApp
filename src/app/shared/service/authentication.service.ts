@@ -24,10 +24,16 @@ export class AuthenticationService {
     return JSON.parse(<string>localStorage.getItem('user'));
   }
 
-  setUserScore(score: string, OlderScore: string, loggedUser: User): void {
+  setBasicUserScore(score: string, loggedUser: User): void {
     const lastUser = loggedUser;
     loggedUser.score = score;
-    loggedUser.olderScore = OlderScore;
+    localStorage.setItem('user', JSON.stringify(loggedUser));
+    this.userService.changeUserDetails(loggedUser, lastUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
+  }
+
+  setOlderUserScore(score: string, loggedUser: User): void {
+    const lastUser = loggedUser;
+    loggedUser.olderScore = score;
     localStorage.setItem('user', JSON.stringify(loggedUser));
     this.userService.changeUserDetails(loggedUser, lastUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
