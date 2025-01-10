@@ -22,11 +22,11 @@ export class DashboardComponent {
   }
 
   goToGeneralTest(): void {
-    this.route.navigate(['/general-test']);
+    this.route.navigate(['/test']);
   }
 
   goToOlderTest(): void {
-    this.route.navigate(['/general-test', this.userAge]);
+    this.route.navigate(['/test', this.userAge]);
   }
 
   logOut(): void {

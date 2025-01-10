@@ -3,11 +3,9 @@
     {
       "userName": "Steve",
       "password": "pass123",
-      "age": "20",
+      "age": 21,
       "email": "test@this.com",
-      "id": "1",
-      "score": "10",
-      "olderScore": "6"
+      "id": "1"
     },
     {
       "userName": "test2",

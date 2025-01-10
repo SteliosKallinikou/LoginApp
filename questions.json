@@ -2,7 +2,7 @@
   "questions": [
     {
       "id": "Q1",
-      "Question": "What is the Capital of the UK?",
+      "question": "What is the Capital of the UK?",
       "options": [
         {
           "id": "1",
@@ -25,7 +25,7 @@
     },
     {
       "id": "Q2",
-      "Question": "Who was the first President of the United States?",
+      "question": "Who was the first President of the United States?",
       "options": [
         {
           "id": "1",
@@ -47,7 +47,7 @@
     },
     {
       "id": "Q3",
-      "Question": "What is the chemical symbol for water?",
+      "question": "What is the chemical symbol for water?",
       "options": [
         {
           "id": "1",
@@ -69,7 +69,7 @@
     },
     {
       "id": "Q4",
-      "Question": "What planet is known as the Red Planet?",
+      "question": "What planet is known as the Red Planet?",
       "options": [
         {
           "id": "1",
@@ -91,7 +91,7 @@
     },
     {
       "id": "Q5",
-      "Question": "Who is the lead singer of the band Queen?",
+      "question": "Who is the lead singer of the band Queen?",
       "options": [
         {
           "id": "1",
@@ -115,7 +115,7 @@
   "questions-plus": [
     {
       "id": "Q1",
-      "Question": "In which year did World War I begin?",
+      "question": "In which year did World War I begin?",
       "options": [
         {
           "id": "1",
@@ -138,7 +138,7 @@
     },
     {
       "id": "Q2",
-      "Question": "What year was the first Woodstock music festival held?",
+      "question": "What year was the first Woodstock music festival held?",
       "options": [
         {
           "id": "1",
@@ -160,7 +160,7 @@
     },
     {
       "id": "Q3",
-      "Question": "In the song \"Stairway to Heaven,\" what mystical object is mentioned that is said to be bought with a \"bustle in your hedgerow\"?",
+      "question": "In the song \"Stairway to Heaven,\" what mystical object is mentioned that is said to be bought with a \"bustle in your hedgerow\"?",
       "options": [
         {
           "id": "1",
@@ -182,7 +182,7 @@
     },
     {
       "id": "Q4",
-      "Question": "In Greek mythology, who was known as the messenger of the gods?",
+      "question": "In Greek mythology, who was known as the messenger of the gods?",
       "options": [
         {
           "id": "1",
@@ -204,7 +204,7 @@
     },
     {
       "id": "Q5",
-      "Question": "Area 51 is located in which U.S. state?",
+      "question": "Area 51 is located in which U.S. state?",
       "options": [
         {
           "id": "1",

@@ -1,16 +1,26 @@
 import { CanDeactivateFn } from '@angular/router';
-import { CanDeactivate } from '../models/CanDeactivate';
 import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../components';
+import { Observable, of, switchMap } from 'rxjs';
+import { CanDeactivate } from '../models';
 
-export const unsavedChangesGuard = (allowNavigation: boolean): CanDeactivateFn<CanDeactivate> => {
-  return component => {
-    if (allowNavigation || component.CanDeactivate()) {
-      return true;
-    }
-    const dialog = inject(MatDialog);
-    const confirmDialog = dialog.open(ConfirmDialogComponent);
-    return confirmDialog.afterClosed();
-  };
+export const unsavedChangesGuard: CanDeactivateFn<CanDeactivate> = (component: CanDeactivate): Observable<boolean> => {
+  const dialog = inject(MatDialog);
+  return component.CanDeactivate().pipe(
+    switchMap(isNotDirty => {
+      if (isNotDirty) {
+        return of(true);
+      }
+      const confirmDialog = dialog.open(ConfirmDialogComponent);
+      return confirmDialog.afterClosed().pipe(
+        switchMap(stay => {
+          if (stay === undefined) {
+            return of(false);
+          }
+          return of(stay);
+        })
+      );
+    })
+  );
 };

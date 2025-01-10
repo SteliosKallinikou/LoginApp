@@ -2,21 +2,22 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { User } from '../shared/models';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { MatIcon } from '@angular/material/icon';
-import { Location, NgIf } from '@angular/common';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserDataService } from '../shared/service/user-data.service';
-import { CanDeactivate } from '../shared/models/CanDeactivate';
+import { CanDeactivate } from '../shared/models';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { age_Validator } from '../shared/validators/age_validator';
+import { ageValidator } from '../shared/validators/age-validator';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
-  imports: [MatIcon, FormsModule, ReactiveFormsModule, NgIf, MatError, MatFormField, MatInput, MatLabel, MatButton],
+  imports: [MatIcon, FormsModule, ReactiveFormsModule, MatError, MatFormField, MatInput, MatLabel, MatButton],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
@@ -29,7 +30,6 @@ export class ProfileComponent implements CanDeactivate, OnInit {
   snackBar = inject(MatSnackBar);
   formBuilder = inject(FormBuilder);
   authenticatedUser: User = this.authenticationService.getAuthenticatedUser();
-  newUser: User = {} as User;
   saveChanges = false;
   editForm: FormGroup = new FormGroup({});
 
@@ -37,7 +37,7 @@ export class ProfileComponent implements CanDeactivate, OnInit {
     this.editForm = this.formBuilder.group({
       userName: [this.authenticatedUser.userName],
       password: [this.authenticatedUser.password, [Validators.minLength(6)]],
-      age: [this.authenticatedUser.age, [age_Validator()]],
+      age: [this.authenticatedUser.age, [ageValidator()]],
       email: [this.authenticatedUser.email, [Validators.email]],
     });
   }
@@ -45,21 +45,16 @@ export class ProfileComponent implements CanDeactivate, OnInit {
   goBack(): void {
     this.location.back();
   }
-
-  CanDeactivate(): boolean {
-    return this.saveChanges;
+  CanDeactivate(): Observable<boolean> {
+    return of(this.editForm.pristine);
   }
 
   updateUserProfile(): void {
-    this.newUser.userName = this.editForm.controls['userName'].value;
-    this.newUser.password = this.editForm.controls['password'].value;
-    this.newUser.age = this.editForm.controls['age'].value;
-    this.newUser.email = this.editForm.controls['email'].value;
-    this.newUser.id = this.authenticatedUser.id;
-    this.newUser.score = this.authenticatedUser.score;
-    this.newUser.olderScore = this.authenticatedUser.olderScore;
+    const newUser = {
+      ...this.editForm.getRawValue(),
+    };
     this.dataService
-      .changeUserDetails(this.newUser, this.authenticatedUser)
+      .changeUserDetails(newUser, this.authenticatedUser)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
         if (res) {
