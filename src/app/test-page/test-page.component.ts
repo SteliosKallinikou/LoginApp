@@ -11,10 +11,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable, of } from 'rxjs';
 import { CanDeactivate } from '../shared/models';
 import { MatButton } from '@angular/material/button';
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-test-page',
-  imports: [MatIcon, ReactiveFormsModule, MatRadioGroup, MatRadioButton, JsonPipe, NgForOf, MatButton],
+  imports: [MatIcon, ReactiveFormsModule, MatRadioGroup, MatRadioButton, JsonPipe, NgForOf, MatButton, MatProgressBar],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss',
 })
@@ -85,5 +86,9 @@ export class TestPageComponent implements CanDeactivate, OnInit {
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
     });
+  }
+
+  goToLeaderBoards() {
+    this.router.navigate(['/leaderboard']);
   }
 }

@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+
+  <h1 class="title">Leaderboards</h1>
+  <hr>
+ <div class="table-layout">
+   <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort (matSortChange)="sortScores()">
+     <ng-container matColumnDef="id">
+       <th mat-header-cell *matHeaderCellDef> Id </th>
+       <td mat-cell *matCellDef="let element">{{element.id}} </td>
+     </ng-container>
+     <ng-container matColumnDef="name">
+       <th mat-header-cell *matHeaderCellDef> Name </th>
+       <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+     </ng-container>
+     <ng-container matColumnDef="general-score">
+       <th mat-header-cell mat-sort-header="score" *matHeaderCellDef> General-Test Score </th>
+       <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+     </ng-container>
+     <ng-container matColumnDef="advanced-score">
+       <th mat-header-cell mat-sort-header="olderScore" *matHeaderCellDef> Advanced-Test Score </th>
+       <td mat-cell *matCellDef="let element"> {{element.olderScore}} </td>
+     </ng-container>
+
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" [ngClass]="{'highlight':isTop(i)}"></tr>
+   </mat-table>
+ </div>
+</div>

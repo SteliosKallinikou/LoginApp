@@ -8,6 +8,9 @@
   align-items: center;
   box-sizing: border-box;
 }
+.title{
+  text-align: center;
+}
 .wrapper{
   max-width: 600px;
   margin: variables.$large auto;

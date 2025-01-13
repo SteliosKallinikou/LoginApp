@@ -1,13 +1,17 @@
 <div class="wrapper">
-  <ng-content></ng-content>
   <button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+  <ng-content></ng-content>
   <form [formGroup]="testForm" (submit)="submitQuestion()" class="form">
     @if (isFinished){
       <div class="congratulations-message">
         Congratulations!<br>
         You Have Reached the end of the Test
       </div>
+      <div class="submit-buttons">
+        <button type="submit" mat-flat-button (click)="goToLeaderBoards()">LeaderBoards</button>
+      </div>
     } @else {
+      <mat-progress-bar class="questions-progress" mode="determinate" [value]="currentQuestion*20" ></mat-progress-bar>
       <label class="input-label" for="Question" > {{questions[currentQuestion]?.question}} </label>
       <hr>
       <mat-radio-group class="radio-buttons" formControlName="question" id="question">
@@ -15,6 +19,7 @@
           <span>Answer {{option?.id}}: {{option?.answer}}</span>
         </mat-radio-button>
       </mat-radio-group>
+      <span class="question-number">Question {{currentQuestion+1}}/{{questions.length}}</span>
       <div class="submit-buttons">
         <button type="submit" mat-flat-button [disabled]="testForm.invalid">Submit</button>
       </div>

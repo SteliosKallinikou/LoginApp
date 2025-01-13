@@ -24,6 +24,7 @@ export class TestPageOlderComponent implements CanDeactivate {
   CanDeactivate(): Observable<boolean> {
     return of(this.isFinished);
   }
+
   onFinished(stats: { saveOlder: boolean; score: string }): void {
     this.isFinished = stats.saveOlder;
     this.userScore = stats.score;

@@ -10,6 +10,7 @@ import { TestPageOlderComponent } from './test-page-older/test-page-older.compon
 import { RegisterComponent } from './register/register.component';
 import { ageGuard } from './shared/guard/ageGuard';
 import { BasicTestComponent } from './basic-test/basic-test.component';
+import { LeaderBoardsComponent } from './leader-boards/leader-boards.component';
 
 export const routes: Routes = [
   {
@@ -52,6 +53,11 @@ export const routes: Routes = [
         canDeactivate: [unsavedChangesGuard],
       },
     ],
+  },
+  {
+    path: 'leaderboard',
+    component: LeaderBoardsComponent,
+    canActivate: [authGuard],
   },
   {
     path: '**',
