@@ -17,15 +17,16 @@ export class BasicTestComponent implements CanDeactivate {
   authenticationService = inject(AuthenticationService);
   questions$: Observable<Question[]> = this.questionsService.getBasicQuestions();
   isFinished = false;
-  userScore = '';
+  //TODO useless variable userScore
+  // userScore = '';
 
   CanDeactivate(): Observable<boolean> {
     return of(this.isFinished);
   }
 
+  //TODO maybe better add interface for stats
   onFinished(stats: { saveOlder: boolean; score: string }): void {
     this.isFinished = stats.saveOlder;
-    this.userScore = stats.score;
-    this.authenticationService.setBasicUserScore(this.userScore, this.authenticationService.getAuthenticatedUser());
+    this.authenticationService.setBasicUserScore(stats.score, this.authenticationService.getAuthenticatedUser());
   }
 }

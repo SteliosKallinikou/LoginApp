@@ -1,6 +1,6 @@
 @use "variables";
 
-.wrapper{
+.wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -11,17 +11,19 @@
   align-items: center;
   padding: 100px;
 }
-.dashboard-button{
+
+.dashboard-button {
   margin-top: variables.$large-plus;
   height: variables.$large-plus;
   border-radius: variables.$medium-plus;
+  //color could be a variable
   background-color: #5045e6;
   color: white !important;
   width: 50%;
 }
-.welcome-header{
+
+.welcome-header {
   display: flex;
   line-height: 2;
-
   flex-direction: column;
 }
