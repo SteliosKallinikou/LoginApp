@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { MatButton } from '@angular/material/button';
@@ -11,11 +11,12 @@ import { MatButton } from '@angular/material/button';
 })
 export class DashboardComponent {
   authenticator = inject(AuthenticationService);
-  userName = input.required<string>();
+
   route = inject(Router);
-  userAge = this.authenticator.getAge();
-  userScore = this.authenticator.getScore();
-  olderScore = this.authenticator.getOlderScore();
+  userName=this.authenticator.userName
+  userAge = this.authenticator.Age;
+  userScore = this.authenticator.Score;
+  olderScore = this.authenticator.OlderScore;
 
   editProfile(): void {
     this.route.navigate(['/profile']);
@@ -31,5 +32,9 @@ export class DashboardComponent {
 
   logOut(): void {
     this.authenticator.logOut();
+  }
+
+  goToLeaderBoards() {
+    this.route.navigate(['/leaderboard']);
   }
 }

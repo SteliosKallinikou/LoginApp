@@ -8,7 +8,7 @@ export const ageGuard: CanActivateFn = () => {
   const router = inject(Router);
   const dialog = inject(MatDialog);
   const authenticationService = inject(AuthenticationService);
-  const age = authenticationService.getAge();
+  const age = authenticationService.Age;
 
   if (age < 18) {
     const dialogRef = dialog.open(AlertDialogComponent);

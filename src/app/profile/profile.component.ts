@@ -7,13 +7,14 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { UserDataService } from '../shared/service/user-data.service';
 import { CanDeactivate } from '../shared/models';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ageValidator } from '../shared/validators/age-validator';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { Observable, of } from 'rxjs';
+import { SnackbarService } from '../shared/service/snacbar.service';
 
 @Component({
   selector: 'app-profile',
@@ -27,9 +28,9 @@ export class ProfileComponent implements CanDeactivate {
   location = inject(Location);
   dataService = inject(UserDataService);
   dialog = inject(MatDialog);
-  snackBar = inject(MatSnackBar);
+  snackBarService = inject(SnackbarService);
   formBuilder = inject(FormBuilder);
-  authenticatedUser: User = this.authenticationService.getAuthenticatedUser();
+  authenticatedUser: User = this.authenticationService.AuthenticatedUser;
   saveChanges = false;
   editForm: FormGroup;
 
@@ -50,11 +51,6 @@ export class ProfileComponent implements CanDeactivate {
   }
 
   updateUserProfile(): void {
-    //TODO do ou need original user here? if yes it could be like
-    //    const newUser: User = {
-    //       ...this.authenticatedUser,
-    //       ...this.editForm.getRawValue(),
-    //     };
     const newUser = {
       ...this.editForm.getRawValue(),
     };
@@ -64,12 +60,7 @@ export class ProfileComponent implements CanDeactivate {
       .subscribe(res => {
         if (res) {
           this.saveChanges = true;
-          this.snackBar.open('Your Data was Saved Successfully', 'Close', {
-            //TODO maybe better add duration to constant file in case you want to change it ore reuse it
-            duration: 5000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom',
-          });
+          this.snackBarService.getSnackBar('Your Data was Saved Successfully');
         }
       });
   }

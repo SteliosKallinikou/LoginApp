@@ -8,6 +8,7 @@ import { AuthenticationService } from '../shared/service/authentication.service'
 import { MatButton } from '@angular/material/button';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +22,6 @@ export class LoginComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   route = inject(Router);
   formBuilder = inject(FormBuilder);
-  //TODO useless variable userName and userInput
-  // userName = '';
-  // userInput: User = {} as User;
   isAuthenticated = true;
   loginForm: FormGroup = new FormGroup({});
 
@@ -35,22 +33,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    //TODO
-    // this.userName = this.loginForm.controls['userName'].value;
-    // this.userInput.userName = this.loginForm.controls['userName'].value;
-    // this.userInput.password = this.loginForm.controls['password'].value;
-    const user: User = this.loginForm.getRawValue()
+    const user: User = this.loginForm.getRawValue();
 
-    this.userService
-      .getUser()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(data => {
-        if (this.authenticationService.isAuthenticated(data, user)) {
-          this.route.navigate(['/dashboard', user.userName]);
-        } else {
-          this.isAuthenticated = false;
-        }
-      });
+    this.userService.user.pipe(take(1), takeUntilDestroyed(this.destroyRef)).subscribe(data => {
+      if (this.authenticationService.isAuthenticated(data, user)) {
+        this.route.navigate(['/dashboard']);
+      } else {
+        this.isAuthenticated = false;
+      }
+    });
   }
 
   register(): void {

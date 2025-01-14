@@ -1,4 +1,6 @@
 <app-test-page
-  [olderQuestions]= "questions$"
+  [olderQuestions]= "(questions$|async)||[]"
   (userStats)="onFinished($event)"
 ><h1 class="title">General Knowledge Test</h1></app-test-page>
+
+

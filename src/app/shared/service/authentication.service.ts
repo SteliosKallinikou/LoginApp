@@ -21,7 +21,7 @@ export class AuthenticationService {
   }
 
   //TODO this function should be a Getter
-  getAuthenticatedUser(): User {
+  get AuthenticatedUser(): User {
     return JSON.parse(<string>localStorage.getItem('user'));
   }
 
@@ -50,18 +50,19 @@ export class AuthenticationService {
     this.router.navigate(['']);
   }
 
-  //TODO this function should be a Getter
-  getAge(): number {
-    return parseInt(this.getAuthenticatedUser().age);
+  get Age(): number {
+    return parseInt(this.AuthenticatedUser.age) || 0;
   }
 
-  //TODO this function should be a Getter
-  getScore(): number {
-    return parseInt(this.getAuthenticatedUser().score) || 0;
+  get userName():string{
+    return this.AuthenticatedUser.userName || ''
   }
 
-  //TODO this function should be a Getter
-  getOlderScore(): number {
-    return parseInt(this.getAuthenticatedUser().olderScore) || 0;
+  get Score(): number {
+    return parseInt(this.AuthenticatedUser.score) || 0;
+  }
+
+  get OlderScore(): number {
+    return parseInt(this.AuthenticatedUser.olderScore) || 0;
   }
 }

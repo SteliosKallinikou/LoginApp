@@ -15,8 +15,10 @@ import {
   MatTableDataSource,
 } from '@angular/material/table';
 import { MatSort, MatSortHeader } from '@angular/material/sort';
-import { Location, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-leader-boards',
@@ -42,13 +44,13 @@ import { MatIcon } from '@angular/material/icon';
 export class LeaderBoardsComponent implements OnInit, AfterViewInit {
   userDataService = inject(UserDataService);
   destroyRef = inject(DestroyRef);
-  location = inject(Location);
+  router = inject(Router);
   displayedColumns = ['id', 'name', 'general-score', 'advanced-score'];
   dataSource = new MatTableDataSource<User>();
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
-    this.userDataService.getUser().subscribe(response => {
+    this.userDataService.user.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(response => {
       this.dataSource.data = response;
       this.sortData();
     });
@@ -69,7 +71,7 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
 
   sortScores(): void {
     const isDesc = this.sort.direction === 'desc';
-     this.dataSource.data.slice().sort((a, b) => {
+    this.dataSource.data.slice().sort((a, b) => {
       if (this.sort.active === 'score') {
         return this.compare(parseInt(a.score), parseInt(b.score), isDesc);
       }
@@ -85,6 +87,6 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/dashboard'])
   }
 }

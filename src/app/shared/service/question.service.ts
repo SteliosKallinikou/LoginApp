@@ -10,11 +10,11 @@ export class QuestionService {
   URL = 'http://localhost:3001';
   http = inject(HttpClient);
 
-  getBasicQuestions(): Observable<Question[]> {
+  get BasicQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.URL}/questions`);
   }
 
-  getHardQuestions(): Observable<Question[]> {
+  get HardQuestions(): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.URL}/questions-plus`);
   }
 }

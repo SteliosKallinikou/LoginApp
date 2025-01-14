@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { authGuard } from './shared/guard/authGuard';
+
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { unsavedChangesGuard } from './shared/guard/unsaved-changes.guard';
@@ -8,9 +8,11 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { TestPageOlderComponent } from './test-page-older/test-page-older.component';
 
 import { RegisterComponent } from './register/register.component';
-import { ageGuard } from './shared/guard/ageGuard';
+
 import { BasicTestComponent } from './basic-test/basic-test.component';
 import { LeaderBoardsComponent } from './leader-boards/leader-boards.component';
+import { authGuard } from './shared/guard/auth-guard';
+import { ageGuard } from './shared/guard/age-guard';
 
 export const routes: Routes = [
   {
@@ -27,7 +29,7 @@ export const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'dashboard/:userName',
+    path: 'dashboard',
     component: DashboardComponent,
     canActivate: [authGuard],
   },
