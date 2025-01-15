@@ -8,13 +8,12 @@ export const ageGuard: CanActivateFn = () => {
   const router = inject(Router);
   const dialog = inject(MatDialog);
   const authenticationService = inject(AuthenticationService);
-  const age = authenticationService.Age;
+  const age = authenticationService.age;
 
   if (age < 18) {
     const dialogRef = dialog.open(AlertDialogComponent);
     dialogRef.afterClosed().subscribe(() => {
-      //TODO general-test is incorrect url
-      router.navigate(['/general-test']);
+      router.navigate(['/test']);
       return false;
     });
   }

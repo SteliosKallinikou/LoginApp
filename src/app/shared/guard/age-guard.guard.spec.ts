@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { ageGuard } from './ageGuard';
+import { ageGuard } from './age-guard';
 
 describe('ageGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) => TestBed.runInInjectionContext(() => ageGuard(...guardParameters));

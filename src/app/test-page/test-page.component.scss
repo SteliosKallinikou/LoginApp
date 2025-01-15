@@ -11,21 +11,23 @@
   flex-direction: column;
   line-height: 2;
   margin-bottom: 30px;
-}
 
+}
 .answer {
+  --mdc-radio-selected-icon-color: #BB86FC;
+  --mdc-radio-selected-focus-icon-color:  #BB86FC;
+  --mdc-radio-selected-hover-icon-color:  #BB86FC;
+  --mat-radio-checked-ripple-color: grey;
   span {
     &:hover {
       text-decoration: underline;
-      //TODO color could be a variable
       text-decoration-color: #2fbc88;
       text-decoration-thickness:3px ;
     }
   }
 }
-
 .questions-progress{
-  color: #5045e6;
+  color: #BB86FC;
   border-radius: 20px;
   margin-top: 20px;
   margin-bottom: 20px;

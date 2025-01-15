@@ -11,10 +11,11 @@ import { CanDeactivate } from '../shared/models';
 import { MatButton } from '@angular/material/button';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { SnackbarService } from '../shared/service/snacbar.service';
+import { RatingComponent } from '../rating/rating.component';
 
 @Component({
   selector: 'app-test-page',
-  imports: [MatIcon, ReactiveFormsModule, MatRadioGroup, MatRadioButton, JsonPipe, NgForOf, MatButton, MatProgressBar],
+  imports: [MatIcon, ReactiveFormsModule, MatRadioGroup, MatRadioButton, JsonPipe, NgForOf, MatButton, MatProgressBar, RatingComponent],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss',
 })
@@ -28,7 +29,6 @@ export class TestPageComponent implements CanDeactivate {
   olderQuestions = input.required<Question[]>();
 
   currentQuestion = 0;
-  loggedUser = this.authenticationService.AuthenticatedUser;
   isFinished = false;
   score = 0;
   testForm: FormGroup;
@@ -55,22 +55,21 @@ export class TestPageComponent implements CanDeactivate {
       .map(option => option.answer);
     this.currentQuestion++;
 
-    if (this.Question === 'true') {
-      this.snackBarService.getSnackBar('Your Answer Was Correct');
+    if (this.question === 'true') {
+      this.snackBarService.openSnackBar('Your Answer Was Correct');
       this.score += 2;
     } else {
-      this.snackBarService.getSnackBar('Wrong, Correct answer was:' + correctAnswer);
+      this.snackBarService.openSnackBar('Wrong, Correct answer was:' + correctAnswer);
     }
 
     this.testForm.controls['question'].reset();
-
     if (!this.olderQuestions()[this.currentQuestion]) {
       this.isFinished = true;
       this.userStats.emit({ saveOlder: true, score: this.score.toString() });
     }
   }
 
-  get Question(): string | null {
+  get question(): string | null {
     return this.testForm.controls['question'].value;
   }
 

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { UserDataService } from '../shared/service/user-data.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -16,21 +16,21 @@ import { take } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
   userService = inject(UserDataService);
   authenticationService = inject(AuthenticationService);
   destroyRef = inject(DestroyRef);
   route = inject(Router);
   formBuilder = inject(FormBuilder);
   isAuthenticated = true;
-  loginForm: FormGroup = new FormGroup({});
+  loginForm: FormGroup
 
-  ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required, Validators.minLength(6)]],
-    });
-  }
+constructor() {
+  this.loginForm = this.formBuilder.group({
+    userName: [null, [Validators.required]],
+    password: [null, [Validators.required, Validators.minLength(6)]],
+  });
+}
 
   login(): void {
     const user: User = this.loginForm.getRawValue();

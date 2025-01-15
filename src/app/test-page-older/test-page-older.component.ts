@@ -17,7 +17,7 @@ import { AsyncPipe } from '@angular/common';
 export class TestPageOlderComponent implements CanDeactivate {
   questionsService = inject(QuestionService);
   authenticationService = inject(AuthenticationService);
-  questions$: Observable<Question[]> = this.questionsService.HardQuestions;
+  questions$: Observable<Question[]> = this.questionsService.hardQuestions;
   dialog = inject(MatDialog);
   isFinished = false;
 
@@ -28,6 +28,6 @@ export class TestPageOlderComponent implements CanDeactivate {
   onFinished(stats: Stats): void {
     this.isFinished = stats.saveOlder;
     const userScore = stats.score;
-    this.authenticationService.setOlderUserScore(userScore, this.authenticationService.AuthenticatedUser);
+    this.authenticationService.setOlderUserScore(userScore, this.authenticationService.authenticatedUser);
   }
 }

@@ -16,8 +16,7 @@
   margin-top: variables.$large-plus;
   height: variables.$large-plus;
   border-radius: variables.$medium-plus;
-  //color could be a variable
-  background-color: #5045e6;
+  background-color: variables.$button-color;
   color: white !important;
   width: 50%;
 }
@@ -27,3 +26,4 @@
   line-height: 2;
   flex-direction: column;
 }
+

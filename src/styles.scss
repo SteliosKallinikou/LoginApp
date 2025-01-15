@@ -1,11 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
+@use 'variables';
 @import "styles/forms-style";
 
-html, body {@include mat.all-component-themes(mat.$blue-palette); }
+
+html, body { }
 body { margin: 5%;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #eaeaea;
+  transition: background-color 0.3s, color 0.3s
 }
-
-
+.dark-theme{
+  background: #121212;
+  color: white;
+  .wrapper{
+    background: #121212;
+    box-shadow: 0 variables.$extra-small variables.$small #BB86FC;
+  }
+}

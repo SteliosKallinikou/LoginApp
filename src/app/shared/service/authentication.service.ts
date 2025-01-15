@@ -20,14 +20,14 @@ export class AuthenticationService {
     return isFound;
   }
 
-  //TODO this function should be a Getter
-  get AuthenticatedUser(): User {
+
+  get authenticatedUser(): User {
     return JSON.parse(<string>localStorage.getItem('user'));
   }
 
   setBasicUserScore(score: string, loggedUser: User): void {
     const lastUser = loggedUser;
-    loggedUser.score = score;
+    loggedUser.score = parseInt(score);
     localStorage.setItem('user', JSON.stringify(loggedUser));
     this.userService.changeUserDetails(loggedUser, lastUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
@@ -39,7 +39,6 @@ export class AuthenticationService {
     this.userService.changeUserDetails(loggedUser, lastUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
 
-  //TODO this function should be a Getter
   isUserLoggedIn(): boolean {
     return !!JSON.parse(<string>localStorage.getItem('isAuthenticated'));
   }
@@ -50,19 +49,19 @@ export class AuthenticationService {
     this.router.navigate(['']);
   }
 
-  get Age(): number {
-    return parseInt(this.AuthenticatedUser.age) || 0;
+  get age(): number {
+    return parseInt(this.authenticatedUser.age) || 0;
   }
 
-  get userName():string{
-    return this.AuthenticatedUser.userName || ''
+  get userName(): string {
+    return this.authenticatedUser.userName || '';
   }
 
-  get Score(): number {
-    return parseInt(this.AuthenticatedUser.score) || 0;
+  get score(): number {
+    return this.authenticatedUser.score || 0;
   }
 
-  get OlderScore(): number {
-    return parseInt(this.AuthenticatedUser.olderScore) || 0;
+  get olderScore(): number {
+    return parseInt(this.authenticatedUser.olderScore) || 0;
   }
 }

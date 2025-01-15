@@ -4,6 +4,6 @@ export interface User {
   password: string;
   age: string;
   email: string;
-  score: string;
+  score: number;
   olderScore: string;
 }

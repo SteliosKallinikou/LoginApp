@@ -29,6 +29,7 @@
       <button type="submit" mat-flat-button [disabled]="loginForm.invalid" (click)="login()">Login</button>
       <button type="submit" mat-flat-button (click)="register()">Register</button>
     </div>
+
     @if (!isAuthenticated){
       <mat-error class="login-error">Username or Password not found, please try again</mat-error>
     }

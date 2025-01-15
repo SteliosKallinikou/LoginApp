@@ -4,6 +4,9 @@
       <span>{{userName}}'s Score: {{userScore || 0}}/10</span>
       <span>{{userName}}'s Advanced Score: {{olderScore || 0}}/10</span>
     <hr>
+    <div class="custom-switch">
+      <mat-slide-toggle (change)="toggleDarkMode($event)" >Slide me!</mat-slide-toggle>
+    </div>
   </div>
   <button mat-stroked-button class="dashboard-button" (click)="editProfile()">Edit Profile Details</button>
   <button mat-stroked-button class="dashboard-button" (click)="goToGeneralTest()">Go to General Test</button>

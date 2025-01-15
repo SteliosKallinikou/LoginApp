@@ -8,7 +8,7 @@ import { DURATION } from '../consts';
 export class SnackbarService {
   snackBar = inject(MatSnackBar);
 
-  getSnackBar(text: string) {
+  openSnackBar(text: string):void {
     this.snackBar.open(text, 'Close', {
       duration: DURATION,
       horizontalPosition: 'center',

@@ -16,7 +16,7 @@ import { AsyncPipe } from '@angular/common';
 export class BasicTestComponent implements CanDeactivate {
   questionsService = inject(QuestionService);
   authenticationService = inject(AuthenticationService);
-  questions$: Observable<Question[]> = this.questionsService.BasicQuestions;
+  questions$: Observable<Question[]> = this.questionsService.basicQuestions;
   isFinished = false;
 
   CanDeactivate(): Observable<boolean> {
@@ -25,6 +25,6 @@ export class BasicTestComponent implements CanDeactivate {
 
   onFinished(stats: Stats): void {
     this.isFinished = stats.saveOlder;
-    this.authenticationService.setBasicUserScore(stats.score, this.authenticationService.AuthenticatedUser);
+    this.authenticationService.setBasicUserScore(stats.score, this.authenticationService.authenticatedUser);
   }
 }

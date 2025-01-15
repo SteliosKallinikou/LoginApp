@@ -30,7 +30,7 @@ export class ProfileComponent implements CanDeactivate {
   dialog = inject(MatDialog);
   snackBarService = inject(SnackbarService);
   formBuilder = inject(FormBuilder);
-  authenticatedUser: User = this.authenticationService.AuthenticatedUser;
+  authenticatedUser: User = this.authenticationService.authenticatedUser;
   saveChanges = false;
   editForm: FormGroup;
 
@@ -53,6 +53,8 @@ export class ProfileComponent implements CanDeactivate {
   updateUserProfile(): void {
     const newUser = {
       ...this.editForm.getRawValue(),
+      score: this.authenticatedUser.score,
+      olderScore: this.authenticatedUser.olderScore,
     };
     this.dataService
       .changeUserDetails(newUser, this.authenticatedUser)
@@ -60,7 +62,7 @@ export class ProfileComponent implements CanDeactivate {
       .subscribe(res => {
         if (res) {
           this.saveChanges = true;
-          this.snackBarService.getSnackBar('Your Data was Saved Successfully');
+          this.snackBarService.openSnackBar('Your Data was Saved Successfully');
         }
       });
   }

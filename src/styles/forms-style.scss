@@ -18,6 +18,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
+  font-size: 13pt;
   box-shadow: 0 variables.$extra-small variables.$small rgba(0, 0, 0, 0.1);
   @media screen and (max-width: 570px) {
     width: 90%;
@@ -27,13 +28,14 @@
   }
 }
 hr{
-  border-top: 2px solid #2fbc88;
+  border-top: 2px solid variables.$line-color;
+  border-radius: 20px;
   width: 100%;
 }
 
 .input-text{
   width: 50%;
-  --mdc-filled-text-field-focus-active-indicator-color: #2fbc88;
+  --mdc-filled-text-field-focus-active-indicator-color: variables.$line-color;
 }
 
 .login-error{
@@ -48,7 +50,7 @@ hr{
   width: 60%;
   gap: 10px;
   button{
-    background-color: #5045e6 !important;
+    background-color: variables.$button-color !important;
     border-radius: 20px;
     color: white !important;
     width: inherit;
@@ -57,5 +59,6 @@ hr{
     }
   }
 }
+
 
 

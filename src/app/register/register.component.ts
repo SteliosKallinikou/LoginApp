@@ -10,7 +10,6 @@ import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { SnackbarService } from '../shared/service/snacbar.service';
 
-
 @Component({
   selector: 'app-register',
   imports: [ReactiveFormsModule, MatError, MatFormField, MatInput, MatLabel, MatButton],
@@ -24,7 +23,7 @@ export class RegisterComponent {
   snackBarService = inject(SnackbarService);
   formBuilder = inject(FormBuilder);
   isRegistered = true;
-  registerForm: FormGroup = new FormGroup({});
+  registerForm: FormGroup
   user: User = {} as User;
 
   constructor() {
@@ -45,10 +44,10 @@ export class RegisterComponent {
           .pipe(takeUntilDestroyed(this.destroyRef))
           .subscribe(data => {
             if (data) {
-              this.snackBarService.getSnackBar('You Have Succesfully Registered!');
+              this.snackBarService.openSnackBar('You Have Succesfully Registered!');
               this.route.navigate(['/login']);
             } else {
-              this.snackBarService.getSnackBar('Your Details Already Exist or You didnt provided any details');
+              this.snackBarService.openSnackBar('Your Details Already Exist or You didnt provided any details');
             }
           });
   }
