@@ -20,7 +20,6 @@ export class AuthenticationService {
     return isFound;
   }
 
-
   get authenticatedUser(): User {
     return JSON.parse(<string>localStorage.getItem('user'));
   }
@@ -34,7 +33,7 @@ export class AuthenticationService {
 
   setOlderUserScore(score: string, loggedUser: User): void {
     const lastUser = loggedUser;
-    loggedUser.olderScore = score;
+    loggedUser.olderScore = parseInt(score);
     localStorage.setItem('user', JSON.stringify(loggedUser));
     this.userService.changeUserDetails(loggedUser, lastUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
@@ -47,6 +46,21 @@ export class AuthenticationService {
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('user');
     this.router.navigate(['']);
+  }
+
+  toggleDarkMode(isDarkEnabled:boolean){
+    if (isDarkEnabled) {
+      localStorage.setItem('darkMode','true')
+      document.body.classList.add('dark-theme');
+
+    } else {
+      localStorage.removeItem('darkMode')
+      document.body.classList.remove('dark-theme');
+    }
+  }
+
+  get isDark(){
+    return localStorage.getItem('darkMode')
   }
 
   get age(): number {
@@ -62,6 +76,6 @@ export class AuthenticationService {
   }
 
   get olderScore(): number {
-    return parseInt(this.authenticatedUser.olderScore) || 0;
+    return this.authenticatedUser.olderScore || 0;
   }
 }

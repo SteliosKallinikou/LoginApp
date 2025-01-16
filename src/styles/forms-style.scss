@@ -26,6 +26,18 @@
       width: 55%;
     }
   }
+  .back-buttons {
+    display: flex;
+    align-content: center;
+    width: 30%;
+    gap: 10px;
+    button {
+      background-color: variables.$button-color !important;
+      border-radius: 20px;
+      color: white !important;
+      width: inherit;
+    }
+  }
 }
 hr{
   border-top: 2px solid variables.$line-color;
@@ -49,6 +61,7 @@ hr{
   justify-content: center;
   width: 60%;
   gap: 10px;
+  padding: 20px 0 20px 0;
   button{
     background-color: variables.$button-color !important;
     border-radius: 20px;

@@ -8,7 +8,7 @@ html, body { }
 body { margin: 5%;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #eaeaea;
-  transition: background-color 0.3s, color 0.3s
+  transition: background-color 0.3s, color 0.3s;
 }
 .dark-theme{
   background: #121212;
@@ -16,5 +16,42 @@ body { margin: 5%;
   .wrapper{
     background: #121212;
     box-shadow: 0 variables.$extra-small variables.$small #BB86FC;
+    font-size: 13pt;
+  }
+  .questions-answers{
+    color: white;
+    font-size: 13pt;
+  }
+  .answer{
+    --mdc-radio-unselected-icon-color: white !important;
+    --mdc-radio-unselected-hover-icon-color: #BB86FC !important;
+  }
+ .input-text {
+   margin-top: 20px;
+    --mdc-outlined-text-field-input-text-color: white;
+   --mdc-outlined-text-field-outline-color: white;
+   --mdc-outlined-text-field-focus-outline-color: #d200d2;
+   --mdc-outlined-text-field-hover-outline-color: #d200d2;
+ }
+  mat-label{
+    gap: 20px 20px;
+    color: white;
+    font-size: 15pt;
+  }
+  mat-table{
+    background-color: transparent !important;
+    border: 2px solid variables.$button-color !important;
+    box-shadow: 0 variables.$extra-small variables.$small #BB86FC !important;
+
+    td{
+      color: white
+    }
+    th{
+      color: white;
+    }
+  }
+  .dark-switch{
+    font-size: 15pt;
+    --mat-switch-label-text-color: white;
   }
 }

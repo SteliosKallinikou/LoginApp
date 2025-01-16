@@ -1,5 +1,7 @@
 <div class="wrapper">
-  <button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+  <div class="back-buttons">
+    <button  mat-flat-button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+  </div>
   <h1 class="title">Leaderboards</h1>
   <hr>
  <div class="table-layout">
@@ -21,8 +23,10 @@
        <td mat-cell *matCellDef="let element"> {{element.olderScore}} </td>
      </ng-container>
      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-     <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" [ngClass]="{'highlight':isTopScore(row.id),
-     'highlight-first-two':isFirstAndSecond()&& row.id===topScore[0].id || row.id===topScore[1].id}"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" [ngClass]="{
+       'highlight':isTopScore(row.id),
+     'highlight-first-two':isFirstAndSecond() && row.id===topScore[0].id || row.id===topScore[1].id,
+     'highlight-third': areSameScores && row.id===dataSource.data[3].id }"></tr>
    </mat-table>
  </div>
 </div>

@@ -1,20 +1,23 @@
   <div class="wrapper">
-    <button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+    <div class="back-buttons">
+      <button  mat-flat-button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+    </div>
     <h1 class="title">Profile Editor</h1>
     <form [formGroup]="editForm" (submit)="updateUserProfile()" class="form">
-      <mat-form-field class="input-text">
+      <mat-form-field class="input-text" appearance="outline">
         <mat-label>Username</mat-label>
         <input
           type="text"
           formControlName="userName"
           matInput placeholder="Enter Your Name"
+          class="text-box"
         />
         @if (editForm.controls['userName'].hasError('required')) {
           <mat-error class="login-error" >*Name is Required to Register</mat-error>
         }
       </mat-form-field>
 
-      <mat-form-field class="input-text">
+      <mat-form-field class="input-text" appearance="outline">
         <mat-label>Password</mat-label>
         <input type="password"
                formControlName="password"
@@ -27,7 +30,7 @@
         }
       </mat-form-field>
 
-      <mat-form-field class="input-text">
+      <mat-form-field class="input-text" appearance="outline">
         <mat-label>Email</mat-label>
         <input type="email"
                formControlName="email"
@@ -40,7 +43,7 @@
         }
       </mat-form-field>
 
-      <mat-form-field class="input-text">
+      <mat-form-field class="input-text" appearance="outline">
         <mat-label>Age</mat-label>
         <input type="number"
                formControlName="age"

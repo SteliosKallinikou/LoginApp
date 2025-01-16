@@ -23,7 +23,7 @@ export class RegisterComponent {
   snackBarService = inject(SnackbarService);
   formBuilder = inject(FormBuilder);
   isRegistered = true;
-  registerForm: FormGroup
+  registerForm: FormGroup;
   user: User = {} as User;
 
   constructor() {

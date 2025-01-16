@@ -6,17 +6,17 @@
       "age": 21,
       "email": "test@this.com",
       "id": "1",
-      "score": 10,
+      "score": 8,
       "olderScore": ""
     },
     {
       "userName": "test2",
       "password": "pass456",
-      "id": "2",
+      "age": 19,
       "email": "test2@this.com",
-      "age": "17",
       "score": 2,
-      "olderScore": "0"
+      "olderScore": 4,
+      "id": "2"
     },
     {
       "id": "3",
@@ -46,13 +46,13 @@
       "olderScore": ""
     },
     {
-      "id": "6",
       "userName": "Stelios",
       "password": "test123",
+      "age": 20,
       "email": "testing@this.com",
-      "age": "15",
       "score": 10,
-      "olderScore": "0"
+      "olderScore": 10,
+      "id": "6"
     },
     {
       "id": "7",
@@ -61,7 +61,7 @@
       "email": "test5@this.com",
       "age": "21",
       "score": 8,
-      "olderScore": "10"
+      "olderScore": 10
     }
   ]
 }

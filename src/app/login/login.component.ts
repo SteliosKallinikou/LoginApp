@@ -16,21 +16,21 @@ import { take } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent{
+export class LoginComponent {
   userService = inject(UserDataService);
   authenticationService = inject(AuthenticationService);
   destroyRef = inject(DestroyRef);
   route = inject(Router);
   formBuilder = inject(FormBuilder);
   isAuthenticated = true;
-  loginForm: FormGroup
+  loginForm: FormGroup;
 
-constructor() {
-  this.loginForm = this.formBuilder.group({
-    userName: [null, [Validators.required]],
-    password: [null, [Validators.required, Validators.minLength(6)]],
-  });
-}
+  constructor() {
+    this.loginForm = this.formBuilder.group({
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+    });
+  }
 
   login(): void {
     const user: User = this.loginForm.getRawValue();

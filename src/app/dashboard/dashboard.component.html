@@ -1,18 +1,17 @@
-<div class="wrapper">
-  <div class="welcome-header">
-    <h1 class="welcome-message">Hello {{userName}} Welcome to your DashBoard!</h1>
+<div class="container">
+  <div class="wrapper">
+    <div class="welcome-header">
+      <h1 class="welcome-message">Hello {{userName}} Welcome to your DashBoard!</h1>
       <span>{{userName}}'s Score: {{userScore || 0}}/10</span>
       <span>{{userName}}'s Advanced Score: {{olderScore || 0}}/10</span>
-    <hr>
-    <div class="custom-switch">
-      <mat-slide-toggle (change)="toggleDarkMode($event)" >Slide me!</mat-slide-toggle>
+      <hr>
     </div>
+
+    <mat-slide-toggle class="dark-switch" (change)="toggleDarkMode($event)" [(ngModel)]="isDarkMode" >Dark Mode</mat-slide-toggle>
+    <button mat-stroked-button class="dashboard-button" (click)="editProfile()">Edit Profile Details</button>
+    <button mat-stroked-button class="dashboard-button" (click)="goToGeneralTest()">Go to General Test</button>
+    <button mat-stroked-button class="dashboard-button" (click)="goToOlderTest()" >Go to Advanced Test</button>
+    <button mat-stroked-button class="dashboard-button" (click)="goToLeaderBoards()" >Leaderboards</button>
+    <button mat-stroked-button class="dashboard-button" (click)="logOut()">Logout</button>
   </div>
-  <button mat-stroked-button class="dashboard-button" (click)="editProfile()">Edit Profile Details</button>
-  <button mat-stroked-button class="dashboard-button" (click)="goToGeneralTest()">Go to General Test</button>
-  <button mat-stroked-button class="dashboard-button" (click)="goToOlderTest()" >Go to Advanced Test</button>
-  <button mat-stroked-button class="dashboard-button" (click)="goToLeaderBoards()" >Leaderboards</button>
-  <button mat-stroked-button class="dashboard-button" (click)="logOut()">Logout</button>
 </div>
-
-

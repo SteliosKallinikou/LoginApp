@@ -5,5 +5,5 @@ export interface User {
   age: string;
   email: string;
   score: number;
-  olderScore: string;
+  olderScore: number;
 }

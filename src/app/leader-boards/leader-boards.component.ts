@@ -29,6 +29,7 @@ import { NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-leader-boards',
@@ -43,10 +44,11 @@ import { Router } from '@angular/router';
     NgClass,
     MatIcon,
     MatSortHeader,
-    MatHeaderCellDef,
-    MatCellDef,
-    MatHeaderRowDef,
     MatRowDef,
+    MatHeaderRowDef,
+    MatCellDef,
+    MatHeaderCellDef,
+    MatButton,
   ],
   templateUrl: './leader-boards.component.html',
   styleUrl: './leader-boards.component.scss',
@@ -55,10 +57,12 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
   userDataService = inject(UserDataService);
   destroyRef = inject(DestroyRef);
   router = inject(Router);
+
   displayedColumns = ['id', 'name', 'general-score', 'advanced-score'];
   dataSource = new MatTableDataSource<User>();
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChildren(MatRow, { read: ElementRef }) matRows!: QueryList<MatRow>;
+  areSameScores = false;
 
   ngOnInit(): void {
     this.userDataService.user.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(response => {
@@ -77,16 +81,23 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
   }
 
   get topScore() {
-    let scoreSet = new Set(this.dataSource.data.sort((a, b) => b.score - a.score).slice(0, 3));
-    return Array.from(scoreSet);
+    if (this.sort.active === 'score') {
+      let scoreSet = new Set(this.dataSource.data.sort((a, b) => b.score - a.score).slice(0, 3));
+      return Array.from(scoreSet);
+    } else {
+      let scoreSet = new Set(this.dataSource.data.sort((a, b) => b.olderScore - a.olderScore).slice(0, 3));
+      return Array.from(scoreSet);
+    }
   }
 
   isTopScore(id: string) {
+    if (this.topScore[0].score === this.topScore[1].score || this.topScore[0].olderScore === this.topScore[1].olderScore) {
+      this.areSameScores = true;
+    }
     return this.topScore.some(user => user.id === id);
   }
-
   isFirstAndSecond() {
-    return this.topScore.length > 1 && this.topScore[0].score === this.topScore[1].score;
+    return this.topScore[0].score === this.topScore[1].score || this.topScore[0].olderScore === this.topScore[1].olderScore;
   }
 
   goBack(): void {
