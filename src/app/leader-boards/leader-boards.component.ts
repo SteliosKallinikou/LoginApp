@@ -62,7 +62,6 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<User>();
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChildren(MatRow, { read: ElementRef }) matRows!: QueryList<MatRow>;
-  areSameScores = false;
 
   ngOnInit(): void {
     this.userDataService.user.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(response => {
@@ -80,7 +79,7 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
     this.sort.sortChange.emit();
   }
 
-  get topScore() {
+  get topScore():User[] {
     if (this.sort.active === 'score') {
       let scoreSet = new Set(this.dataSource.data.sort((a, b) => b.score - a.score).slice(0, 3));
       return Array.from(scoreSet);
@@ -90,17 +89,20 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  isTopScore(id: string) {
-    if (this.topScore[0].score === this.topScore[1].score || this.topScore[0].olderScore === this.topScore[1].olderScore) {
-      this.areSameScores = true;
-    }
+  isTopScore(id: string):boolean {
     return this.topScore.some(user => user.id === id);
   }
-  isFirstAndSecond() {
-    return this.topScore[0].score === this.topScore[1].score || this.topScore[0].olderScore === this.topScore[1].olderScore;
+
+  isFirstAndSecond():boolean {
+    if(this.sort.active==='score'){
+      return this.topScore[0].score === this.topScore[1].score
+    }else {
+      return this.topScore[0].olderScore === this.topScore[1].olderScore;
+    }
   }
 
   goBack(): void {
     this.router.navigate(['/dashboard']);
   }
+
 }

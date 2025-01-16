@@ -45,6 +45,8 @@ export class AuthenticationService {
   logOut(): void {
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('user');
+    localStorage.removeItem('darkMode')
+    document.body.classList.remove('dark-theme');
     this.router.navigate(['']);
   }
 

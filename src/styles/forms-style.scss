@@ -8,9 +8,11 @@
   align-items: center;
   box-sizing: border-box;
 }
+
 .title{
   text-align: center;
 }
+
 .wrapper{
   max-width: 600px;
   margin: variables.$large auto;
@@ -20,8 +22,10 @@
   background-color: #f9f9f9;
   font-size: 13pt;
   box-shadow: 0 variables.$extra-small variables.$small rgba(0, 0, 0, 0.1);
+
   @media screen and (max-width: 570px) {
     width: 90%;
+
     .input-text{
       width: 55%;
     }
@@ -31,6 +35,7 @@
     align-content: center;
     width: 30%;
     gap: 10px;
+
     button {
       background-color: variables.$button-color !important;
       border-radius: 20px;

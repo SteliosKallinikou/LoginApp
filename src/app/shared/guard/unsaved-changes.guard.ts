@@ -8,8 +8,9 @@ import { CanDeactivate } from '../models';
 export const unsavedChangesGuard: CanDeactivateFn<CanDeactivate> = (component: CanDeactivate): Observable<boolean> => {
   const dialog = inject(MatDialog);
   return component.CanDeactivate().pipe(
-    switchMap(isNotDirty => {
-      if (isNotDirty) {
+    switchMap(isDirty => {
+      if (isDirty) {
+        console.log('here')
         return of(true);
       }
       const confirmDialog = dialog.open(ConfirmDialogComponent);

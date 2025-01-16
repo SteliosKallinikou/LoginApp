@@ -3,11 +3,11 @@
     {
       "userName": "Steve",
       "password": "pass123",
-      "age": 21,
+      "age": 20,
       "email": "test@this.com",
-      "id": "1",
-      "score": 8,
-      "olderScore": ""
+      "score": 2,
+      "olderScore": "",
+      "id": "1"
     },
     {
       "userName": "test2",

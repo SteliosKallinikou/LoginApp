@@ -26,7 +26,7 @@
        <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" [ngClass]="{
        'highlight':isTopScore(row.id),
      'highlight-first-two':isFirstAndSecond() && row.id===topScore[0].id || row.id===topScore[1].id,
-     'highlight-third': areSameScores && row.id===dataSource.data[3].id }"></tr>
+     'highlight-third': (isFirstAndSecond() && row.id===dataSource.data[3].id)||(!isFirstAndSecond() && row.id===topScore[2].id) }"></tr>
    </mat-table>
  </div>
 </div>

@@ -40,11 +40,13 @@ export class TestPageComponent implements CanDeactivate {
   }
 
   goBack(): void {
+
     this.router.navigate(['/dashboard']);
   }
 
   CanDeactivate(): Observable<boolean> {
-    return of(this.isFinished);
+    console.log(this.testForm.pristine)
+    return of(this.testForm.pristine);
   }
 
   submitQuestion(): void {
