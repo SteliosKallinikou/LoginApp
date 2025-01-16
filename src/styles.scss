@@ -63,5 +63,9 @@ body { margin: 5%;
   .dark-switch{
     font-size: 15pt;
     --mat-switch-label-text-color: white;
+    --mdc-switch-selected-handle-color: #BB86FC !important;
+    --mdc-switch-selected-track-color: #03DAC5 !important;
+    --mdc-switch-selected-hover-track-color: white !important;
+    --mdc-switch-selected-hover-handle-color: #BB86FC !important;
   }
 }

@@ -30,6 +30,7 @@ import { MatIcon } from '@angular/material/icon';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import {MatButton} from '@angular/material/button';
+import {RatingComponent} from '../rating/rating.component';
 
 @Component({
   selector: 'app-leader-boards',
@@ -49,6 +50,7 @@ import {MatButton} from '@angular/material/button';
     MatCellDef,
     MatHeaderCellDef,
     MatButton,
+    RatingComponent,
   ],
   templateUrl: './leader-boards.component.html',
   styleUrl: './leader-boards.component.scss',
@@ -58,7 +60,7 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
   destroyRef = inject(DestroyRef);
   router = inject(Router);
 
-  displayedColumns = ['id', 'name', 'general-score', 'advanced-score'];
+  displayedColumns = ['id', 'name', 'general-score', 'advanced-score','medals'];
   dataSource = new MatTableDataSource<User>();
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChildren(MatRow, { read: ElementRef }) matRows!: QueryList<MatRow>;
