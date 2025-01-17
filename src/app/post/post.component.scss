@@ -1,0 +1,25 @@
+@use "variables";
+
+.post-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 13pt;
+  box-shadow: 0 variables.$extra-small variables.$small rgba(0, 0, 0, 0.1);
+  padding: 5px 5px 5px 5px;
+  width: 500px;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: 570px) {
+    width: 100%;
+  }
+
+  .post-content{
+    text-align: start;
+    width: 100%;
+  }
+}
+

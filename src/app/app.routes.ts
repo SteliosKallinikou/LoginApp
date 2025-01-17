@@ -13,6 +13,7 @@ import { BasicTestComponent } from './basic-test/basic-test.component';
 import { LeaderBoardsComponent } from './leader-boards/leader-boards.component';
 import { authGuard } from './shared/guard/auth-guard';
 import { ageGuard } from './shared/guard/age-guard';
+import { FeedPageComponent } from './feed-page/feed-page.component';
 
 export const routes: Routes = [
   {
@@ -59,6 +60,11 @@ export const routes: Routes = [
   {
     path: 'leaderboard',
     component: LeaderBoardsComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'feed',
+    component: FeedPageComponent,
     canActivate: [authGuard],
   },
   {

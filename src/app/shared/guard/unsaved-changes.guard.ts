@@ -10,7 +10,7 @@ export const unsavedChangesGuard: CanDeactivateFn<CanDeactivate> = (component: C
   return component.CanDeactivate().pipe(
     switchMap(isDirty => {
       if (isDirty) {
-        console.log('here')
+        console.log('here');
         return of(true);
       }
       const confirmDialog = dialog.open(ConfirmDialogComponent);

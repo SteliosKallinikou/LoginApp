@@ -22,10 +22,10 @@ export class TestPageOlderComponent implements CanDeactivate {
   isFinished = false;
 
   CanDeactivate(): Observable<boolean> {
-    if(this.authenticationService.age<18){
-      return of(true)
-    }else{
-      return of(this.isFinished)
+    if (this.authenticationService.age < 18) {
+      return of(true);
+    } else {
+      return of(this.isFinished);
     }
   }
 

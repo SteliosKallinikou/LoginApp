@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"npm run start-json-server-1\" \" npm run start-json-server-2 \" \"ng serve\" ",
+    "start": "concurrently \"npm run start-json-server-1\" \" npm run start-json-server-2 \" \" npm run start-json-server-3 \" \"ng serve\" ",
     "start-json-server-1": "json-server --watch users.json --port 3000",
     "start-json-server-2": "json-server --watch questions.json --port 3001",
+    "start-json-server-3": "json-server --watch posts.json --port 3002",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
@@ -25,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
     "rxjs": "~7.8.0",
+    "socket.io-client": "^4.8.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },

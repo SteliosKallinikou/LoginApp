@@ -47,7 +47,7 @@ export class ProfileComponent implements CanDeactivate {
     this.location.back();
   }
   CanDeactivate(): Observable<boolean> {
-    return of(this.editForm.pristine||this.saveChanges);
+    return of(this.editForm.pristine || this.saveChanges);
   }
 
   updateUserProfile(): void {
@@ -55,7 +55,7 @@ export class ProfileComponent implements CanDeactivate {
       ...this.editForm.getRawValue(),
       score: this.authenticatedUser.score,
       olderScore: this.authenticatedUser.olderScore,
-      id: this.authenticatedUser.id
+      id: this.authenticatedUser.id,
     };
     this.dataService
       .changeUserDetails(newUser, this.authenticatedUser)

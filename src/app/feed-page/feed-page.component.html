@@ -1,0 +1,35 @@
+<div class="container">
+
+  <div class="welcome">
+    <h1>Hello {{authenticationService.userName}},</h1>
+    <h1>Welcome to Your InstaBook Homepage</h1>
+    <div class="back-buttons">
+      <button  mat-flat-button class="go-back-button" (click)="goBack()">Back to DashBoard</button>
+    </div>
+    <hr>
+  </div>
+
+  <div class="submit-buttons">
+    <textarea
+      class="feed-text-post"
+      rows="2"
+      cols="55"
+      placeholder="Whats On Your Mind?"
+      [(ngModel)]="text"
+      (keydown.enter)="postContent(text)"
+    ></textarea>
+    <button mat-stroked-button>Share Post</button>
+  </div>
+
+  <div class="post-area">
+    <h1 class="posts-title">Posts</h1>
+    @for (post of posts; track post.id) {
+      <app-post
+        [user]="post.belongsTo.userName"
+        [postContent]="post.content"
+        [date]="post.date"
+      ></app-post>
+    }
+  </div>
+
+</div>

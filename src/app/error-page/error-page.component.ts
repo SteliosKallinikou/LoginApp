@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { Location } from '@angular/common';
-import {MatButton} from "@angular/material/button";
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-error-page',
-    imports: [MatIcon, MatButton],
+  imports: [MatIcon, MatButton],
   templateUrl: './error-page.component.html',
   styleUrl: './error-page.component.scss',
 })

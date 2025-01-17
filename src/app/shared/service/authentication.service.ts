@@ -45,24 +45,23 @@ export class AuthenticationService {
   logOut(): void {
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('user');
-    localStorage.removeItem('darkMode')
+    localStorage.removeItem('darkMode');
     document.body.classList.remove('dark-theme');
     this.router.navigate(['']);
   }
 
-  toggleDarkMode(isDarkEnabled:boolean){
+  toggleDarkMode(isDarkEnabled: boolean): void {
     if (isDarkEnabled) {
-      localStorage.setItem('darkMode','true')
+      localStorage.setItem('darkMode', 'true');
       document.body.classList.add('dark-theme');
-
     } else {
-      localStorage.removeItem('darkMode')
+      localStorage.removeItem('darkMode');
       document.body.classList.remove('dark-theme');
     }
   }
 
-  get isDark(){
-    return localStorage.getItem('darkMode')
+  get isDark(): string | null {
+    return localStorage.getItem('darkMode');
   }
 
   get age(): number {

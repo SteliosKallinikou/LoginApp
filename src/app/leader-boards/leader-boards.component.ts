@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  DestroyRef,
-  ElementRef,
-  inject,
-  OnInit,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, ElementRef, inject, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { UserDataService } from '../shared/service/user-data.service';
 import { User } from '../shared/models';
 import {
@@ -29,8 +19,8 @@ import { NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
-import {MatButton} from '@angular/material/button';
-import {RatingComponent} from '../rating/rating.component';
+import { MatButton } from '@angular/material/button';
+import { RatingComponent } from '../rating/rating.component';
 
 @Component({
   selector: 'app-leader-boards',
@@ -60,7 +50,7 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
   destroyRef = inject(DestroyRef);
   router = inject(Router);
 
-  displayedColumns = ['id', 'name', 'general-score', 'advanced-score','medals'];
+  displayedColumns = ['id', 'name', 'general-score', 'advanced-score', 'medals'];
   dataSource = new MatTableDataSource<User>();
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChildren(MatRow, { read: ElementRef }) matRows!: QueryList<MatRow>;
@@ -81,7 +71,7 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
     this.sort.sortChange.emit();
   }
 
-  get topScore():User[] {
+  get topScore(): User[] {
     if (this.sort.active === 'score') {
       let scoreSet = new Set(this.dataSource.data.sort((a, b) => b.score - a.score).slice(0, 3));
       return Array.from(scoreSet);
@@ -91,14 +81,14 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  isTopScore(id: string):boolean {
+  isTopScore(id: string): boolean {
     return this.topScore.some(user => user.id === id);
   }
 
-  isFirstAndSecond():boolean {
-    if(this.sort.active==='score'){
-      return this.topScore[0].score === this.topScore[1].score
-    }else {
+  isFirstAndSecond(): boolean {
+    if (this.sort.active === 'score') {
+      return this.topScore[0].score === this.topScore[1].score;
+    } else {
       return this.topScore[0].olderScore === this.topScore[1].olderScore;
     }
   }
@@ -106,5 +96,4 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
   goBack(): void {
     this.router.navigate(['/dashboard']);
   }
-
 }
