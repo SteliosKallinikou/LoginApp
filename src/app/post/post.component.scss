@@ -1,12 +1,29 @@
 @use "variables";
 
-.example-card{
+.post-card{
   margin-bottom: 20px;
   width: 500px;
   border-radius: 20px;
 }
 
-.likes{
+.likes-comments{
   display: flex;
+  gap: 10px;
   padding-left: 25px;
+}
+
+.comment-card{
+  border: 0;
+  border-bottom: 2px solid variables.$line-color;
+  margin-bottom: 20px;
+  width: 70%;
+}
+
+.comment-text{
+  margin-left: 10px;
+  border: variables.$button-color;
+  border-radius: variables.$medium-plus;
+  text-align: center;
+  outline: 2px solid variables.$button-color;
+  resize: none;
 }

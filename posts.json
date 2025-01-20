@@ -14,7 +14,18 @@
       "content": "Hi this is my First Post",
       "date": "17/01/2025, 12:54:49",
       "likes": 5,
-      "comments": []
+      "comments": [
+        {
+          "content": "first comment",
+          "createdBy": "Steve",
+          "date": "20/01/2025, 14:32:26"
+        },
+        {
+          "content": "this is my second comment",
+          "createdBy": "Steve",
+          "date": "20/01/2025, 17:02:15"
+        }
+      ]
     },
     {
       "id": "2",
@@ -30,10 +41,21 @@
       "content": "Hi this is my first post to",
       "date": "17/01/2025, 12:55:31",
       "likes": 1,
-      "comments": []
+      "comments": [
+        {
+          "content": "first comment",
+          "createdBy": "Kallis",
+          "date": "20/01/2025, 14:34:08"
+        },
+        {
+          "content": "hi",
+          "createdBy": "Kallis",
+          "date": "20/01/2025, 17:02:34"
+        }
+      ]
     },
     {
-      "id": 3,
+      "id": "3",
       "belongsTo": {
         "userName": "Steve",
         "password": "pass123",
@@ -46,7 +68,13 @@
       "content": "new day",
       "date": "20/01/2025, 10:34:21",
       "likes": 0,
-      "comments": []
+      "comments": [
+        {
+          "content": "first comment",
+          "createdBy": "Steve",
+          "date": "20/01/2025, 14:34:08"
+        }
+      ]
     }
   ]
 }
