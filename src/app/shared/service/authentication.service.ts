@@ -60,8 +60,8 @@ export class AuthenticationService {
     }
   }
 
-  get isDark(): string | null {
-    return localStorage.getItem('darkMode');
+  get isDark():boolean {
+    return localStorage.getItem('darkMode')==='true';
   }
 
   get age(): number {

@@ -5,4 +5,6 @@ export interface Post {
   content: string;
   id: number;
   date: string;
+  likes: number;
+  comments: string[];
 }

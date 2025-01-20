@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import {Component, computed, input} from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -7,10 +7,12 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './rating.component.html',
   styleUrl: './rating.component.scss',
 })
-export class RatingComponent implements OnInit {
+export class RatingComponent {
   testScore = input.required<number>();
-  stars: number[] = [];
-  ngOnInit() {
-    if (this.testScore()) this.stars = new Array(this.testScore() / 2);
-  }
+
+  stars = computed(() => {
+    const score = this.testScore();
+    return score ? new Array(Math.floor(score / 2)) : [];
+  });
+
 }

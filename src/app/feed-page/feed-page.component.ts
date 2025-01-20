@@ -7,7 +7,7 @@ import { PostService } from '../shared/service/post.service';
 import { Post } from '../shared/models';
 
 import { interval, switchMap } from 'rxjs';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-feed-page',
@@ -18,7 +18,7 @@ import {Location} from '@angular/common';
 export class FeedPageComponent implements OnInit {
   authenticationService = inject(AuthenticationService);
   postService = inject(PostService);
-  location=inject(Location)
+  location = inject(Location);
   authenticatedUser = this.authenticationService.authenticatedUser;
   text = '';
   posts: Post[] = [];
@@ -33,7 +33,7 @@ export class FeedPageComponent implements OnInit {
     this.postService.createPost(this.authenticatedUser, input);
   }
 
-  goBack() {
-    this.location.back()
+  goBack():void {
+    this.location.back();
   }
 }

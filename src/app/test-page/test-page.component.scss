@@ -24,14 +24,14 @@
   span {
     &:hover {
       text-decoration: underline;
-      text-decoration-color: #2fbc88;
+      text-decoration-color: variables.$line-color;
       text-decoration-thickness:3px ;
     }
   }
 }
 
 .questions-progress{
-  color: #BB86FC;
+  color: variables.$button-color;
   border-radius: 20px;
   margin-top: 20px;
   margin-bottom: 20px;

@@ -15,13 +15,19 @@ export class PostService {
   createPost(user: User, text: string): void {
     this.post.subscribe(post => {
       const newId = post.length + 1;
-      let date = new Date();
-      const newPost: Post = { belongsTo: user, content: text, id: newId, date: date.toLocaleString() };
+      let date = new Date().toLocaleString();
+      const newPost: Post = { belongsTo: user, content: text, id: newId, date: date, likes: 0, comments: [] };
       this.http.post(this.URL, newPost).subscribe(data => console.log(data));
     });
   }
 
   get post(): Observable<Post[]> {
     return this.http.get<Post[]>(this.URL);
+  }
+
+  likePost(currentPost: Post) {
+    const currentUrl = this.URL + `/${currentPost.id}`;
+    const newPost: Post = { ...currentPost, likes: ++currentPost.likes };
+    this.http.put(currentUrl, newPost).subscribe(data => console.log(data));
   }
 }

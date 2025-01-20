@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
     this.authenticator.toggleDarkMode($event.checked);
   }
 
-  goToFeed() {
+  goToFeed(): void {
     this.route.navigate(['/feed']);
   }
 }

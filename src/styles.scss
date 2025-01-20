@@ -4,8 +4,6 @@
 @import "styles/forms-style";
 
 
-html, body { }
-
 body { margin: 5%;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #eaeaea;
@@ -13,11 +11,11 @@ body { margin: 5%;
 }
 
 .dark-theme{
-  background: #121212;
+  background: variables.$dark-mode-background;
   color: white;
 
   .wrapper{
-    background: #121212;
+    background: variables.$dark-mode-background;
     box-shadow: 0 variables.$extra-small variables.$small #BB86FC;
     font-size: 13pt;
   }
@@ -67,5 +65,18 @@ body { margin: 5%;
     --mdc-switch-selected-track-color: #03DAC5 !important;
     --mdc-switch-selected-hover-track-color: white !important;
     --mdc-switch-selected-hover-handle-color: #BB86FC !important;
+  }
+
+  .container{
+    background-color:  variables.$dark-mode-background !important;
+    box-shadow: 0 variables.$extra-small variables.$small #BB86FC !important;
+    font-size: 13pt;
+  }
+  .feed-text-post{
+    background-color: variables.$dark-mode-background;
+    color: white;
+  }
+  .post-container{
+    box-shadow: 0 variables.$extra-small variables.$small #BB86FC !important;
   }
 }

@@ -52,10 +52,8 @@ export class ProfileComponent implements CanDeactivate {
 
   updateUserProfile(): void {
     const newUser = {
+      ...this.authenticatedUser,
       ...this.editForm.getRawValue(),
-      score: this.authenticatedUser.score,
-      olderScore: this.authenticatedUser.olderScore,
-      id: this.authenticatedUser.id,
     };
     this.dataService
       .changeUserDetails(newUser, this.authenticatedUser)

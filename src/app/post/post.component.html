@@ -1,5 +1,20 @@
-<div class="post-container">
-  <p class="post-by">{{user()}}:</p>
-  <span class="post-date">{{date()}}</span>
-  <span class="post-content">{{postContent()}}</span>
-</div>
+
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+<!--    <div mat-card-avatar class="example-header-image"></div>-->
+    <mat-card-title>{{user()}}</mat-card-title>
+    <mat-card-subtitle>{{date()}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{postContent()}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="likePost()">Like</button>
+    <button mat-button>Comment</button>
+  </mat-card-actions>
+  <mat-card-subtitle class="likes">
+    <p>Likes {{post().likes}}</p>
+  </mat-card-subtitle>
+</mat-card>

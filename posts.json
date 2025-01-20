@@ -1,7 +1,7 @@
 {
   "posts": [
     {
-      "id": 1,
+      "id": "1",
       "belongsTo": {
         "userName": "Steve",
         "password": "pass123",
@@ -12,10 +12,12 @@
         "id": "1"
       },
       "content": "Hi this is my First Post",
-      "date": "17/01/2025, 12:54:49"
+      "date": "17/01/2025, 12:54:49",
+      "likes": 5,
+      "comments": []
     },
     {
-      "id": 2,
+      "id": "2",
       "belongsTo": {
         "id": "7",
         "userName": "Kallis",
@@ -26,7 +28,25 @@
         "olderScore": 10
       },
       "content": "Hi this is my first post to",
-      "date": "17/01/2025, 12:55:31"
+      "date": "17/01/2025, 12:55:31",
+      "likes": 1,
+      "comments": []
+    },
+    {
+      "id": 3,
+      "belongsTo": {
+        "userName": "Steve",
+        "password": "pass123",
+        "age": 20,
+        "email": "test@this.com",
+        "score": 2,
+        "olderScore": 6,
+        "id": "1"
+      },
+      "content": "new day",
+      "date": "20/01/2025, 10:34:21",
+      "likes": 0,
+      "comments": []
     }
   ]
 }

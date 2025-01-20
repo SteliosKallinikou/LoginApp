@@ -1,5 +1,4 @@
 <div class="container">
-
   <div class="welcome">
     <h1>Hello {{authenticationService.userName}},</h1>
     <h1>Welcome to Your InstaBook Homepage</h1>
@@ -28,6 +27,7 @@
         [user]="post.belongsTo.userName"
         [postContent]="post.content"
         [date]="post.date"
+        [post]="post"
       ></app-post>
     }
   </div>

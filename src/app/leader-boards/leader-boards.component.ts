@@ -52,6 +52,7 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['id', 'name', 'general-score', 'advanced-score', 'medals'];
   dataSource = new MatTableDataSource<User>();
+  isFirst=false
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChildren(MatRow, { read: ElementRef }) matRows!: QueryList<MatRow>;
 
@@ -63,6 +64,7 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
+    this.isFirst=this.isFirstAndSecond()
   }
 
   sortData(): void {
@@ -82,10 +84,15 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
   }
 
   isTopScore(id: string): boolean {
+    if (this.sort.active === 'score') {
+      this.isFirst=this.topScore[0].score === this.topScore[1].score;
+    } else {
+      this.isFirst = this.topScore[0].olderScore === this.topScore[1].olderScore;
+    }
     return this.topScore.some(user => user.id === id);
   }
 
-  isFirstAndSecond(): boolean {
+  isFirstAndSecond():boolean {
     if (this.sort.active === 'score') {
       return this.topScore[0].score === this.topScore[1].score;
     } else {
