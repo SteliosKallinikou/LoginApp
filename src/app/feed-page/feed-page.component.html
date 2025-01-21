@@ -22,9 +22,12 @@
 
   <div class="post-area">
     <h1 class="posts-title">Posts</h1>
+    @if (!isLoaded){
+      <mat-spinner class="post-loading"></mat-spinner>
+    }
     @for (post of posts; track post.id) {
       <app-post
-        [user]="post.belongsTo.userName"
+        [user]="post.belongsTo"
         [postContent]="post.content"
         [date]="post.date"
         [post]="post"

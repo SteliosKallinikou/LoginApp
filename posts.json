@@ -42,7 +42,7 @@
       },
       "content": "Hi this is my first post to",
       "date": "17/01/2025, 12:55:31",
-      "likes": 1,
+      "likes": 2,
       "comments": [
         {
           "content": "first comment",
@@ -53,6 +53,21 @@
           "content": "hi",
           "createdBy": "Kallis",
           "date": "20/01/2025, 17:02:34"
+        },
+        {
+          "content": "test",
+          "createdBy": "Kallis",
+          "date": "21/01/2025, 12:11:02"
+        },
+        {
+          "content": "hi",
+          "createdBy": "Kallis",
+          "date": "21/01/2025, 12:12:48"
+        },
+        {
+          "content": "test",
+          "createdBy": "Steve",
+          "date": "21/01/2025, 12:16:46"
         }
       ]
     },
@@ -78,6 +93,23 @@
           "date": "20/01/2025, 14:34:08"
         }
       ]
+    },
+    {
+      "id": 4,
+      "belongsTo": {
+        "userName": "Steve",
+        "password": "pass123",
+        "age": 20,
+        "email": "test@this.com",
+        "score": 2,
+        "olderScore": 6,
+        "id": "1",
+        "profilePicture": "/assets/images/profile.png"
+      },
+      "content": "new post",
+      "date": "21/01/2025, 12:12:48",
+      "likes": 0,
+      "comments": []
     }
   ]
 }

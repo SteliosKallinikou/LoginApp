@@ -1,8 +1,9 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
-import {Comment, User} from '../models';
+import { Comment, User } from '../models';
 import { Post } from '../models';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
@@ -14,11 +15,11 @@ export class PostService {
   private readonly date: string;
 
   constructor() {
-    this.date = new Date().toLocaleString()
+    this.date = new Date().toLocaleString();
   }
 
   createPost(user: User, text: string): void {
-    this.post.subscribe(post => {
+    this.post.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(post => {
       const newId = post.length + 1;
       const newPost: Post = { belongsTo: user, content: text, id: newId, date: this.date, likes: 0, comments: [] };
       this.http.post(this.URL, newPost).subscribe(data => console.log(data));
@@ -28,14 +29,20 @@ export class PostService {
   likePost(currentPost: Post) {
     const currentUrl = this.URL + `/${currentPost.id}`;
     const newPost: Post = { ...currentPost, likes: ++currentPost.likes };
-    this.http.put(currentUrl, newPost).subscribe(data => console.log(data));
+    this.http
+      .put(currentUrl, newPost)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(data => console.log(data));
   }
 
-  createComment(user: string, text: string, userPost:Post){
-    const postTo= this.URL+`/${userPost.id}`;
-    const newComment:Comment={content:text,createdBy:user,date:this.date};
-    userPost.comments.push(newComment)
-    this.http.put(postTo,userPost).subscribe(data=>console.log(data));
+  createComment(user: User, text: string, userPost: Post) {
+    const postTo = this.URL + `/${userPost.id}`;
+    const newComment: Comment = { content: text, createdBy: user.userName, date: this.date };
+    userPost.comments.push(newComment);
+    this.http
+      .put(postTo, userPost)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(data => console.log(data));
   }
 
   get post(): Observable<Post[]> {
@@ -43,7 +50,6 @@ export class PostService {
   }
 
   get comments(): Observable<Comment[]> {
-    return this.http.get<Comment[]>(this.URL)
+    return this.http.get<Comment[]>(this.URL);
   }
-
 }

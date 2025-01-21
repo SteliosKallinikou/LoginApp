@@ -1,6 +1,5 @@
-
-export interface Comment{
+export interface Comment {
   content: string;
-  createdBy:string;
+  createdBy: string;
   date: string;
 }

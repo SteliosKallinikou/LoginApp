@@ -1,4 +1,4 @@
-import {Component, computed, input} from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -14,5 +14,4 @@ export class RatingComponent {
     const score = this.testScore();
     return score ? new Array(Math.floor(score / 2)) : [];
   });
-
 }

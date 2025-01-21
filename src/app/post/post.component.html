@@ -1,8 +1,8 @@
 
 <mat-card class="post-card" appearance="outlined">
   <mat-card-header class="post-header">
-    <mat-card-title>{{user()}}</mat-card-title>
-    <img mat-card-image class="avatar" ngSrc="/assets/images/profile.png" priority width="512" alt="profile"
+    <mat-card-title>{{user().userName}}</mat-card-title>
+    <img mat-card-image class="avatar" [ngSrc]="user().profilePicture" priority width="512" alt="profile"
          height="512">
     <mat-card-subtitle>{{date()}}</mat-card-subtitle>
   </mat-card-header>

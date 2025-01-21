@@ -4,8 +4,8 @@ import { AuthenticationService } from '../shared/service/authentication.service'
 import { MatButton } from '@angular/material/button';
 import { MatSlideToggle, MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
-import {MatGridList, MatGridTile} from '@angular/material/grid-list';
-import {NgOptimizedImage} from '@angular/common';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   userAge = this.authenticator.age;
   userScore = this.authenticator.score;
   olderScore = this.authenticator.olderScore;
-  profilePic= this.authenticator.profilePicture
+  profilePic = this.authenticator.profilePicture;
   isDarkMode = false;
 
   ngOnInit(): void {

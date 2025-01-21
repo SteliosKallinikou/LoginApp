@@ -60,8 +60,8 @@ export class AuthenticationService {
     }
   }
 
-  get isDark():boolean {
-    return localStorage.getItem('darkMode')==='true';
+  get isDark(): boolean {
+    return localStorage.getItem('darkMode') === 'true';
   }
 
   get age(): number {
@@ -80,7 +80,7 @@ export class AuthenticationService {
     return this.authenticatedUser.olderScore || 0;
   }
 
-  get profilePicture():string{
-    return this.authenticatedUser.profilePicture
+  get profilePicture(): string {
+    return this.authenticatedUser.profilePicture;
   }
 }

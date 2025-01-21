@@ -6,5 +6,5 @@ export interface User {
   email: string;
   score: number;
   olderScore: number;
-  profilePicture:string;
+  profilePicture: string;
 }

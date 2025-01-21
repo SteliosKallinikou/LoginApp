@@ -57,6 +57,19 @@
         }
       </mat-form-field>
 
+      <mat-form-field class="input-text" appearance="outline">
+        <mat-label>Profile Picture</mat-label>
+        <input type="text"
+               formControlName="profilePicture"
+               matInput placeholder="Enter the URL for your profile"
+               min="0"
+        />
+        @if (editForm.controls['profilePicture'].hasError('required')){
+          <mat-error class="login-error" >*Picture URL Required</mat-error>
+      }
+      </mat-form-field>
+      <img class="profile-picture" [ngSrc]="editForm.controls['profilePicture'].value||authenticatedUser.profilePicture" priority width="100" height="100" alt="profile-pic"/>
+
       <div class="submit-buttons">
         <button type="submit" mat-flat-button (click)="(updateUserProfile())" [disabled]="editForm.invalid">Update Profile</button>
       </div>

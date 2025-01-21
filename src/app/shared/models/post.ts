@@ -1,5 +1,5 @@
 import { User } from './user';
-import {Comment} from './comment';
+import { Comment } from './comment';
 
 export interface Post {
   belongsTo: User;

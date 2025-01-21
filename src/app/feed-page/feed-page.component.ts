@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { MatButton } from '@angular/material/button';
 import { PostComponent } from '../post/post.component';
@@ -8,10 +8,12 @@ import { Post } from '../shared/models';
 
 import { interval, switchMap } from 'rxjs';
 import { Location } from '@angular/common';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-feed-page',
-  imports: [MatButton, PostComponent, FormsModule],
+  imports: [MatButton, PostComponent, FormsModule, MatProgressSpinner],
   templateUrl: './feed-page.component.html',
   styleUrl: './feed-page.component.scss',
 })
@@ -19,21 +21,29 @@ export class FeedPageComponent implements OnInit {
   authenticationService = inject(AuthenticationService);
   postService = inject(PostService);
   location = inject(Location);
+  destroyRef = inject(DestroyRef);
   authenticatedUser = this.authenticationService.authenticatedUser;
   text = '';
   posts: Post[] = [];
+  isLoaded = false;
 
   ngOnInit(): void {
-    interval(2000)
-      .pipe(switchMap(() => this.postService.post))
-      .subscribe(data => (this.posts = data));
+    interval(1000)
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        switchMap(() => this.postService.post)
+      )
+      .subscribe(data => {
+        this.posts = data;
+        this.isLoaded = true;
+      });
   }
 
   postContent(input: string): void {
     this.postService.createPost(this.authenticatedUser, input);
   }
 
-  goBack():void {
+  goBack(): void {
     this.location.back();
   }
 }
