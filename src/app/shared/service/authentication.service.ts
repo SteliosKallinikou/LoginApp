@@ -79,4 +79,8 @@ export class AuthenticationService {
   get olderScore(): number {
     return this.authenticatedUser.olderScore || 0;
   }
+
+  get profilePicture():string{
+    return this.authenticatedUser.profilePicture
+  }
 }

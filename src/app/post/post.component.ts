@@ -1,13 +1,22 @@
 import { Component, inject, input } from '@angular/core';
-import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardHeader,
+  MatCardImage,
+  MatCardSubtitle,
+  MatCardTitle
+} from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
 import { PostService } from '../shared/service/post.service';
 import {Comment, Post} from '../shared/models';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-post',
-  imports: [MatCard, MatCardHeader, MatCardContent, MatCardActions, MatButton, MatCardTitle, MatCardSubtitle, ReactiveFormsModule, FormsModule],
+  imports: [MatCard, MatCardHeader, MatCardContent, MatCardActions, MatButton, MatCardTitle, MatCardSubtitle, ReactiveFormsModule, FormsModule, NgOptimizedImage, MatCardImage],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })

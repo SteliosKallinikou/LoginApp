@@ -10,7 +10,7 @@
         matInput placeholder="Enter Your Name"
       />
       @if (loginForm.controls['userName'].hasError('required')) {
-        <mat-error class="login-error" >*Name is Required to Register</mat-error>
+        <mat-error class="login-error" >*Name is Required to Locig</mat-error>
       }
     </mat-form-field>
     <mat-form-field class="input-text">
@@ -20,7 +20,7 @@
              matInput placeholder="Enter Your Password"
       />
       @if (loginForm.controls['password']!.hasError('required')){
-        <mat-error class="login-error">*Password is required to Register</mat-error>
+        <mat-error class="login-error">*Password is required to Login</mat-error>
       } @else {
         <mat-error class="login-error">*Password must be at least 6 characters </mat-error>
       }

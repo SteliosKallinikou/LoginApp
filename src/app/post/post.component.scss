@@ -27,3 +27,15 @@
   outline: 2px solid variables.$button-color;
   resize: none;
 }
+
+.avatar{
+  width: 10%;
+  height: 10%;
+}
+.post-header{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
