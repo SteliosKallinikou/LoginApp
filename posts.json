@@ -10,7 +10,7 @@
         "score": 2,
         "olderScore": 6,
         "id": "1",
-        "profilePicture": "/assets/images/profile.png"
+        "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000"
       },
       "content": "Hi this is my First Post",
       "date": "17/01/2025, 12:54:49",
@@ -38,7 +38,7 @@
         "age": "21",
         "score": 8,
         "olderScore": 10,
-        "profilePicture": "/assets/images/profile.png"
+        "profilePicture": "https://img.icons8.com/?size=100&id=tR21JXwIao7F&format=png&color=000000"
       },
       "content": "Hi this is my first post to",
       "date": "17/01/2025, 12:55:31",
@@ -81,7 +81,7 @@
         "score": 2,
         "olderScore": 6,
         "id": "1",
-        "profilePicture": "/assets/images/profile.png"
+        "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000"
       },
       "content": "new day",
       "date": "20/01/2025, 10:34:21",
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "belongsTo": {
         "userName": "Steve",
         "password": "pass123",
@@ -104,10 +104,27 @@
         "score": 2,
         "olderScore": 6,
         "id": "1",
-        "profilePicture": "/assets/images/profile.png"
+        "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000"
       },
       "content": "new post",
       "date": "21/01/2025, 12:12:48",
+      "likes": 0,
+      "comments": []
+    },
+    {
+      "id": 5,
+      "belongsTo": {
+        "userName": "Steve",
+        "password": "pass123",
+        "age": 20,
+        "email": "test@this.com",
+        "score": 2,
+        "olderScore": 6,
+        "id": "1",
+        "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000"
+      },
+      "content": "this is a new post",
+      "date": "21/01/2025, 12:42:52",
       "likes": 0,
       "comments": []
     }

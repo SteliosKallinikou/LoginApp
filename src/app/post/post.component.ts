@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, input } from '@angular/core';
+import { Component, DestroyRef, inject, input, OnInit } from '@angular/core';
 import {
   MatCard,
   MatCardActions,
@@ -12,7 +12,7 @@ import { MatButton } from '@angular/material/button';
 import { PostService } from '../shared/service/post.service';
 import { Comment, Post, User } from '../shared/models';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JsonPipe, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -35,7 +35,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
   postService = inject(PostService);
   authenticationService = inject(AuthenticationService);
   destroyRef = inject(DestroyRef);
@@ -47,6 +47,9 @@ export class PostComponent {
   comments: Comment[] = [];
   commentContent = '';
 
+  ngOnInit(): void {
+    this.postService.postUpdate(this.user(), this.post());
+  }
   likePost(): void {
     this.postService.likePost(this.post());
   }

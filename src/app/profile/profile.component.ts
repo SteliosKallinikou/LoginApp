@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject } from '@angular/core';
 import { User } from '../shared/models';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { MatIcon } from '@angular/material/icon';
-import {Location, NgOptimizedImage} from '@angular/common';
+import { Location, NgOptimizedImage } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserDataService } from '../shared/service/user-data.service';
 import { CanDeactivate } from '../shared/models';
@@ -40,7 +40,7 @@ export class ProfileComponent implements CanDeactivate {
       password: [this.authenticatedUser.password, [Validators.minLength(6)]],
       age: [this.authenticatedUser.age, [ageValidator()]],
       email: [this.authenticatedUser.email, [Validators.email]],
-      profilePicture:[this.authenticatedUser.profilePicture,[Validators.required]]
+      profilePicture: [this.authenticatedUser.profilePicture, [Validators.required]],
     });
   }
 

@@ -4,6 +4,7 @@ import { Post } from '../models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UserDataService } from './user-data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ export class PostService {
   http = inject(HttpClient);
   URL = 'http://localhost:3002/posts';
   destroyRef = inject(DestroyRef);
+  userDataService = inject(UserDataService);
   private readonly date: string;
 
   constructor() {
@@ -26,7 +28,7 @@ export class PostService {
     });
   }
 
-  likePost(currentPost: Post) {
+  likePost(currentPost: Post):void {
     const currentUrl = this.URL + `/${currentPost.id}`;
     const newPost: Post = { ...currentPost, likes: ++currentPost.likes };
     this.http
@@ -35,7 +37,7 @@ export class PostService {
       .subscribe(data => console.log(data));
   }
 
-  createComment(user: User, text: string, userPost: Post) {
+  createComment(user: User, text: string, userPost: Post):void {
     const postTo = this.URL + `/${userPost.id}`;
     const newComment: Comment = { content: text, createdBy: user.userName, date: this.date };
     userPost.comments.push(newComment);
@@ -44,12 +46,17 @@ export class PostService {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(data => console.log(data));
   }
+  postUpdate(user: User, post: Post):void {
+    this.userDataService.user.subscribe(data =>
+      data.find(res => {
+        if (user.id === res.id) {
+          this.http.patch(this.URL + `/${post.id}`, { belongsTo: res }).subscribe(data => console.log(data));
+        }
+      })
+    );
+  }
 
   get post(): Observable<Post[]> {
     return this.http.get<Post[]>(this.URL);
-  }
-
-  get comments(): Observable<Comment[]> {
-    return this.http.get<Comment[]>(this.URL);
   }
 }
