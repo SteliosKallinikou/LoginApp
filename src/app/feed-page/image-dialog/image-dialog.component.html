@@ -1,0 +1,22 @@
+<div mat-dialog-content class="image-wrapper">
+  <p>Insert the Image URL you want to share!</p>
+  <mat-form-field class="example-form-field">
+    <mat-label>Image URL</mat-label>
+    <input type="text"
+           matInput placeholder="Enter the URL for your profile"
+           min="0"
+           [(ngModel)]="imageURL"
+    />
+  </mat-form-field>
+  @if (imageURL){
+    <img class="image-preview" [ngSrc]="imageURL" priority width="100" height="100" alt="profile-pic"/>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onClose(imageURL)">OK</button>
+    </div>
+  } @else {
+    <div mat-dialog-actions>
+      <button mat-button (click)="onClose('')">Exit</button>
+    </div>
+  }
+</div>
+
