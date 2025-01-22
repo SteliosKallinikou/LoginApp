@@ -6,7 +6,7 @@
       <span>{{userName}}'s Advanced Score: {{olderScore || 0}}/10</span>
       <hr>
     </div>
-    <mat-slide-toggle class="dark-switch" (change)="toggleDarkMode($event)" [(ngModel)]="isDarkMode" >Dark Mode</mat-slide-toggle>
+    <mat-slide-toggle class="dark-switch" (change)="toggleDarkMode($event)" [(ngModel)]="isChecked" >Dark Mode</mat-slide-toggle>
    <mat-grid-list cols="2" rowHeight="2:1">
      <mat-grid-tile><button mat-stroked-button class="dashboard-button" (click)="editProfile()">Edit Profile Details</button></mat-grid-tile>
      <mat-grid-tile> <button mat-stroked-button class="dashboard-button" (click)="goToGeneralTest()">Go to General Test</button></mat-grid-tile>

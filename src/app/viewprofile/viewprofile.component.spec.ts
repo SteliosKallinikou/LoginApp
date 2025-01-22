@@ -8,9 +8,8 @@ describe('ViewprofileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ViewprofileComponent]
-    })
-    .compileComponents();
+      imports: [ViewprofileComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ViewprofileComponent);
     component = fixture.componentInstance;

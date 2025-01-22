@@ -14,8 +14,7 @@ import { LeaderBoardsComponent } from './leader-boards/leader-boards.component';
 import { authGuard } from './shared/guard/auth-guard';
 import { ageGuard } from './shared/guard/age-guard';
 import { FeedPageComponent } from './feed-page/feed-page.component';
-import {ViewprofileComponent} from './viewprofile/viewprofile.component';
-
+import { ViewprofileComponent } from './viewprofile/viewprofile.component';
 
 export const routes: Routes = [
   {
@@ -66,18 +65,17 @@ export const routes: Routes = [
   },
   {
     path: 'feed',
-    children:[
+    children: [
       {
         path: '',
         component: FeedPageComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard],
       },
       {
-        path:':id',
-        component: ViewprofileComponent
-      }
-    ]
-
+        path: ':id',
+        component: ViewprofileComponent,
+      },
+    ],
   },
   {
     path: '**',

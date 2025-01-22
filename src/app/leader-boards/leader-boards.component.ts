@@ -41,7 +41,6 @@ import { RatingComponent } from '../rating/rating.component';
     MatHeaderCellDef,
     MatButton,
     RatingComponent,
-
   ],
   templateUrl: './leader-boards.component.html',
   styleUrl: './leader-boards.component.scss',

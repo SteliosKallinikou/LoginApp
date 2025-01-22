@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { MatButton } from '@angular/material/button';
@@ -13,7 +13,7 @@ import { NgOptimizedImage } from '@angular/common';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   authenticator = inject(AuthenticationService);
 
   route = inject(Router);
@@ -22,15 +22,9 @@ export class DashboardComponent implements OnInit {
   userScore = this.authenticator.score;
   olderScore = this.authenticator.olderScore;
   profilePic = this.authenticator.profilePicture;
-  isDarkMode = false;
+  isChecked=this.authenticator.isDark
 
-  ngOnInit(): void {
-    if (this.authenticator.isDark) {
-      this.isDarkMode = true;
-      this.authenticator.toggleDarkMode(this.isDarkMode);
-    }
-    console.log(this.isDarkMode);
-  }
+
 
   editProfile(): void {
     this.route.navigate(['/profile']);

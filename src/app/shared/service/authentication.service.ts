@@ -51,13 +51,8 @@ export class AuthenticationService {
   }
 
   toggleDarkMode(isDarkEnabled: boolean): void {
-    if (isDarkEnabled) {
-      localStorage.setItem('darkMode', 'true');
-      document.body.classList.add('dark-theme');
-    } else {
-      localStorage.removeItem('darkMode');
-      document.body.classList.remove('dark-theme');
-    }
+    localStorage.setItem('darkMode',String(isDarkEnabled))
+    isDarkEnabled ? document.body.classList.add('dark-theme') : document.body.classList.remove('dark-theme');
   }
 
   get isDark(): boolean {

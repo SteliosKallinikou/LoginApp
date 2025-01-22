@@ -20,16 +20,16 @@ export class PostService {
     this.date = new Date().toLocaleString();
   }
 
-  createPost(user: User, text: string,image=''): void {
-    console.log(image)
+  createPost(user: User, text: string, image = ''): void {
+    console.log(image);
     this.post.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(post => {
       const newId = post.length + 1;
-      const newPost: Post = { belongsTo: user, content: text, id: newId, date: this.date, likes: 0, comments: [],image:image};
+      const newPost: Post = { belongsTo: user, content: text, id: newId, date: this.date, likes: 0, comments: [], image: image };
       this.http.post(this.URL, newPost).subscribe(data => console.log(data));
     });
   }
 
-  likePost(currentPost: Post):void {
+  likePost(currentPost: Post): void {
     const currentUrl = this.URL + `/${currentPost.id}`;
     const newPost: Post = { ...currentPost, likes: ++currentPost.likes };
     this.http
@@ -38,7 +38,7 @@ export class PostService {
       .subscribe(data => console.log(data));
   }
 
-  createComment(user: User, text: string, userPost: Post):void {
+  createComment(user: User, text: string, userPost: Post): void {
     const postTo = this.URL + `/${userPost.id}`;
     const newComment: Comment = { content: text, createdBy: user.userName, date: this.date };
     userPost.comments.push(newComment);
@@ -48,19 +48,25 @@ export class PostService {
       .subscribe(data => console.log(data));
   }
 
-  postUpdate(user: User, post: Post):void {
+  postUpdate(user: User, post: Post): void {
     this.userDataService.user.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data =>
       data.find(res => {
         if (user.id === res.id) {
-          this.http.patch(this.URL + `/${post.id}`, { belongsTo: res }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
+          this.http
+            .patch(this.URL + `/${post.id}`, { belongsTo: res })
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe();
         }
       })
     );
   }
 
-  followUser(currentUser: User):void{
-    const newUser: User = { ...currentUser, followers: ++currentUser.followers};
-    this.userDataService.changeUserDetails(newUser,currentUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data=>console.log(data))
+  followUser(currentUser: User): void {
+    const newUser: User = { ...currentUser, followers: ++currentUser.followers };
+    this.userDataService
+      .changeUserDetails(newUser, currentUser)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(data => console.log(data));
   }
 
   get post(): Observable<Post[]> {

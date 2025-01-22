@@ -11,7 +11,7 @@
         "olderScore": 6,
         "id": "1",
         "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000",
-        "followers": 0
+        "followers": 1
       },
       "content": "Hi this is my First Post",
       "date": "17/01/2025, 12:54:49",
@@ -40,11 +40,11 @@
         "score": 8,
         "olderScore": 10,
         "profilePicture": "https://img.icons8.com/?size=100&id=tR21JXwIao7F&format=png&color=000000",
-        "followers": 2
+        "followers": 4
       },
       "content": "Hi this is my first post to",
       "date": "17/01/2025, 12:55:31",
-      "likes": 2,
+      "likes": 3,
       "comments": [
         {
           "content": "first comment",
@@ -84,7 +84,7 @@
         "olderScore": 6,
         "id": "1",
         "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000",
-        "followers": 0
+        "followers": 1
       },
       "content": "new day",
       "date": "20/01/2025, 10:34:21",
@@ -108,7 +108,7 @@
         "olderScore": 6,
         "id": "1",
         "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000",
-        "followers": 0
+        "followers": 1
       },
       "content": "new post",
       "date": "21/01/2025, 12:12:48",
@@ -126,7 +126,7 @@
         "olderScore": 6,
         "id": "1",
         "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000",
-        "followers": 0
+        "followers": 1
       },
       "content": "",
       "date": "21/01/2025, 16:35:42",
@@ -145,7 +145,7 @@
         "olderScore": 6,
         "id": "1",
         "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000",
-        "followers": 0
+        "followers": 1
       },
       "content": "this is my dog",
       "date": "21/01/2025, 16:38:58",
@@ -164,7 +164,7 @@
         "olderScore": 6,
         "id": "1",
         "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000",
-        "followers": 0
+        "followers": 1
       },
       "content": "#LA",
       "date": "21/01/2025, 16:46:33",
