@@ -49,13 +49,18 @@ export class PostService {
   }
 
   postUpdate(user: User, post: Post):void {
-    this.userDataService.user.subscribe(data =>
+    this.userDataService.user.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data =>
       data.find(res => {
         if (user.id === res.id) {
-          this.http.patch(this.URL + `/${post.id}`, { belongsTo: res }).subscribe();
+          this.http.patch(this.URL + `/${post.id}`, { belongsTo: res }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
         }
       })
     );
+  }
+
+  followUser(currentUser: User):void{
+    const newUser: User = { ...currentUser, followers: ++currentUser.followers};
+    this.userDataService.changeUserDetails(newUser,currentUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data=>console.log(data))
   }
 
   get post(): Observable<Post[]> {

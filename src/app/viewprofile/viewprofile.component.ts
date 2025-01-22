@@ -1,24 +1,25 @@
 import {Component, inject, input} from '@angular/core';
-import {AuthenticationService} from '../shared/service/authentication.service';
-import {NgOptimizedImage} from '@angular/common';
+import {Location, NgOptimizedImage} from '@angular/common';
 import {MatButton} from '@angular/material/button';
 import {PostComponent} from '../post/post.component';
 import {Post, User} from '../shared/models';
 import {PostService} from '../shared/service/post.service';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-viewprofile',
   imports: [
     NgOptimizedImage,
     MatButton,
-    PostComponent
+    PostComponent,
+    MatIcon
   ],
   templateUrl: './viewprofile.component.html',
   styleUrl: './viewprofile.component.scss'
 })
 export class ViewprofileComponent {
-  authenticator = inject(AuthenticationService)
   postService=inject(PostService)
+  location = inject(Location);
   posts:Post[]=[]
   id=input<string>()
   user:User ={} as User
@@ -33,5 +34,13 @@ export class ViewprofileComponent {
         }
       })
     })
+  }
+
+  goBack() {
+    this.location.back()
+  }
+
+  follow() {
+    this.postService.followUser(this.user)
   }
 }

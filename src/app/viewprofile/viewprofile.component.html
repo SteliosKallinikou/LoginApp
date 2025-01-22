@@ -1,5 +1,8 @@
 <div class="container">
   <h1>{{user.userName}}'s Profile</h1>
+  <div class="back-buttons">
+    <button  mat-flat-button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+  </div>
   <hr>
   <div class="profile-details">
       <div class="profile-container">
@@ -9,9 +12,9 @@
         @if (user.profilePicture){
           <img class="profile-image" [ngSrc]="user.profilePicture" priority width="200" height="200" alt="profile-pic"/>
         }
-        <span>Followers: 0</span>
+        <span>Followers: {{user.followers}}</span>
         <span>Age: {{user.age}}</span>
-        <button mat-stroked-button >Follow</button>
+        <button mat-stroked-button (click)="follow()">Follow</button>
       </div>
       <div class="user-post" >
         <h1>{{user.userName}}'s Activity</h1>

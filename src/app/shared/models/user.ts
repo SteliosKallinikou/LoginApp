@@ -7,4 +7,5 @@ export interface User {
   score: number;
   olderScore: number;
   profilePicture: string;
+  followers:number
 }

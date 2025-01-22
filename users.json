@@ -8,7 +8,8 @@
       "score": 2,
       "olderScore": 6,
       "id": "1",
-      "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000"
+      "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000",
+      "followers": 0
     },
     {
       "userName": "test2",
@@ -18,7 +19,8 @@
       "score": 2,
       "olderScore": 4,
       "id": "2",
-      "profilePicture": "/assets/images/profile.png"
+      "profilePicture": "/assets/images/profile.png",
+      "followers": 0
     },
     {
       "id": "3",
@@ -28,7 +30,8 @@
       "age": "20",
       "score": "",
       "olderScore": "",
-      "profilePicture": "/assets/images/profile.png"
+      "profilePicture": "/assets/images/profile.png",
+      "followers": 0
     },
     {
       "id": "4",
@@ -38,7 +41,8 @@
       "age": "20",
       "score": "",
       "olderScore": "",
-      "profilePicture": "/assets/images/profile.png"
+      "profilePicture": "/assets/images/profile.png",
+      "followers": 0
     },
     {
       "id": "5",
@@ -48,7 +52,8 @@
       "age": "20",
       "score": "",
       "olderScore": "",
-      "profilePicture": "/assets/images/profile.png"
+      "profilePicture": "/assets/images/profile.png",
+      "followers": 0
     },
     {
       "userName": "Stelios",
@@ -58,7 +63,8 @@
       "score": 10,
       "olderScore": 10,
       "id": "6",
-      "profilePicture": "/assets/images/profile.png"
+      "profilePicture": "/assets/images/profile.png",
+      "followers": 0
     },
     {
       "id": "7",
@@ -68,7 +74,8 @@
       "age": "21",
       "score": 8,
       "olderScore": 10,
-      "profilePicture": "https://img.icons8.com/?size=100&id=tR21JXwIao7F&format=png&color=000000"
+      "profilePicture": "https://img.icons8.com/?size=100&id=tR21JXwIao7F&format=png&color=000000",
+      "followers": 4
     }
   ]
 }
