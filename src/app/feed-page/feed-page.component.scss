@@ -2,6 +2,7 @@
 
 .container{
   display: flex;
+  flex-direction: column;
   max-width: 80%;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -32,7 +33,7 @@
 
 .feed-text-post{
   border: variables.$button-color;
-  border-radius: variables.$medium-plus;
+  border-radius: variables.$medium;
   text-align: center;
   outline: 2px solid variables.$button-color;
   padding-top: variables.$small;
@@ -40,16 +41,13 @@
 }
 
 .submit-buttons{
-  width: 100%;
+  width: 70%;
   display: flex;
-  gap: 5px;
-  flex-direction: column;
-  align-items: center;
-  button{
-    width: 50%;
+  flex-wrap: wrap;
+  .image-button{
+    width: 5%;
   }
 }
-
 .back-buttons{
   width: 100%;
 }
@@ -57,3 +55,16 @@
 .post-loading{
   --mdc-circular-progress-active-indicator-color: #03DAC5FF;
 }
+.post-area{
+  margin-top: 30px;
+}
+.image-post{
+  width: 20%;
+  height: 20%;
+}
+.image-preview-container{
+  position: relative;
+  display: inline-block;
+}
+
+

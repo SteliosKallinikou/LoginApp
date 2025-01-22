@@ -14,7 +14,7 @@
       },
       "content": "Hi this is my First Post",
       "date": "17/01/2025, 12:54:49",
-      "likes": 5,
+      "likes": 6,
       "comments": [
         {
           "content": "first comment",
@@ -85,7 +85,7 @@
       },
       "content": "new day",
       "date": "20/01/2025, 10:34:21",
-      "likes": 0,
+      "likes": 3,
       "comments": [
         {
           "content": "first comment",
@@ -108,11 +108,11 @@
       },
       "content": "new post",
       "date": "21/01/2025, 12:12:48",
-      "likes": 0,
+      "likes": 3,
       "comments": []
     },
     {
-      "id": 5,
+      "id": "5",
       "belongsTo": {
         "userName": "Steve",
         "password": "pass123",
@@ -123,10 +123,53 @@
         "id": "1",
         "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000"
       },
-      "content": "this is a new post",
-      "date": "21/01/2025, 12:42:52",
-      "likes": 0,
-      "comments": []
+      "content": "",
+      "date": "21/01/2025, 16:35:42",
+      "likes": 2,
+      "comments": [],
+      "image": "https://nataliesgrandview.com/wp-content/uploads/2023/10/Led-Zeppelin-Celebration-cover.jpg"
+    },
+    {
+      "id": "6",
+      "belongsTo": {
+        "userName": "Steve",
+        "password": "pass123",
+        "age": 20,
+        "email": "test@this.com",
+        "score": 2,
+        "olderScore": 6,
+        "id": "1",
+        "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000"
+      },
+      "content": "this is my dog",
+      "date": "21/01/2025, 16:38:58",
+      "likes": 1,
+      "comments": [],
+      "image": "https://images.squarespace-cdn.com/content/v1/54822a56e4b0b30bd821480c/45ed8ecf-0bb2-4e34-8fcf-624db47c43c8/Golden+Retrievers+dans+pet+care.jpeg"
+    },
+    {
+      "id": "7",
+      "belongsTo": {
+        "userName": "Steve",
+        "password": "pass123",
+        "age": 20,
+        "email": "test@this.com",
+        "score": 2,
+        "olderScore": 6,
+        "id": "1",
+        "profilePicture": "https://img.icons8.com/?size=100&id=44007&format=png&color=000000"
+      },
+      "content": "#LA",
+      "date": "21/01/2025, 16:46:33",
+      "likes": 1,
+      "comments": [
+        {
+          "content": "Test",
+          "createdBy": "Steve",
+          "date": "22/01/2025, 09:07:54"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/32/20190616154621%21Echo_Park_Lake_with_Downtown_Los_Angeles_Skyline.jpg"
     }
   ]
 }

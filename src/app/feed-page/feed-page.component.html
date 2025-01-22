@@ -7,7 +7,6 @@
     </div>
     <hr>
   </div>
-
   <div class="submit-buttons">
     <textarea
       class="feed-text-post"
@@ -17,14 +16,18 @@
       [(ngModel)]="text"
       (keydown.enter)="postContent(text)"
     ></textarea>
-    <button mat-stroked-button>Share Post</button>
+    <button mat-stroked-button class="image-button" (click)="addImage()"><mat-icon>add_photo_alternate</mat-icon></button>
+    <button class="post-button" mat-stroked-button>Share Post</button>
   </div>
+  @if (imageURL()) {
+      <img class="image-post" [ngSrc]="imageURL()" matBadge="1" matBadgePosition="above after" priority width="200" height="200" alt="profile"/>
+  }
 
   <div class="post-area">
-    <h1 class="posts-title">Posts</h1>
     @if (!isLoaded){
       <mat-spinner class="post-loading"></mat-spinner>
     }
+    <h1 class="posts-title">Posts</h1>
     @for (post of posts; track post.id) {
       <app-post
         [user]="post.belongsTo"

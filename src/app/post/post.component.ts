@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -31,6 +32,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     NgOptimizedImage,
     MatCardImage,
 
+
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
@@ -39,6 +41,7 @@ export class PostComponent implements OnInit {
   postService = inject(PostService);
   authenticationService = inject(AuthenticationService);
   destroyRef = inject(DestroyRef);
+  router=inject(Router)
   user = input.required<User>();
   postContent = input.required<string>();
   date = input.required<string>();
@@ -62,5 +65,9 @@ export class PostComponent implements OnInit {
 
   shareComment(): void {
     this.postService.createComment(this.authenticationService.authenticatedUser, this.commentContent, this.post());
+  }
+
+  goToProfile() {
+    this.router.navigate(['/feed',this.user().id])
   }
 }

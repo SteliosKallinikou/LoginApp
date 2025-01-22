@@ -8,4 +8,5 @@ export interface Post {
   date: string;
   likes: number;
   comments: Comment[];
+  image:string;
 }

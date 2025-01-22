@@ -20,10 +20,11 @@ export class PostService {
     this.date = new Date().toLocaleString();
   }
 
-  createPost(user: User, text: string): void {
+  createPost(user: User, text: string,image=''): void {
+    console.log(image)
     this.post.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(post => {
       const newId = post.length + 1;
-      const newPost: Post = { belongsTo: user, content: text, id: newId, date: this.date, likes: 0, comments: [] };
+      const newPost: Post = { belongsTo: user, content: text, id: newId, date: this.date, likes: 0, comments: [],image:image};
       this.http.post(this.URL, newPost).subscribe(data => console.log(data));
     });
   }
@@ -46,11 +47,12 @@ export class PostService {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(data => console.log(data));
   }
+
   postUpdate(user: User, post: Post):void {
     this.userDataService.user.subscribe(data =>
       data.find(res => {
         if (user.id === res.id) {
-          this.http.patch(this.URL + `/${post.id}`, { belongsTo: res }).subscribe(data => console.log(data));
+          this.http.patch(this.URL + `/${post.id}`, { belongsTo: res }).subscribe();
         }
       })
     );
