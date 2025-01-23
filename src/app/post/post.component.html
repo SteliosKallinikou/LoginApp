@@ -1,8 +1,12 @@
 
 <mat-card class="post-card" appearance="outlined">
   <mat-card-header class="post-header" (click)="goToProfile()">
-    <mat-card-title>{{user().userName}}</mat-card-title>
-    <img mat-card-image class="avatar" [ngSrc]="user().profilePicture||''" priority width="512" alt="profile"
+    @if (authenticationService.authenticatedUser.userName===user().userName) {
+      <mat-card-title matBadge="1" matBadgeSize="small"  matBadgePosition="above before" class="user-active">{{user().userName}}</mat-card-title>
+    } @else {
+      <mat-card-title matBadge="1" matBadgeSize="small" matBadgePosition="above before" class="user-offline" >{{user().userName}}</mat-card-title>
+    }
+    <img mat-card-image class="avatar" [ngSrc]="user().profilePicture ||''" priority width="512" alt="profile"
          height="512">
     <mat-card-subtitle>{{this.date()}}</mat-card-subtitle>
   </mat-card-header>
@@ -12,7 +16,6 @@
     </p>
     @if (post().image){
       <img class="image-post" [ngSrc]="post().image" priority width="400" height="400" alt="profile-pic"/>
-
     }
   </mat-card-content>
   <mat-card-actions>

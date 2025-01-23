@@ -44,10 +44,12 @@
   width: 70%;
   display: flex;
   flex-wrap: wrap;
+
   .image-button{
     width: 5%;
   }
 }
+
 .back-buttons{
   width: 100%;
 }
@@ -55,13 +57,16 @@
 .post-loading{
   --mdc-circular-progress-active-indicator-color: #03DAC5FF;
 }
+
 .post-area{
   margin-top: 30px;
 }
+
 .image-post{
   width: 20%;
   height: 20%;
 }
+
 .image-preview-container{
   position: relative;
   display: inline-block;

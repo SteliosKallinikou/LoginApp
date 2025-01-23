@@ -16,15 +16,14 @@
       [(ngModel)]="text"
       (keydown.enter)="postContent(text)"
     ></textarea>
-    <button mat-stroked-button class="image-button" (click)="addImage()"><mat-icon>add_photo_alternate</mat-icon></button>
-    <button class="post-button" mat-stroked-button>Share Post</button>
+    <button mat-icon-button class="image-button" (click)="addImage()"><mat-icon>add_photo_alternate</mat-icon></button>
+    <button class="post-button" (click)="postContent(text)" mat-stroked-button>Share Post</button>
   </div>
   @if (imageURL()) {
-      <img class="image-post" [ngSrc]="imageURL()" matBadge="1" matBadgePosition="above after" priority width="200" height="200" alt="profile"/>
+      <img class="image-post" [ngSrc]="imageURL()"  priority width="200" height="200" alt="profile"/>
   }
-
   <div class="post-area">
-    @if (!isLoaded){
+    @if (!isLoading){
       <mat-spinner class="post-loading"></mat-spinner>
     }
     <h1 class="posts-title">Posts</h1>

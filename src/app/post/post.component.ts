@@ -16,6 +16,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
+import { MatBadge } from '@angular/material/badge';
 
 @Component({
   selector: 'app-post',
@@ -31,6 +32,7 @@ import { Router } from '@angular/router';
     FormsModule,
     NgOptimizedImage,
     MatCardImage,
+    MatBadge,
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
@@ -49,23 +51,25 @@ export class PostComponent implements OnInit {
   commentContent = '';
 
   ngOnInit(): void {
-    this.postService.postUpdate(this.user(), this.post());
+    this.postService.postUpdate(this.user(), this.post()).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
+
   likePost(): void {
-    this.postService.likePost(this.post());
+    this.postService.likePost(this.post()).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
   }
+
   openComments(): void {
     this.canComment = true;
-    this.postService.post.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data => {
+    this.postService.fetchPost().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data => {
       this.comments = data[this.post().id - 1].comments;
     });
   }
 
   shareComment(): void {
-    this.postService.createComment(this.authenticationService.authenticatedUser, this.commentContent, this.post());
+    this.postService.createComment(this.authenticationService.authenticatedUser, this.commentContent, this.post()).subscribe();
   }
 
-  goToProfile():void {
+  goToProfile(): void {
     this.router.navigate(['/feed', this.user().id]);
   }
 }

@@ -25,9 +25,8 @@ import { NgOptimizedImage } from '@angular/common';
 export class ImageDialogComponent {
   imageDialog: MatDialogRef<MatDialog> = inject(MatDialogRef);
 
-  onClose(result: string) {
+  onClose(result: string):void {
     this.imageDialog.close(result);
   }
-  // dialogRef: MatDialogRef<ConfirmDialogComponent> = inject(MatDialogRef);
   imageURL = '';
 }

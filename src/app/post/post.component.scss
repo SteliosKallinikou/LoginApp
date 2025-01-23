@@ -43,6 +43,16 @@
     text-decoration-color: variables.$line-color;
   }
 }
+.user-active{
+  --mat-badge-background-color: limegreen;
+  --mat-badge-text-color: limegreen;;
+}
+
+.user-offline{
+  --mat-badge-background-color: red;
+  --mat-badge-text-color: red;
+}
+
 .image-post{
   width:100%;
   height: 100%;

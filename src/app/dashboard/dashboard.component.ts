@@ -22,9 +22,7 @@ export class DashboardComponent {
   userScore = this.authenticator.score;
   olderScore = this.authenticator.olderScore;
   profilePic = this.authenticator.profilePicture;
-  isChecked=this.authenticator.isDark
-
-
+  isChecked = this.authenticator.isDark;
 
   editProfile(): void {
     this.route.navigate(['/profile']);
