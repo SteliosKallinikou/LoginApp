@@ -60,9 +60,12 @@ export class PostComponent implements OnInit {
 
   openComments(): void {
     this.canComment = true;
-    this.postService.fetchPost().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data => {
-      this.comments = data[this.post().id - 1].comments;
-    });
+    this.postService
+      .fetchPost()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(data => {
+        this.comments = data[this.post().id - 1].comments;
+      });
   }
 
   shareComment(): void {

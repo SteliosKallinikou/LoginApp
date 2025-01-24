@@ -1,0 +1,38 @@
+{
+  "conversations": [
+    {
+      "id": "1",
+      "firstUser": "Kallis",
+      "secondUser": "Stelios",
+      "messages": []
+    },
+    {
+      "id": "2",
+      "firstUser": "Kallis",
+      "secondUser": "Steve",
+      "messages": [
+        {
+          "user": "Kallis",
+          "message": "hi",
+          "time": "24/01/2025, 15:07:05"
+        },
+        {
+          "user": "Steve",
+          "message": "hi",
+          "time": "24/01/2025, 15:10:56"
+        },
+        {
+          "user": "Steve",
+          "message": "hi",
+          "time": "24/01/2025, 15:19:21"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "firstUser": "Kallis",
+      "secondUser": "Stelios",
+      "messages": []
+    }
+  ]
+}

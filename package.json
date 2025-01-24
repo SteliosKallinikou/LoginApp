@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"npm run start-user-server\" \" npm run start-question-server \" \" npm run start-post-server \" \"ng serve\" ",
+    "start": "concurrently \"npm run start-user-server\" \" npm run start-question-server \" \" npm run start-post-server \" \" npm run start-conversation-server \" \"ng serve\" ",
     "start-user-server": "json-server --watch users.json --port 3000",
     "start-question-server": "json-server --watch questions.json --port 3001",
     "start-post-server": "json-server --watch posts.json --port 3002",
+    "start-conversation-server": "json-server --watch conversations.json --port 3003",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",

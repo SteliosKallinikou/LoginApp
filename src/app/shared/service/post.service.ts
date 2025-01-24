@@ -2,7 +2,7 @@ import { DestroyRef, inject, Injectable } from '@angular/core';
 import { Comment, User } from '../models';
 import { Post } from '../models';
 import { HttpClient } from '@angular/common/http';
-import {EMPTY, map, Observable, switchMap, take} from 'rxjs';
+import { EMPTY, map, Observable, switchMap, take } from 'rxjs';
 import { UserDataService } from './user-data.service';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class PostService {
     this.date = new Date().toLocaleString();
   }
 
-  createPost(user: User, text: string, image = ''):Observable<object> {
+  createPost(user: User, text: string, image = ''): Observable<object> {
     return this.fetchPost().pipe(
       take(1),
       map(posts => {
@@ -39,20 +39,20 @@ export class PostService {
     );
   }
 
-  likePost(currentPost: Post):Observable<object> {
+  likePost(currentPost: Post): Observable<object> {
     const currentUrl = this.URL + `/${currentPost.id}`;
     const updatedPost: Post = { ...currentPost, likes: currentPost.likes + 1 };
     return this.http.put(currentUrl, updatedPost);
   }
 
-  createComment(user: User, text: string, userPost: Post):Observable<object> {
+  createComment(user: User, text: string, userPost: Post): Observable<object> {
     const postTo = this.URL + `/${userPost.id}`;
     const newComment: Comment = { content: text, createdBy: user.userName, date: this.date };
     const updatedPost = { ...userPost, comments: [...userPost.comments, newComment] };
     return this.http.put(postTo, updatedPost);
   }
 
-  postUpdate(user: User, post: Post):Observable<object> {
+  postUpdate(user: User, post: Post): Observable<object> {
     return this.userDataService.user.pipe(
       take(1),
       map(data => data.find(res => user.id === res.id)),
@@ -65,7 +65,7 @@ export class PostService {
     );
   }
 
-  followUser(currentUser: User):Observable<object> {
+  followUser(currentUser: User): Observable<object> {
     const updatedUser: User = { ...currentUser, followers: currentUser.followers + 1 };
     return this.userDataService.changeUserDetails(updatedUser, currentUser);
   }

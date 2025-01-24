@@ -4,3 +4,5 @@ export * from './can-deactivate';
 export * from './stats';
 export * from './post';
 export * from './comment';
+export * from './message';
+export * from './conversation';

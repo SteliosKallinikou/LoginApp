@@ -8,14 +8,25 @@ import { AuthenticationService } from '../shared/service/authentication.service'
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { CanDeactivate } from '../shared/models';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { SnackbarService } from '../shared/service/snacbar.service';
 import { RatingComponent } from '../rating/rating.component';
 
 @Component({
   selector: 'app-test-page',
-  imports: [MatIcon, ReactiveFormsModule, MatRadioGroup, MatRadioButton, JsonPipe, NgForOf, MatButton, MatProgressBar, RatingComponent],
+  imports: [
+    MatIcon,
+    ReactiveFormsModule,
+    MatRadioGroup,
+    MatRadioButton,
+    JsonPipe,
+    NgForOf,
+    MatButton,
+    MatProgressBar,
+    RatingComponent,
+    MatIconButton,
+  ],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss',
 })
@@ -65,7 +76,7 @@ export class TestPageComponent implements CanDeactivate {
     this.testForm.controls['question'].reset();
     if (!this.olderQuestions()[this.currentQuestion]) {
       this.isFinished = true;
-      this.userStats.emit({ saveOlder: true, score: this.score.toString() });
+      this.userStats.emit({ saveOlder: true, score: this.score });
     }
   }
 

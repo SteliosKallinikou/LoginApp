@@ -1,6 +1,6 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { AuthenticationService } from '../shared/service/authentication.service';
-import {MatButton, MatIconButton} from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { PostComponent } from '../post/post.component';
 import { FormsModule } from '@angular/forms';
 import { PostService } from '../shared/service/post.service';
@@ -37,17 +37,18 @@ export class FeedPageComponent implements OnInit {
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         switchMap(() => {
-          this.isLoading=false
-          return this.postService.fetchPost()})
+          this.isLoading = false;
+          return this.postService.fetchPost();
+        })
       )
       .subscribe({
-        next: (data)=>{
+        next: data => {
           this.posts = data;
           this.isLoading = true;
         },
-        error: (_err)=>{
-          this.isLoading=true
-        }
+        error: _err => {
+          this.isLoading = true;
+        },
       });
   }
 

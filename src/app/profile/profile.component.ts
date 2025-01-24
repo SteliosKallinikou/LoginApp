@@ -12,13 +12,24 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ageValidator } from '../shared/validators/age-validator';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { Observable, of } from 'rxjs';
 import { SnackbarService } from '../shared/service/snacbar.service';
 
 @Component({
   selector: 'app-profile',
-  imports: [MatIcon, FormsModule, ReactiveFormsModule, MatError, MatFormField, MatInput, MatLabel, MatButton, NgOptimizedImage],
+  imports: [
+    MatIcon,
+    FormsModule,
+    ReactiveFormsModule,
+    MatError,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    MatButton,
+    NgOptimizedImage,
+    MatIconButton,
+  ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })

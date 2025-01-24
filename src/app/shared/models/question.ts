@@ -8,5 +8,5 @@ export interface Question {
 export interface options {
   answer: string;
   isCorrect: boolean;
-  id: string;
+  id: number;
 }

@@ -5,17 +5,17 @@
       "question": "What is the Capital of the UK?",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "answer": " London",
           "isCorrect": true
         },
         {
-          "id": "2",
+          "id": 2,
           "answer": " Manchester",
           "isCorrect": false
         },
         {
-          "id": "3",
+          "id": 3,
           "answer": " Liverpool",
           "isCorrect": false
         }
@@ -28,17 +28,17 @@
       "question": "Who was the first President of the United States?",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "answer": " Thomas Jefferson",
           "isCorrect": false
         },
         {
-          "id": "2",
+          "id": 2,
           "answer": " George Washington",
           "isCorrect": true
         },
         {
-          "id": "3",
+          "id": 3,
           "answer": " Abraham Lincoln",
           "isCorrect": false
         }
@@ -50,17 +50,17 @@
       "question": "What is the chemical symbol for water?",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "answer": " CO₂",
           "isCorrect": false
         },
         {
-          "id": "2",
+          "id": 2,
           "answer": " O₂",
           "isCorrect": false
         },
         {
-          "id": "3",
+          "id": 3,
           "answer": " H₂O",
           "isCorrect": true
         }
@@ -72,17 +72,17 @@
       "question": "What planet is known as the Red Planet?",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "answer": " Mars",
           "isCorrect": true
         },
         {
-          "id": "2",
+          "id": 2,
           "answer": " Venus",
           "isCorrect": false
         },
         {
-          "id": "3",
+          "id": 3,
           "answer": " Saturn",
           "isCorrect": false
         }
@@ -94,17 +94,17 @@
       "question": "Who is the lead singer of the band Queen?",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "answer": " David Bowie",
           "isCorrect": false
         },
         {
-          "id": "2",
+          "id": 2,
           "answer": " Freddie Mercury",
           "isCorrect": true
         },
         {
-          "id": "3",
+          "id": 3,
           "answer": " Robert Plant",
           "isCorrect": false
         }
@@ -118,17 +118,17 @@
       "question": "In which year did World War I begin?",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "answer": " 1914",
           "isCorrect": true
         },
         {
-          "id": "2",
+          "id": 2,
           "answer": " 1921",
           "isCorrect": false
         },
         {
-          "id": "3",
+          "id": 3,
           "answer": " 1910",
           "isCorrect": false
         }
@@ -141,17 +141,17 @@
       "question": "What year was the first Woodstock music festival held?",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "answer": " 1970",
           "isCorrect": false
         },
         {
-          "id": "2",
+          "id": 2,
           "answer": " 1983",
           "isCorrect": false
         },
         {
-          "id": "3",
+          "id": 3,
           "answer": " 1969",
           "isCorrect": true
         }
@@ -163,17 +163,17 @@
       "question": "In the song \"Stairway to Heaven,\" what mystical object is mentioned that is said to be bought with a \"bustle in your hedgerow\"?",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "answer": " May Queen",
           "isCorrect": true
         },
         {
-          "id": "2",
+          "id": 2,
           "answer": " Magic Wand",
           "isCorrect": false
         },
         {
-          "id": "3",
+          "id": 3,
           "answer": " Enchanted Mirror",
           "isCorrect": false
         }
@@ -185,17 +185,17 @@
       "question": "In Greek mythology, who was known as the messenger of the gods?",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "answer": " Appolo",
           "isCorrect": false
         },
         {
-          "id": "2",
+          "id": 2,
           "answer": " Athena",
           "isCorrect": false
         },
         {
-          "id": "3",
+          "id": 3,
           "answer": " Ermes",
           "isCorrect": true
         }
@@ -207,17 +207,17 @@
       "question": "Area 51 is located in which U.S. state?",
       "options": [
         {
-          "id": "1",
+          "id": 1,
           "answer": " Texas",
           "isCorrect": false
         },
         {
-          "id": "2",
+          "id": 2,
           "answer": " Florida",
           "isCorrect": false
         },
         {
-          "id": "3",
+          "id": 3,
           "answer": " Nevada",
           "isCorrect": true
         }

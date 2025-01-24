@@ -15,6 +15,7 @@ import { authGuard } from './shared/guard/auth-guard';
 import { ageGuard } from './shared/guard/age-guard';
 import { FeedPageComponent } from './feed-page/feed-page.component';
 import { ViewprofileComponent } from './viewprofile/viewprofile.component';
+import { MessageComponent } from './message/message.component';
 
 export const routes: Routes = [
   {
@@ -72,8 +73,14 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
+        path: 'messages',
+        component: MessageComponent,
+        canActivate: [authGuard],
+      },
+      {
         path: ':id',
         component: ViewprofileComponent,
+        canActivate: [authGuard],
       },
     ],
   },

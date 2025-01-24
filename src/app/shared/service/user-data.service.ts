@@ -28,7 +28,7 @@ export class UserDataService {
         if (canRegister.some(data => registerUser.email === data.email || registerUser.userName === data.userName)) {
           return of(false);
         } else {
-          registerUser.id = String(canRegister.length + 1);
+          registerUser.id = canRegister.length + 1;
           registerUser.profilePicture = '/assets/images/profile.png';
           this.http.post<User>(this.URL, registerUser).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
           return of(true);

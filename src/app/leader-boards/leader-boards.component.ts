@@ -19,7 +19,7 @@ import { NgClass } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
-import { MatButton } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 import { RatingComponent } from '../rating/rating.component';
 
 @Component({
@@ -39,8 +39,8 @@ import { RatingComponent } from '../rating/rating.component';
     MatHeaderRowDef,
     MatCellDef,
     MatHeaderCellDef,
-    MatButton,
     RatingComponent,
+    MatIconButton,
   ],
   templateUrl: './leader-boards.component.html',
   styleUrl: './leader-boards.component.scss',
@@ -83,7 +83,7 @@ export class LeaderBoardsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  isTopScore(id: string): boolean {
+  isTopScore(id: number): boolean {
     if (this.sort.active === 'score') {
       this.isFirst = this.topScore[0].score === this.topScore[1].score;
     } else {

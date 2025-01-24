@@ -1,35 +1,38 @@
-import {Component, DestroyRef, inject, input} from '@angular/core';
+import { Component, DestroyRef, inject, input } from '@angular/core';
 import { Location, NgOptimizedImage } from '@angular/common';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { PostComponent } from '../post/post.component';
 import { Post, User } from '../shared/models';
 import { PostService } from '../shared/service/post.service';
 import { MatIcon } from '@angular/material/icon';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-viewprofile',
-  imports: [NgOptimizedImage, MatButton, PostComponent, MatIcon],
+  imports: [NgOptimizedImage, MatButton, PostComponent, MatIcon, MatIconButton],
   templateUrl: './viewprofile.component.html',
   styleUrl: './viewprofile.component.scss',
 })
 export class ViewprofileComponent {
   postService = inject(PostService);
   location = inject(Location);
-  destroyRef= inject(DestroyRef)
+  destroyRef = inject(DestroyRef);
   posts: Post[] = [];
-  id = input<string>();
+  id = input<number>();
   user: User = {} as User;
 
   constructor() {
-    this.postService.fetchPost().pipe(takeUntilDestroyed()).subscribe(result => {
-      result.find(post => {
-        if (post.belongsTo.id === this.id()) {
-          this.posts.push(post);
-          this.user = post.belongsTo;
-        }
+    this.postService
+      .fetchPost()
+      .pipe(takeUntilDestroyed())
+      .subscribe(result => {
+        result.find(post => {
+          if (post.belongsTo.id === this.id()) {
+            this.posts.push(post);
+            this.user = post.belongsTo;
+          }
+        });
       });
-    });
   }
 
   goBack(): void {
