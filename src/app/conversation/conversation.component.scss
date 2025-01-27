@@ -6,7 +6,7 @@
   padding: 10px;
   max-height: 400px;
   background-color: #f5f5f5;
-  width: 400px;
+  width:500px;
 
 }
 
@@ -43,4 +43,10 @@
     color: white;
     border-radius: 10px;
   }
+}
+
+.time{
+  opacity: 0.5;
+  font-size: 12px;
+  text-align: end;
 }

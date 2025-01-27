@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import {Component, DestroyRef, inject, input} from '@angular/core';
 import { NgClass } from '@angular/common';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { MessageService } from '../shared/service/message.service';
@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatIconButton } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
 import { Conversation, Message } from '../shared/models';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-conversation',
@@ -18,6 +19,7 @@ import { Conversation, Message } from '../shared/models';
 export class ConversationComponent {
   authenticationService = inject(AuthenticationService);
   messageService = inject(MessageService);
+  destroyRef=inject(DestroyRef)
   textMessage: string = '';
   messages = input.required<Message[]>();
   conversation = input.required<Conversation>();
@@ -25,7 +27,7 @@ export class ConversationComponent {
   sendMessage() {
     this.messageService
       .sendMessage(this.conversation().id, this.authenticationService.userName, this.textMessage, this.messages())
-      .subscribe(res => {
+      .pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res => {
         this.messages().push(res.messages[res.messages.length - 1]);
       });
   }

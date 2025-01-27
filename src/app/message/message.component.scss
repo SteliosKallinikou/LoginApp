@@ -10,7 +10,6 @@
   text-align: center;
   padding: 50px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
   @media screen and (max-width: 570px) {
     width: 90%;
   }
@@ -24,10 +23,9 @@
   .conversations-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     flex-wrap: wrap;
     flex-shrink: 1;
-    width: 70%;
+    width: 100%;
     margin-top: 50px;
     padding: 50px;
   }
@@ -37,10 +35,7 @@
   }
 
   .available-chats{
-    display: flex;
-    padding: 30px;
-    gap: 20px 20px;
-    align-items: center;
+    padding: 20px;
     border: 2px solid #03DAC5;
     border-radius: 20px;
     width: 40%;
@@ -49,8 +44,9 @@
 
   .available-users {
     display: flex;
-    flex-direction: row;
+    cursor: pointer;
     justify-content: space-between;
+
   }
 
 }

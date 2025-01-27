@@ -50,12 +50,22 @@
           "user": "Steve",
           "message": "hi",
           "time": "27/01/2025, 14:21:20"
+        },
+        {
+          "user": "Kallis",
+          "message": "Hello",
+          "time": "27/01/2025, 14:56:50"
+        },
+        {
+          "user": "Steve",
+          "message": "Hi",
+          "time": "27/01/2025, 16:32:12"
         }
       ]
     },
     {
-      "id": "3",
-      "firstUser": "Kallis",
+      "id": 3,
+      "firstUser": "Steve",
       "secondUser": "Stelios",
       "messages": []
     }

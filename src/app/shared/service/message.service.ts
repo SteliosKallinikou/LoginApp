@@ -1,7 +1,7 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
 import { Conversation, Message, User } from '../models';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, Subscription, switchMap, take } from 'rxjs';
+import { Observable, switchMap, take } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({
@@ -29,21 +29,11 @@ export class MessageService {
     );
   }
 
-  sendMessage(conversationId: number, user: string, content: string, currentMessages: Message[]) {
+  sendMessage(conversationId: number, user: string, content: string, currentMessages: Message[]):Observable<Conversation> {
     const message: Message = { user: user, message: content, time: this.date };
     const conversationUrl = this.URL + `/${conversationId}`;
     const updateMessages = [...currentMessages, message];
     return this.http.patch(conversationUrl, { messages: updateMessages }) as Observable<Conversation>;
-    // console.log(conversationId);
-    // return this.fetchConversations()
-    //   .pipe(
-    //     map(result => result.find(res => res.id.toLocaleString() === conversationId.toLocaleString())),
-    //     switchMap(result => {
-    //       const newConversation: Conversation = { ...result!, messages: [...result!.messages, message] };
-    //       return this.http.put(conversationUrl, newConversation);
-    //     })
-    //   )
-    //   .subscribe();
   }
 
   fetchConversations(): Observable<Conversation[]> {
