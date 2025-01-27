@@ -29,19 +29,21 @@ export class MessageService {
     );
   }
 
-  sendMessage(conversationId: number, user: string, content: string): Subscription {
+  sendMessage(conversationId: number, user: string, content: string, currentMessages: Message[]) {
     const message: Message = { user: user, message: content, time: this.date };
     const conversationUrl = this.URL + `/${conversationId}`;
-    console.log(conversationId);
-    return this.fetchConversations()
-      .pipe(
-        map(result => result.find(res => res.id.toLocaleString() === conversationId.toLocaleString())),
-        switchMap(result => {
-          const newConversation: Conversation = { ...result!, messages: [...result!.messages, message] };
-          return this.http.put(conversationUrl, newConversation);
-        })
-      )
-      .subscribe();
+    const updateMessages = [...currentMessages, message];
+    return this.http.patch(conversationUrl, { messages: updateMessages }) as Observable<Conversation>;
+    // console.log(conversationId);
+    // return this.fetchConversations()
+    //   .pipe(
+    //     map(result => result.find(res => res.id.toLocaleString() === conversationId.toLocaleString())),
+    //     switchMap(result => {
+    //       const newConversation: Conversation = { ...result!, messages: [...result!.messages, message] };
+    //       return this.http.put(conversationUrl, newConversation);
+    //     })
+    //   )
+    //   .subscribe();
   }
 
   fetchConversations(): Observable<Conversation[]> {

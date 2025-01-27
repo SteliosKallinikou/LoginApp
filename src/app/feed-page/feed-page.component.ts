@@ -13,6 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIcon } from '@angular/material/icon';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-feed-page',
@@ -26,6 +27,7 @@ export class FeedPageComponent implements OnInit {
   location = inject(Location);
   destroyRef = inject(DestroyRef);
   imageDialog = inject(MatDialog);
+  router=inject(Router)
   authenticatedUser = this.authenticationService.authenticatedUser;
   text = '';
   posts: Post[] = [];
@@ -67,5 +69,9 @@ export class FeedPageComponent implements OnInit {
       .afterClosed()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(data => this.imageURL.set(data));
+  }
+
+  goToMessages() {
+    this.router.navigate(['/messages']);
   }
 }
