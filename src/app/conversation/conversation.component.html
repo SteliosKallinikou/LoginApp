@@ -1,0 +1,18 @@
+@for (message of messages(); track message) {
+  <div class="direct-message">
+    <div class="message"
+         [ngClass]="{'message-left': message.user!==authenticationService.userName,
+             'message-right': message.user===authenticationService.userName
+             }">
+      <span>{{message.user}}: </span>
+      <span>{{message.message}} </span>
+      <span class="time">{{message.time}}</span>
+    </div>
+  </div>
+}
+<div class="input-text">
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="textMessage">
+  </mat-form-field>
+  <button mat-icon-button class="send-message" (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+</div>

@@ -14,27 +14,19 @@
   <div class="conversations-container">
     <div class="conversations-details">
       <h1>Users</h1>
-      @for (conversations of openConversations; track conversations.id) {
-        <div class="available-chats" (click)="openConversation(conversations.id)">
-          <p>{{conversations.secondUser}}</p>
-        </div>
+      @for (conversations of openConversations; track $index) {
+          <div class="available-chats" (click)="openConversation($index)">
+            <p>{{conversations.secondUser}}-{{conversations.firstUser}}</p>
+          </div>
       }
     </div>
     <div class="chat">
       <h1>DM's</h1>
       <p>{{conversation.secondUser}}</p>
-      @for (message of conversation.messages; track message) {
-        <div class="direct-message">
-          <div class="message"
-               [ngClass]="{'message-left': message.user!==authenticationService.userName,
-             'message-right': message.user===authenticationService.userName
-             }">
-            <span>{{message.user}}</span>
-            <span>{{message.message}}</span>
-          </div>
-        </div>
-      }
-      <button mat-icon-button class="go-back-button" (click)="sendMessage('hi')"><mat-icon>arrow_back</mat-icon></button>
+      <app-conversation
+        [messages]="messages"
+        [conversation]="conversation">
+      </app-conversation>
     </div>
   </div>
 </div>

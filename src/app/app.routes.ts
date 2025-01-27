@@ -73,16 +73,16 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
-        path: 'messages',
-        component: MessageComponent,
-        canActivate: [authGuard],
-      },
-      {
         path: ':id',
         component: ViewprofileComponent,
         canActivate: [authGuard],
       },
     ],
+  },
+  {
+    path: 'messages',
+    component: MessageComponent,
+    canActivate: [authGuard],
   },
   {
     path: '**',
