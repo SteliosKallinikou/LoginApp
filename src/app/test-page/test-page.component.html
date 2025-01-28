@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="back-buttons">
+    <button  mat-icon-button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+  </div>
+  <ng-content></ng-content>
+  <form [formGroup]="testForm" (submit)="submitQuestion()" class="form">
+    @if (isFinished){
+      <div class="congratulations-message">
+        Congratulations!<br>
+        You Have Reached the end of the Test
+      </div>
+      <app-rating [testScore]="score" ></app-rating>
+      <div class="submit-buttons">
+        <button type="submit" mat-flat-button (click)="goToLeaderBoards()">LeaderBoards</button>
+      </div>
+    } @else {
+      <mat-progress-bar class="questions-progress" mode="determinate" [value]="currentQuestion*20" ></mat-progress-bar>
+      <label class="input-label" for="Question" > {{olderQuestions()[currentQuestion]?.question}} </label>
+      <mat-radio-group class="radio-buttons" formControlName="question" id="question">
+        <mat-radio-button class="answer" *ngFor="let option of olderQuestions()[currentQuestion]?.options" name="{{option?.answer|json}}" value="{{option?.isCorrect}}">
+          <span class="questions-answers">Answer {{option?.id}}: {{option?.answer}}</span>
+        </mat-radio-button>
+      </mat-radio-group>
+      <span class="question-number">Question {{currentQuestion+1}}/{{olderQuestions().length}}</span>
+      <div class="submit-buttons">
+        <button type="submit" mat-flat-button [disabled]="testForm.invalid">Submit</button>
+      </div>
+    }
+    <h2>Score: {{score}}/10</h2>
+  </form>
+</div>

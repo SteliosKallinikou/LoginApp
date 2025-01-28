@@ -1,0 +1,30 @@
+@use "variables";
+
+.highlight{
+  background-color: #5045e6;
+  color: white;
+  font-weight: bold;
+}
+
+.highlight-first-two{
+ background-color: variables.$button-color;
+}
+
+.highlight-third{
+  background-color: variables.$line-color;
+}
+
+td{
+  padding: 20px;
+  text-align: center;
+}
+
+th{
+  text-align: center;
+  padding-left: 40px;
+}
+
+mat-table{
+  background-color:#f9f9f9;
+  box-shadow: none;
+}

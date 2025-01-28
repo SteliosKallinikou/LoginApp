@@ -1,0 +1,62 @@
+
+<div class="wrapper">
+  <h1 class="title">Register Form</h1>
+  <form [formGroup]="registerForm" (submit)="register()" class="form">
+    <mat-form-field class="input-text">
+      <mat-label>Username</mat-label>
+      <input
+        type="text"
+        formControlName="userName"
+        matInput placeholder="Enter Your Name"
+      />
+      @if (registerForm.controls['userName'].hasError('required')) {
+        <mat-error class="login-error" >*Name is Required to Register</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="input-text">
+      <mat-label>Password</mat-label>
+      <input type="password"
+             formControlName="password"
+             matInput placeholder="Enter Your Password"
+      />
+      @if (registerForm.controls['password']!.hasError('required')){
+        <mat-error class="login-error">*Password is required to Register</mat-error>
+      } @else {
+        <mat-error class="login-error">*Password must be at least 6 characters </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="input-text">
+      <mat-label>Email</mat-label>
+      <input type="email"
+             formControlName="email"
+             matInput placeholder="Enter Your Email"
+      />
+      @if (registerForm.controls['email']!.hasError('email')){
+        <mat-error class="login-error">*Invalid Email Address</mat-error>
+      } @else {
+        <mat-error class="login-error">*Email Required to Register</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="input-text">
+      <mat-label>Age</mat-label>
+      <input type="number"
+             formControlName="age"
+             matInput placeholder="Enter Your Age"
+             min="0"
+      />
+      @if (registerForm.controls['age'].hasError('required')){
+        <mat-error class="login-error" >*Age is required to Register</mat-error>
+      } @else {
+        <mat-error class="login-error" >*Age Must be between 15-70</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="submit-buttons">
+      <button type="submit" mat-flat-button [disabled]="registerForm.invalid">Register</button>
+    </div>
+  </form>
+
+</div>

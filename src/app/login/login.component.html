@@ -1,10 +1,39 @@
 <div class="wrapper">
-  <form [formGroup]="LoginForm" (submit)="login()" class="form">
-    <label class="login-label" for="UserName">UserName: </label>
-    <input class="login-input" id="UserName" type="text" formControlName="UserName">
-    <label class="login-label" for="Password">Password: </label>
-    <input class="login-input" id="Password" type="password" formControlName="Password">
-    <button type="submit" class="login-button" >Apply now</button>
+  <h1 class="title">Welcome to Our Login Page</h1>
+  <hr>
+  <form [formGroup]="loginForm" (submit)="login()" class="form">
+    <mat-form-field class="input-text">
+      <mat-label>Username</mat-label>
+      <input
+        type="userName"
+        formControlName="userName"
+        matInput placeholder="Enter Your Name"
+      />
+      @if (loginForm.controls['userName'].hasError('required')) {
+        <mat-error class="login-error" >*Name is Required to Locig</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="input-text">
+      <mat-label>Password</mat-label>
+      <input type="password"
+             formControlName="password"
+             matInput placeholder="Enter Your Password"
+      />
+      @if (loginForm.controls['password']!.hasError('required')){
+        <mat-error class="login-error">*Password is required to Login</mat-error>
+      } @else {
+        <mat-error class="login-error">*Password must be at least 6 characters </mat-error>
+      }
+    </mat-form-field>
+    <div class="submit-buttons">
+      <button type="submit" mat-flat-button [disabled]="loginForm.invalid" (click)="login()">Login</button>
+      <button type="submit" mat-flat-button (click)="register()">Register</button>
+    </div>
+
+    @if (!isAuthenticated){
+      <mat-error class="login-error">Username or Password not found, please try again</mat-error>
+    }
   </form>
 </div>
+
 

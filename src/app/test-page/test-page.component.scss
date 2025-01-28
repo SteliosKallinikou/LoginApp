@@ -1,0 +1,38 @@
+@use "variables";
+
+.congratulations-message {
+  font-size: variables.$small-font-size;
+  text-align: center;
+}
+
+.radio-buttons {
+  display: flex;
+  padding-top: variables.$medium-plus;
+  flex-direction: column;
+  line-height: 2;
+  margin-bottom: 30px;
+
+}
+
+.answer {
+  --mdc-radio-selected-icon-color: #BB86FC;
+  --mdc-radio-selected-focus-icon-color:  #BB86FC;
+  --mdc-radio-selected-hover-icon-color:  #BB86FC;
+  --mat-radio-checked-ripple-color: grey;
+  margin: 10px;
+
+  span {
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: variables.$line-color;
+      text-decoration-thickness:3px ;
+    }
+  }
+}
+
+.questions-progress{
+  color: variables.$button-color;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

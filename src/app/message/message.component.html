@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Conversations</h1>
+  <div class="back-buttons">
+    <button  mat-icon-button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+  </div>
+  <hr>
+  <div class="available-users">
+    @for (user of availableUsers; track user.id) {
+      <div (click)="selectedConversation(user)">
+        <img mat-card-image class="avatar" [ngSrc]="user.profilePicture ||''" priority width="100" alt="profile"
+             height="100" >
+        <hr>
+        <span>{{user.userName}}</span>
+      </div>
+    }
+  </div>
+  <div class="conversations-container">
+    <div class="conversations-details">
+      <h1>Users</h1>
+      @for (conversations of openConversations; track $index) {
+          <div class="available-chats" (click)="openConversation($index)">
+            <p>{{conversations.secondUser}}-{{conversations.firstUser}}</p>
+          </div>
+      }
+    </div>
+    <div>
+      <h1>DM's</h1>
+      <p>{{conversation.secondUser}}-{{conversation.firstUser}}</p>
+      <app-conversation
+        [messages]="messages"
+        [conversation]="conversation">
+      </app-conversation>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,75 @@
+@use "variables";
+
+.container{
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-size: 13pt;
+  margin: 40px auto;
+  text-align: center;
+  align-items: center;
+  padding: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media screen and (max-width: 570px) {
+    width: 90%;
+  }
+}
+
+.back-buttons{
+  width: 20%;
+}
+
+.welcome{
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.feed-text-post{
+  border: variables.$button-color;
+  border-radius: variables.$medium;
+  text-align: center;
+  outline: 2px solid variables.$button-color;
+  padding-top: variables.$small;
+  resize: none;
+}
+
+.submit-buttons{
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .image-button{
+    width: 5%;
+  }
+}
+
+.back-buttons{
+  width: 100%;
+}
+
+.post-loading{
+  --mdc-circular-progress-active-indicator-color: #03DAC5FF;
+}
+
+.post-area{
+  margin-top: 30px;
+}
+
+.image-post{
+  width: 20%;
+  height: 20%;
+}
+
+.image-preview-container{
+  position: relative;
+  display: inline-block;
+}
+

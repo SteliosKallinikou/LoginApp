@@ -1,0 +1,82 @@
+@use "variables";
+
+.form{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  line-height: 3;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.title{
+  text-align: center;
+}
+
+.wrapper{
+  max-width: 600px;
+  margin: variables.$large auto;
+  padding: variables.$medium-plus;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-size: 13pt;
+  box-shadow: 0 variables.$extra-small variables.$small rgba(0, 0, 0, 0.1);
+
+  @media screen and (max-width: 570px) {
+    width: 90%;
+
+    .input-text{
+      width: 55%;
+    }
+  }
+}
+.back-buttons {
+  display: flex;
+  align-content: center;
+  width: 30%;
+  gap: 10px;
+
+  button {
+    background-color: variables.$button-color !important;
+    border-radius: 20px;
+    color: white !important;
+    width: inherit;
+  }
+}
+hr{
+  border-top: 2px solid variables.$line-color;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.input-text{
+  width: 50%;
+  --mdc-filled-text-field-focus-active-indicator-color: variables.$line-color;
+}
+
+.login-error{
+  --mat-form-field-error-text-color: red;
+  margin-bottom: 30px;
+  font-size: variables.$extra-small-font-size;
+}
+
+.submit-buttons{
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  gap: 10px;
+  padding: 20px 0 20px 0;
+  button{
+    background-color: variables.$button-color !important;
+    border-radius: 20px;
+    color: white !important;
+    width: inherit;
+    &:disabled{
+      background-color: lightgray !important;
+    }
+  }
+}
+
+
+

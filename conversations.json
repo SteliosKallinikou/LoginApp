@@ -1,0 +1,73 @@
+{
+  "conversations": [
+    {
+      "id": "1",
+      "firstUser": "Kallis",
+      "secondUser": "Stelios",
+      "messages": []
+    },
+    {
+      "id": "2",
+      "firstUser": "Kallis",
+      "secondUser": "Steve",
+      "messages": [
+        {
+          "user": "Kallis",
+          "message": "hi",
+          "time": "24/01/2025, 15:07:05"
+        },
+        {
+          "user": "Steve",
+          "message": "hi",
+          "time": "24/01/2025, 15:10:56"
+        },
+        {
+          "user": "Steve",
+          "message": "hi",
+          "time": "24/01/2025, 15:19:21"
+        },
+        {
+          "user": "Steve",
+          "message": "this is a test message",
+          "time": "24/01/2025, 17:44:18"
+        },
+        {
+          "user": "Steve",
+          "message": "hey",
+          "time": "24/01/2025, 17:49:10"
+        },
+        {
+          "user": "Steve",
+          "message": "test",
+          "time": "24/01/2025, 17:49:22"
+        },
+        {
+          "user": "Steve",
+          "message": "Hey",
+          "time": "27/01/2025, 14:17:34"
+        },
+        {
+          "user": "Steve",
+          "message": "hi",
+          "time": "27/01/2025, 14:21:20"
+        },
+        {
+          "user": "Kallis",
+          "message": "Hello",
+          "time": "27/01/2025, 14:56:50"
+        },
+        {
+          "user": "Steve",
+          "message": "Hi",
+          "time": "27/01/2025, 16:32:12"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "firstUser": "Steve",
+      "secondUser": "Stelios",
+      "messages": []
+    }
+  ]
+}

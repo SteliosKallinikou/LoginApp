@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>{{user.userName}}'s Profile</h1>
+  <div class="back-buttons">
+    <button  mat-icon-button class="go-back-button" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+  </div>
+  <hr>
+  <div class="profile-details">
+      <div class="profile-container">
+        <h1>Profile Details</h1>
+        <hr>
+        <span>Username: {{user.userName}}</span>
+        @if (user.profilePicture){
+          <img class="profile-image" [ngSrc]="user.profilePicture" priority width="200" height="200" alt="profile-pic"/>
+        }
+        <span>Followers: {{user.followers}}</span>
+        <span>Age: {{user.age}}</span>
+        <button mat-stroked-button (click)="follow()">Follow</button>
+      </div>
+      <div class="user-post" >
+        <h1>{{user.userName}}'s Activity</h1>
+        <hr>
+        @if (!posts) {
+          <span>User Has Not Posted Yet!</span>
+        } @else {
+          @for (post of posts; track post.id) {
+            <app-post
+              [user]="post.belongsTo"
+              [postContent]="post.content"
+              [date]="post.date"
+              [post]="post"
+            ></app-post>
+          }
+        }
+      </div>
+    </div>
+  </div>

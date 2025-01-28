@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="welcome">
+    <h1>Hello {{authenticationService.userName}},</h1>
+    <h1>Welcome to Your InstaBook Homepage</h1>
+    <div class="back-buttons">
+      <button  mat-flat-button class="go-back-button" (click)="goBack()">Back to DashBoard</button>
+    </div>
+    <hr>
+  </div>
+  <div class="submit-buttons">
+    <button mat-icon-button class="image-button" (click)="goToMessages()"><mat-icon>message</mat-icon></button>
+    <textarea
+      class="feed-text-post"
+      rows="2"
+      cols="55"
+      placeholder="Whats On Your Mind?"
+      [(ngModel)]="text"
+      (keydown.enter)="postContent(text)"
+    ></textarea>
+    <button mat-icon-button class="image-button" (click)="addImage()"><mat-icon>add_photo_alternate</mat-icon></button>
+    <button class="post-button" (click)="postContent(text)" mat-stroked-button>Share Post</button>
+  </div>
+  @if (imageURL()) {
+      <img class="image-post" [ngSrc]="imageURL()"  priority width="200" height="200" alt="profile"/>
+  }
+  <div class="post-area">
+    @if (!isLoading){
+      <mat-spinner class="post-loading"></mat-spinner>
+    }
+    <h1 class="posts-title">Posts</h1>
+    @for (post of posts; track post.id) {
+      <app-post
+        [user]="post.belongsTo"
+        [postContent]="post.content"
+        [date]="post.date"
+        [post]="post"
+      ></app-post>
+    }
+  </div>
+</div>
