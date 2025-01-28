@@ -13,7 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIcon } from '@angular/material/icon';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed-page',
@@ -27,7 +27,7 @@ export class FeedPageComponent implements OnInit {
   location = inject(Location);
   destroyRef = inject(DestroyRef);
   imageDialog = inject(MatDialog);
-  router=inject(Router)
+  router = inject(Router);
   authenticatedUser = this.authenticationService.authenticatedUser;
   text = '';
   posts: Post[] = [];
@@ -37,11 +37,11 @@ export class FeedPageComponent implements OnInit {
   ngOnInit(): void {
     interval(1000)
       .pipe(
-        takeUntilDestroyed(this.destroyRef),
         switchMap(() => {
           this.isLoading = false;
           return this.postService.fetchPost();
-        })
+        }),
+        takeUntilDestroyed(this.destroyRef)
       )
       .subscribe({
         next: data => {
@@ -55,8 +55,17 @@ export class FeedPageComponent implements OnInit {
   }
 
   postContent(input: string): void {
-    this.postService.createPost(this.authenticatedUser, input, this.imageURL()).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
-    this.imageURL.set('');
+    this.postService
+      .createPost(this.authenticatedUser, input, this.imageURL())
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => {
+          this.imageURL.set('');
+        },
+        error: err => {
+          console.error('Failed to create post:', err);
+        },
+      });
   }
 
   goBack(): void {

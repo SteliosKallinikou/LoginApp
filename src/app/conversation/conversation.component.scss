@@ -7,13 +7,12 @@
   max-height: 400px;
   background-color: #f5f5f5;
   width:500px;
-
 }
 
 .message{
   display: flex;
-
 }
+
 .message-left{
   align-self: flex-start;
   background-color: #e0e0e0;
@@ -24,6 +23,7 @@
   word-wrap: break-word;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .message-right{
   align-self: flex-end;
   background-color: #BB86FC;
@@ -38,6 +38,7 @@
 
 .input-text{
   width: inherit;
+
   .send-message{
     background: #BB86FC;
     color: white;

@@ -69,10 +69,17 @@ export class PostComponent implements OnInit {
   }
 
   shareComment(): void {
-    this.postService.createComment(this.authenticationService.authenticatedUser, this.commentContent, this.post()).subscribe();
+    this.postService
+      .createComment(this.authenticationService.authenticatedUser, this.commentContent, this.post())
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe();
   }
 
   goToProfile(): void {
     this.router.navigate(['/feed', this.user().id]);
+  }
+
+  get isUserAuthenticated(): boolean {
+    return this.authenticationService.authenticatedUser.userName === this.user().userName;
   }
 }

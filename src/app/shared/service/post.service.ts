@@ -39,35 +39,35 @@ export class PostService {
     );
   }
 
-  likePost(currentPost: Post): Observable<object> {
+  likePost(currentPost: Post): Observable<Post> {
     const currentUrl = this.URL + `/${currentPost.id}`;
     const updatedPost: Post = { ...currentPost, likes: currentPost.likes + 1 };
-    return this.http.put(currentUrl, updatedPost);
+    return this.http.put(currentUrl, updatedPost) as Observable<Post>;
   }
 
-  createComment(user: User, text: string, userPost: Post): Observable<object> {
+  createComment(user: User, text: string, userPost: Post): Observable<Post> {
     const postTo = this.URL + `/${userPost.id}`;
     const newComment: Comment = { content: text, createdBy: user.userName, date: this.date };
     const updatedPost = { ...userPost, comments: [...userPost.comments, newComment] };
-    return this.http.put(postTo, updatedPost);
+    return this.http.put(postTo, updatedPost) as Observable<Post>;
   }
 
-  postUpdate(user: User, post: Post): Observable<object> {
+  postUpdate(user: User, post: Post): Observable<Post> {
     return this.userDataService.user.pipe(
       take(1),
       map(data => data.find(res => user.id === res.id)),
       switchMap(foundUser => {
         if (foundUser) {
-          return this.http.patch(this.URL + `/${post.id}`, { belongsTo: foundUser });
+          return this.http.patch(this.URL + `/${post.id}`, { belongsTo: foundUser }) as Observable<Post>;
         }
         return EMPTY;
       })
     );
   }
 
-  followUser(currentUser: User): Observable<object> {
+  followUser(currentUser: User): Observable<User> {
     const updatedUser: User = { ...currentUser, followers: currentUser.followers + 1 };
-    return this.userDataService.changeUserDetails(updatedUser, currentUser);
+    return this.userDataService.changeUserDetails(updatedUser, currentUser) as Observable<User>;
   }
 
   fetchPost(): Observable<Post[]> {

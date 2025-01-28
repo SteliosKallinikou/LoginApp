@@ -18,18 +18,18 @@ export class MessageService {
     this.date = new Date().toLocaleString();
   }
 
-  createConversation(sender: User, receiver: User): Observable<object> {
+  createConversation(sender: User, receiver: User): Observable<Conversation> {
     return this.fetchConversations().pipe(
       take(1),
       switchMap(result => {
         const conversationId = result.length + 1;
         const conversation: Conversation = { id: conversationId, firstUser: sender.userName, secondUser: receiver.userName, messages: [] };
-        return this.http.post(this.URL, conversation);
+        return this.http.post(this.URL, conversation) as Observable<Conversation>;
       })
     );
   }
 
-  sendMessage(conversationId: number, user: string, content: string, currentMessages: Message[]):Observable<Conversation> {
+  sendMessage(conversationId: number, user: string, content: string, currentMessages: Message[]): Observable<Conversation> {
     const message: Message = { user: user, message: content, time: this.date };
     const conversationUrl = this.URL + `/${conversationId}`;
     const updateMessages = [...currentMessages, message];

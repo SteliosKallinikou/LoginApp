@@ -10,15 +10,21 @@
   text-align: center;
   padding: 50px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
   @media screen and (max-width: 570px) {
     width: 90%;
+  }
+
+  .available-users {
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
   }
 
   .profile-image{
     width: 15%;
     height: 15%;
   }
-
 
   .conversations-container{
     display: flex;
@@ -28,25 +34,17 @@
     width: 100%;
     margin-top: 50px;
     padding: 50px;
+
+    .conversations-details{
+      width: 40%;
+    }
+
+    .available-chats{
+      padding: 20px;
+      border: 2px solid #03DAC5;
+      border-radius: 20px;
+      width: 40%;
+      margin: 20px;
+    }
   }
-
-  .conversations-details{
-    width: 40%;
-  }
-
-  .available-chats{
-    padding: 20px;
-    border: 2px solid #03DAC5;
-    border-radius: 20px;
-    width: 40%;
-    margin: 20px;
-  }
-
-  .available-users {
-    display: flex;
-    cursor: pointer;
-    justify-content: space-between;
-
-  }
-
 }

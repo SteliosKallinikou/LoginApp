@@ -16,9 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideAppInitializer(() => {
       const authenticationService = inject(AuthenticationService);
-      if (authenticationService.isDark) {
-        authenticationService.toggleDarkMode(authenticationService.isDark);
-      }
+      authenticationService.initTheme();
     }),
   ],
 };

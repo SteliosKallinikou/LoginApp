@@ -1,7 +1,7 @@
 
 <mat-card class="post-card" appearance="outlined">
   <mat-card-header class="post-header" (click)="goToProfile()">
-    @if (authenticationService.authenticatedUser.userName===user().userName) {
+    @if (isUserAuthenticated) {
       <mat-card-title matBadge="1" matBadgeSize="small"  matBadgePosition="above before" class="user-active">{{user().userName}}</mat-card-title>
     } @else {
       <mat-card-title matBadge="1" matBadgeSize="small" matBadgePosition="above before" class="user-offline" >{{user().userName}}</mat-card-title>

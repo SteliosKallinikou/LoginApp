@@ -16,7 +16,7 @@ export class AuthenticationService {
     const authUser = users.find(user => user.userName === input.userName && user.password === input.password) || null;
     const isFound = Boolean(authUser?.userName);
     localStorage.setItem('isAuthenticated', isFound.toString());
-    console.log(localStorage)
+    console.log(localStorage);
     localStorage.setItem('user', JSON.stringify(authUser));
     return isFound;
   }
@@ -49,6 +49,12 @@ export class AuthenticationService {
     localStorage.removeItem('darkMode');
     document.body.classList.remove('dark-theme');
     this.router.navigate(['']);
+  }
+
+  initTheme(): void {
+    if (this.isDark) {
+      document.body.classList.add('dark-theme');
+    }
   }
 
   toggleDarkMode(isDarkEnabled: boolean): void {

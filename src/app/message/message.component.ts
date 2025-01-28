@@ -1,7 +1,7 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import {Location, NgOptimizedImage} from '@angular/common';
+import { Location, NgOptimizedImage } from '@angular/common';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { UserDataService } from '../shared/service/user-data.service';
 import { Conversation, Message, User } from '../shared/models';
@@ -9,7 +9,7 @@ import { MessageService } from '../shared/service/message.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ConversationComponent } from '../conversation/conversation.component';
-import {MatCardImage} from '@angular/material/card';
+import { MatCardImage } from '@angular/material/card';
 
 @Component({
   selector: 'app-message',
@@ -21,7 +21,7 @@ export class MessageComponent implements OnInit {
   authenticationService = inject(AuthenticationService);
   userService = inject(UserDataService);
   messageService = inject(MessageService);
-  destroyRef=inject(DestroyRef)
+  destroyRef = inject(DestroyRef);
   location = inject(Location);
   user = this.authenticationService.authenticatedUser;
   availableUsers: User[] = [];
@@ -30,37 +30,41 @@ export class MessageComponent implements OnInit {
   messages: Message[] = [] as Message[];
 
   ngOnInit(): void {
-    this.userService.user.subscribe(data => {
+    this.userService.user.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data => {
       this.availableUsers = data;
     });
 
-    this.messageService.fetchConversations().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data => {
-      data.find(res => {
-        if (res.secondUser === this.authenticationService.userName || res.firstUser === this.authenticationService.userName) {
-          this.messages = res.messages;
-          this.openConversations.push(res);
-        }
+    this.messageService
+      .fetchConversations()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(data => {
+        data.find(res => {
+          if (res.secondUser === this.authenticationService.userName || res.firstUser === this.authenticationService.userName) {
+            this.messages = res.messages;
+            this.openConversations.push(res);
+          }
+        });
       });
-    });
   }
 
-  goBack() {
+  goBack(): void {
     this.location.back();
   }
 
   selectedConversation(selection: User): void {
-    this.openConversations.find(res => {
-      if (res.secondUser === selection.userName) {
-        this.openConversation(res.id);
-      }
-      if (this.openConversations) {
-        this.messageService.createConversation(this.user, selection).pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
-      }
-    });
+    const conversation = this.openConversations.find(res => selection.userName === res.firstUser);
+    if (conversation) {
+      this.conversation = conversation;
+      this.messages = conversation.messages;
+    } else {
+      this.messageService.createConversation(this.authenticationService.authenticatedUser, selection).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data => {
+        this.openConversations.push(data);
+      });
+    }
   }
 
   openConversation(id: number): void {
-    this.conversation = this.openConversations[id]
-    this.messages=this.openConversations[id].messages;
+    this.conversation = this.openConversations[id];
+    this.messages = this.openConversations[id].messages;
   }
 }
